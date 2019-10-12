@@ -6,11 +6,9 @@ import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.vast.nss.Fragment.UserProfileFragment;
+import com.vast.nss.Fragment.ProfileFragment;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
@@ -51,15 +49,15 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         switch(menuItem.getItemId()){
 
             case R.id.navigation_event:
-                fragment = new UserProfileFragment();
+                fragment = new ProfileFragment();
                 break;
 
             case R.id.navigation_attendance:
-                fragment = new UserProfileFragment();
+                fragment = new ProfileFragment();
                 break;
 
             case R.id.navigation_profile:
-                fragment = new UserProfileFragment();
+                fragment = new ProfileFragment();
                 break;
 
         }

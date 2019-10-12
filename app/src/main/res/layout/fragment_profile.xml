@@ -51,8 +51,8 @@
 
     <TextView
         android:id="@+id/textView5"
-        android:layout_width="41dp"
-        android:layout_height="14dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
         android:elevation="1dp"
         android:text="HOUR"
