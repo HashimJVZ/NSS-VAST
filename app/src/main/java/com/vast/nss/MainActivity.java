@@ -4,14 +4,17 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.vast.nss.Fragment.EventFragment;
 import com.vast.nss.Fragment.ProfileFragment;
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
-
+public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, ClickListener {
 
 
     @Override
@@ -26,6 +29,17 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         BottomNavigationView navigation =  findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(this);
 
+        EventFragment eventFragment = new EventFragment();
+        eventFragment.setClickListener(this);
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+
+        return super.onCreateOptionsMenu(menu);
     }
 
     private boolean loadFragment(Fragment fragment){
@@ -49,7 +63,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         switch(menuItem.getItemId()){
 
             case R.id.navigation_event:
-                fragment = new ProfileFragment();
+                fragment = new EventFragment();
+
                 break;
 
             case R.id.navigation_attendance:
@@ -66,4 +81,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     }
 
 
+    @Override
+    public void createEventClicked() {
+        Intent intent = new Intent(MainActivity.this, EventCreationActivity.class);
+    }
 }
