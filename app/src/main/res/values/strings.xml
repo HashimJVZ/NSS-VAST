@@ -3,4 +3,12 @@
     <string name="event">Event</string>
     <string name="attendance">Attendance</string>
     <string name="profile">Profile</string>
+    <string name="about">About</string>
+    <string name="logout">Logout</string>
+    <string-array name="categoty_array">
+        <item>Orientation</item>
+        <item>Campus</item>
+        <item>Community</item>
+        <item>Camp</item>
+    </string-array>
 </resources>
