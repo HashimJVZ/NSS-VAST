@@ -35,6 +35,7 @@ public class EventFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_event, container, false);
 
         floatingActionButton = view.findViewById(R.id.event_creation_fab);
+
         //this is only for the admin
 
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
