@@ -30,13 +30,24 @@
 
     </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
 
-    <Button
-        android:layout_margin="10dp"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="showDatePickerDialog"
-        android:text="Date" />
+        android:layout_margin="10dp">
 
+        <TextView
+            android:id="@+id/date_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date:"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="showDatePickerDialog"
+            android:text="Set" />
+
+    </LinearLayout>
 
     <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
         android:layout_margin="10dp"
@@ -51,13 +62,10 @@
 
     </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
 
-
     <Spinner
         android:layout_margin="10dp"
         android:id="@+id/spinner"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
-
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

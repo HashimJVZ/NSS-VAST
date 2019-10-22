@@ -6,6 +6,7 @@
     <string name="about">About</string>
     <string name="logout">Logout</string>
     <string-array name="categoty_array">
+        <item>Choose Category</item>
         <item>Orientation</item>
         <item>Campus</item>
         <item>Community</item>

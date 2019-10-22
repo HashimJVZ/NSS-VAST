@@ -16,10 +16,18 @@ import com.vast.nss.R;
 
 public class EventFragment extends Fragment {
 
+    public interface ClickListnerEvent {
+        void clicked();
+    }
+
     private RecyclerView recyclerView;
     private FloatingActionButton floatingActionButton;
 
-    private ClickListener clickListener;
+    private ClickListnerEvent clickListner;
+
+    public EventFragment(ClickListnerEvent clickListner) {
+        this.clickListner = clickListner;
+    }
 
     @Nullable
     @Override
@@ -32,15 +40,14 @@ public class EventFragment extends Fragment {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                clickListener.createEventClicked();
+                clickListner.clicked();
             }
         });
 
         return view;
     }
 
-
-    public void setClickListener(ClickListener clickListener) {
-        this.clickListener = clickListener;
+    public void setClickListner(ClickListnerEvent clickListner) {
+        this.clickListner = clickListner;
     }
 }

@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -14,7 +15,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.vast.nss.Fragment.EventFragment;
 import com.vast.nss.Fragment.ProfileFragment;
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, ClickListener {
+public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, EventFragment.ClickListnerEvent {
 
 
     @Override
@@ -29,8 +30,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         BottomNavigationView navigation =  findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(this);
 
-        EventFragment eventFragment = new EventFragment();
-        eventFragment.setClickListener(this);
+        loadFragment(new EventFragment(this));
 
     }
 
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         switch(menuItem.getItemId()){
 
             case R.id.navigation_event:
-                fragment = new EventFragment();
+                fragment = new EventFragment(MainActivity.this);
 
                 break;
 
@@ -80,9 +80,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         return loadFragment(fragment);
     }
 
-
     @Override
-    public void createEventClicked() {
+    public void clicked() {
         Intent intent = new Intent(MainActivity.this, EventCreationActivity.class);
+        startActivity(intent);
     }
 }
