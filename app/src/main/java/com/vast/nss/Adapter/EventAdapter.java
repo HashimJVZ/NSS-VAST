@@ -58,7 +58,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
 
             titleTextView = itemView.findViewById(R.id.titleTextView);
             locationTextView = itemView.findViewById(R.id.locationTextview);
-            dateTextView = itemView.findViewById(R.id.date_textView);
+            dateTextView = itemView.findViewById(R.id.dateTextView);
             categoryTextView = itemView.findViewById(R.id.categoryTextView);
             hoursTextView = itemView.findViewById(R.id.hoursTextView);
 

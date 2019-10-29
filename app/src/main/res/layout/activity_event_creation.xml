@@ -36,7 +36,7 @@
         android:layout_margin="10dp">
 
         <TextView
-            android:id="@+id/date_textView"
+            android:id="@+id/setdate_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Date:"/>
@@ -67,5 +67,11 @@
         android:id="@+id/spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/createBtn"
+        android:text="Create"/>
 
 </LinearLayout>

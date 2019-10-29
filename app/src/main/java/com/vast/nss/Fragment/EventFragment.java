@@ -1,6 +1,7 @@
 package com.vast.nss.Fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,9 +20,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.vast.nss.Adapter.EventAdapter;
-import com.vast.nss.ClickListener;
-import com.vast.nss.R;
 import com.vast.nss.Model.Event;
+import com.vast.nss.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,6 +50,7 @@ public class EventFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_event, container, false);
+        Log.d("mylog","Oncreate");
 
         eventRecyclerView = view.findViewById(R.id.eventRecyclerView);
         eventRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -64,13 +65,15 @@ public class EventFragment extends Fragment {
             }
         });
 
-        final List<Event> list = new ArrayList<>();
         Query query = databaseReference.child("events").orderByKey();
 
         query.addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Log.d("mylog","onDataChange");
+
+                List<Event> list = new ArrayList<>();
                 for(DataSnapshot ds : dataSnapshot.getChildren()){
                     Event event = new Event();
                     event.setTitle(ds.child("title").getValue().toString());
@@ -78,6 +81,7 @@ public class EventFragment extends Fragment {
                     event.setDate(ds.child("date").getValue().toString());
                     event.setCategory(ds.child("category").getValue().toString());
                     event.setHours(ds.child("hours").getValue().toString());
+
 
                     list.add(event);
 
@@ -89,7 +93,7 @@ public class EventFragment extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                Log.d("mylog",databaseError.getMessage());
             }
         });
 
