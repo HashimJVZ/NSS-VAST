@@ -42,9 +42,6 @@ public class EventCreationActivity extends AppCompatActivity  {
 
             }
         });
-
-
-
     }
 
     public void showDatePickerDialog(View v) {

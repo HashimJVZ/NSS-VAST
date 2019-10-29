@@ -55,9 +55,6 @@ public class EventFragment extends Fragment {
         eventRecyclerView = view.findViewById(R.id.eventRecyclerView);
         eventRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-//        EventAdapter eventAdapter = new EventAdapter(getContext(), new ArrayList<Event>());
-//        eventRecyclerView.setAdapter(eventAdapter);
-
         //this is only for the admin
         floatingActionButton = view.findViewById(R.id.event_creation_fab);
 

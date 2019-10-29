@@ -33,12 +33,6 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, final int i) {
-
-//        myViewHolder.titleTextView.setText("TiTle is it");
-//        myViewHolder.locationTextView.setText("Thrissur Railway");
-//        myViewHolder.dateTextView.setText("654");
-//        myViewHolder.categoryTextView.setText("asdfsdfg");
-//        myViewHolder.hoursTextView.setText("asdsa5");
         myViewHolder.titleTextView.setText(eventList.get(i).getTitle());
         myViewHolder.locationTextView.setText(eventList.get(i).getLocation());
         myViewHolder.dateTextView.setText(eventList.get(i).getDate());

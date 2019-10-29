@@ -11,12 +11,6 @@ import androidx.fragment.app.Fragment;
 
 import com.vast.nss.R;
 
-/**
- * You need to create the view firest
- * how can you return without creeating
- * ok
- */
-
 public class AttendanceFragment extends Fragment {
 
     @Nullable
