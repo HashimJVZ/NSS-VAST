@@ -12,6 +12,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.vast.nss.Fragment.AttendanceFragment;
 import com.vast.nss.Fragment.EventFragment;
 import com.vast.nss.Fragment.ProfileFragment;
 
@@ -68,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 break;
 
             case R.id.navigation_attendance:
-                fragment = new ProfileFragment();
+                fragment = new AttendanceFragment();
                 break;
 
             case R.id.navigation_profile:

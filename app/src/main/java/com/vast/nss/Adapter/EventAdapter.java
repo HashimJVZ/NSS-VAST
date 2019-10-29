@@ -33,6 +33,12 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, final int i) {
+
+//        myViewHolder.titleTextView.setText("TiTle is it");
+//        myViewHolder.locationTextView.setText("Thrissur Railway");
+//        myViewHolder.dateTextView.setText("654");
+//        myViewHolder.categoryTextView.setText("asdfsdfg");
+//        myViewHolder.hoursTextView.setText("asdsa5");
         myViewHolder.titleTextView.setText(eventList.get(i).getTitle());
         myViewHolder.locationTextView.setText(eventList.get(i).getLocation());
         myViewHolder.dateTextView.setText(eventList.get(i).getDate());
@@ -58,7 +64,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
 
             titleTextView = itemView.findViewById(R.id.titleTextView);
             locationTextView = itemView.findViewById(R.id.locationTextview);
-            dateTextView = itemView.findViewById(R.id.date_textView);
+            dateTextView = itemView.findViewById(R.id.dateTextView);
             categoryTextView = itemView.findViewById(R.id.categoryTextView);
             hoursTextView = itemView.findViewById(R.id.hoursTextView);
 

@@ -18,6 +18,7 @@
                     android:layout_margin="16dp"
                     android:src="@drawable/plus" />
 
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/eventRecyclerView"
                     android:layout_width="match_parent"
