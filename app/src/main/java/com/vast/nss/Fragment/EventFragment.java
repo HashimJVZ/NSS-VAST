@@ -96,7 +96,5 @@ public class EventFragment extends Fragment {
         return view;
     }
 
-    public void setClickListner(ClickListnerEvent clickListner) {
-        this.clickListner = clickListner;
-    }
+
 }
