@@ -25,6 +25,7 @@ import com.vast.nss.R;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class EventFragment extends Fragment {
 
@@ -39,8 +40,8 @@ public class EventFragment extends Fragment {
 
     private ClickListnerEvent clickListner;
 
-    FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-    DatabaseReference databaseReference =  firebaseDatabase.getReference();
+    private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+    private DatabaseReference databaseReference =  firebaseDatabase.getReference();
 
     public EventFragment(ClickListnerEvent clickListener) {
         this.clickListner = clickListener;
@@ -62,6 +63,7 @@ public class EventFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 clickListner.clicked();
+                floatingActionButton.setEnabled(false);
             }
         });
 
@@ -76,11 +78,11 @@ public class EventFragment extends Fragment {
                 List<Event> list = new ArrayList<>();
                 for(DataSnapshot ds : dataSnapshot.getChildren()){
                     Event event = new Event();
-                    event.setTitle(ds.child("title").getValue().toString());
-                    event.setLocation(ds.child("location").getValue().toString());
-                    event.setDate(ds.child("date").getValue().toString());
-                    event.setCategory(ds.child("category").getValue().toString());
-                    event.setHours(ds.child("hours").getValue().toString());
+                    event.setTitle(Objects.requireNonNull(ds.child("title").getValue()).toString());
+                    event.setLocation(Objects.requireNonNull(ds.child("location").getValue()).toString());
+                    event.setDate(Objects.requireNonNull(ds.child("date").getValue()).toString());
+                    event.setCategory(Objects.requireNonNull(ds.child("category").getValue()).toString());
+                    event.setHours(Objects.requireNonNull(ds.child("hours").getValue()).toString());
 
 
                     list.add(event);
@@ -98,6 +100,13 @@ public class EventFragment extends Fragment {
         });
 
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d("mylog","Onresume");
+        floatingActionButton.setEnabled(true);
     }
 
     public void setClickListner(ClickListnerEvent clickListner) {

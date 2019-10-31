@@ -37,7 +37,8 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
         myViewHolder.locationTextView.setText(eventList.get(i).getLocation());
         myViewHolder.dateTextView.setText(eventList.get(i).getDate());
         myViewHolder.categoryTextView.setText(eventList.get(i).getCategory());
-        myViewHolder.hoursTextView.setText(eventList.get(i).getHours());
+        String hours = ("Hours: " + eventList.get(i).getHours());
+        myViewHolder.hoursTextView.setText(hours);
     }
 
     @Override
@@ -45,7 +46,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
         return eventList.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder{
+    class MyViewHolder extends RecyclerView.ViewHolder{
 
         TextView titleTextView;
         TextView locationTextView;
@@ -53,7 +54,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
         TextView categoryTextView;
         TextView hoursTextView;
 
-        public MyViewHolder(@NonNull View itemView){
+        MyViewHolder(@NonNull View itemView){
             super(itemView);
 
             titleTextView = itemView.findViewById(R.id.titleTextView);
