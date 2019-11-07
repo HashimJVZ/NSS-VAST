@@ -32,25 +32,25 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.MyView
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-
+    public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int position) {
+        myViewHolder.user_name.setText(userList.get(position).getUser_name());
+        myViewHolder.user_id.setText(userList.get(position).getUser_id());
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return userList.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder{
+    class MyViewHolder extends RecyclerView.ViewHolder{
         TextView user_name;
         TextView user_id;
 
-        public MyViewHolder(View view) {
+        MyViewHolder(View view) {
             super(view);
 
             user_name = view.findViewById(R.id.user_name);
             user_id = view.findViewById(R.id.user_id);
-
         }
     }
 }
