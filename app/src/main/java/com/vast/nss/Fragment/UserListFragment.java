@@ -6,4 +6,6 @@ import androidx.recyclerview.widget.RecyclerView;
 public class UserListFragment extends Fragment {
 
     private RecyclerView userListRecyclerView;
+
+
 }

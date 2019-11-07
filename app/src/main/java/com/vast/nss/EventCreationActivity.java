@@ -16,14 +16,24 @@ import androidx.fragment.app.DialogFragment;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.vast.nss.Adapter.EventAdapter;
 import com.vast.nss.Fragment.DatePickerFragment;
+import com.vast.nss.Model.Event;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class EventCreationActivity extends AppCompatActivity  {
 
     static TextView setdateTextview;
     DatabaseReference databaseReference;
+
+//    private List<Event> eventList;
+//    private int count;
+//
+//    public EventCreationActivity() {
+//        count = eventList.size();
+//    }
 
 
     @Override
@@ -43,7 +53,10 @@ public class EventCreationActivity extends AppCompatActivity  {
         Button button = findViewById(R.id.createBtn);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {//todo onclick , add data to firebase
+            public void onClick(View view) {
+//                int new_count = count+1;
+//                Log.d("temptag", "new_count="+new_count);
+
                 EditText editTextTitle = findViewById(R.id.editTextTitle);
                 EditText editTextLocation = findViewById(R.id.editTextLocation);
                 EditText editTextHours = findViewById(R.id.editTextHours);
