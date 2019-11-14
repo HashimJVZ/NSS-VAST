@@ -1,16 +1,19 @@
 package com.vast.nss.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.vast.nss.R;
 import com.vast.nss.Model.Event;
+import com.vast.nss.R;
+import com.vast.nss.SearchActivity;
 
 import java.util.List;
 
@@ -39,6 +42,13 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
         myViewHolder.categoryTextView.setText(eventList.get(i).getCategory());
         String hours = ("Hours: " + eventList.get(i).getHours());
         myViewHolder.hoursTextView.setText(hours);
+        myViewHolder.eventCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, SearchActivity.class);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -53,6 +63,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
         TextView dateTextView;
         TextView categoryTextView;
         TextView hoursTextView;
+        CardView eventCardView;
 
         MyViewHolder(@NonNull View itemView){
             super(itemView);
@@ -62,6 +73,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
             dateTextView = itemView.findViewById(R.id.dateTextView);
             categoryTextView = itemView.findViewById(R.id.categoryTextView);
             hoursTextView = itemView.findViewById(R.id.hoursTextView);
+            eventCardView = itemView.findViewById(R.id.eventCardView);
 
         }
     }

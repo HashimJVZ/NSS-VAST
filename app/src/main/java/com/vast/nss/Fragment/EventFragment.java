@@ -63,7 +63,7 @@ public class EventFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 clickListner.clicked();
-                floatingActionButton.setEnabled(false);
+                floatingActionButton.setClickable(false);
             }
         });
 
@@ -83,7 +83,6 @@ public class EventFragment extends Fragment {
                     event.setDate(Objects.requireNonNull(ds.child("date").getValue()).toString());
                     event.setCategory(Objects.requireNonNull(ds.child("category").getValue()).toString());
                     event.setHours(Objects.requireNonNull(ds.child("hours").getValue()).toString());
-
 
                     list.add(event);
 
@@ -106,7 +105,7 @@ public class EventFragment extends Fragment {
     public void onResume() {
         super.onResume();
         Log.d("mylog","Onresume");
-        floatingActionButton.setEnabled(true);
+        floatingActionButton.setClickable(true);
     }
 
     public void setClickListner(ClickListnerEvent clickListner) {

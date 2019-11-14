@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,12 +14,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.vast.nss.Model.UserList;
 import com.vast.nss.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.MyViewHolder> {
+public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.MyViewHolder> implements Filterable {
 
     private Context context;
     private List<UserList> userList;
+    private List<String> userListAll;
 
     public UserListAdapter(Context context, List<UserList> userList){
         this.context = context;
@@ -41,6 +45,32 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.MyView
     public int getItemCount() {
         return userList.size();
     }
+
+    @Override
+    public Filter getFilter() {
+        return filter;
+    }
+
+    Filter filter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+
+            List<String> filteredList = new ArrayList<>();
+
+            if(constraint.toString().isEmpty()){
+                filteredList.addAll(userListAll);
+            } else {
+                for (String userList : userListAll)
+                    if (userList.toLowerCase().contains());
+            }
+            return null;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+
+        }
+    };
 
     class MyViewHolder extends RecyclerView.ViewHolder{
         TextView user_name;
