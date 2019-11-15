@@ -15,6 +15,8 @@ import com.vast.nss.Model.UserList;
 import com.vast.nss.R;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.MyViewHolder> implements Filterable {
@@ -52,6 +54,7 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.MyView
     }
 
     Filter filter = new Filter() {
+        //runs on background thread
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
 
@@ -60,14 +63,23 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.MyView
             if(constraint.toString().isEmpty()){
                 filteredList.addAll(userListAll);
             } else {
-                for (String userList : userListAll)
-                    if (userList.toLowerCase().contains());
+                for (String user : userListAll) {
+                    if (user.toLowerCase().contains(constraint.toString())) {
+                        filteredList.add(user);
+                    }
+                }
             }
-            return null;
+            FilterResults filterResults = new FilterResults();
+            filterResults.values = filteredList;
+            return filterResults;
         }
 
+        //runs on UI thread
         @Override
-        protected void publishResults(CharSequence constraint, FilterResults results) {
+        protected void publishResults(CharSequence constraint, FilterResults filterResults) {
+            userList.clear();
+            userList.addAll((Collection<? extends UserList>) filterResults.values);
+            notifyDataSetChanged();
 
         }
     };

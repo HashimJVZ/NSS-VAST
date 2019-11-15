@@ -41,6 +41,7 @@ public class SearchActivity extends AppCompatActivity  {
 
             @Override
             public boolean onQueryTextChange(String newText) {
+
                 return false;
             }
         });
