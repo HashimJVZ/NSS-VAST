@@ -25,8 +25,8 @@ import java.util.List;
 
 public class EventCreationActivity extends AppCompatActivity  {
 
-    static TextView setdateTextview;
-    DatabaseReference databaseReference;
+            static TextView setdateTextview;
+            DatabaseReference databaseReference;
 
 //    private List<Event> eventList;
 //    private int count;
