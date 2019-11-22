@@ -23,7 +23,15 @@ public class ProfileFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        profileName = profileName.findViewById(R.id.profile_name);
+        profileId = profileId.findViewById(R.id.profile_userid);
+        profileHours = profileHours.findViewById(R.id.profile_hours);
+
         return inflater.inflate(R.layout.fragment_profile1, container, false);
+
+
+
 
     }
 }
