@@ -7,13 +7,26 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+<!--    <androidx.cardview.widget.CardView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        app:cardCornerRadius="10dp"-->
+<!--        android:layout_marginStart="8dp"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:layout_marginEnd="8dp"-->
+<!--        android:layout_marginBottom="8dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="300dp"
         android:layout_height="300dp"
         app:cardCornerRadius="10dp"
-        app:cardElevation="1dp"
+        app:cardElevation="3dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,7 +38,7 @@
         android:id="@+id/circleImageView3"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:elevation="1dp"
+        android:elevation="3dp"
         android:src="@drawable/anil"
         app:layout_constraintBottom_toTopOf="@+id/cardView"
         app:layout_constraintEnd_toEndOf="@+id/cardView"
@@ -100,7 +113,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:elevation="1dp"
+        android:elevation="3dp"
         android:maxWidth="300dp"
         android:text="Anil Melepurath"
         android:textAlignment="center"
@@ -116,7 +129,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
-        android:elevation="1dp"
+        android:elevation="3dp"
         android:gravity="center"
         android:text="HOURS"
         android:textAlignment="center"
@@ -129,7 +142,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
-        android:elevation="1dp"
+        android:elevation="3dp"
         android:gravity="center"
         android:text="UNIT"
         android:textAlignment="center"
@@ -142,7 +155,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:elevation="1dp"
+        android:elevation="3dp"
         android:text="45247852"
         app:layout_constraintEnd_toEndOf="@+id/cardView"
         app:layout_constraintHorizontal_bias="0.497"
@@ -153,7 +166,7 @@
         android:id="@+id/profile_hours"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:elevation="1dp"
+        android:elevation="3dp"
         android:text="135"
         android:textAlignment="center"
         android:textColor="#181818"
@@ -167,7 +180,7 @@
         android:id="@+id/profile_unit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:elevation="1dp"
+        android:elevation="3dp"
         android:text="452"
         android:textAlignment="center"
         android:textColor="#181818"
@@ -191,6 +204,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
+        android:elevation="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -28,14 +28,6 @@ public class EventCreationActivity extends AppCompatActivity  {
             static TextView setdateTextview;
             DatabaseReference databaseReference;
 
-//    private List<Event> eventList;
-//    private int count;
-//
-//    public EventCreationActivity() {
-//        count = eventList.size();
-//    }
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +35,11 @@ public class EventCreationActivity extends AppCompatActivity  {
 
         setdateTextview = findViewById(R.id.setdate_textView);
         databaseReference = FirebaseDatabase.getInstance().getReference();
+
+//        final String count = getIntent().getStringExtra("count");
+//
+////        int new_count = count+1;
+//        Log.d("temptag", "new_count="+count);
 
         final Spinner spinner = (Spinner) findViewById(R.id.spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -54,8 +51,7 @@ public class EventCreationActivity extends AppCompatActivity  {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                int new_count = count+1;
-//                Log.d("temptag", "new_count="+new_count);
+
 
                 EditText editTextTitle = findViewById(R.id.editTextTitle);
                 EditText editTextLocation = findViewById(R.id.editTextLocation);
@@ -84,7 +80,7 @@ public class EventCreationActivity extends AppCompatActivity  {
                 databaseReference.child("events").child("e4").updateChildren(map).addOnSuccessListener(new OnSuccessListener() {
                     @Override
                     public void onSuccess(Object o) {
-                        startActivity(new Intent(EventCreationActivity.this, MainActivity.class));
+                        finish();
                     }
                 });
             }
@@ -100,8 +96,5 @@ public class EventCreationActivity extends AppCompatActivity  {
         String date = "Date: "+day+"/"+month+"/"+year;
         setdateTextview.setText(date);
     }
-
-
-
 
 }
