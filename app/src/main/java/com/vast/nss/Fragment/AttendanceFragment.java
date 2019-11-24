@@ -26,6 +26,7 @@ public class AttendanceFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_attendance, container, false);
 
+        context = getContext();
         button= view.findViewById(R.id.scanBtn);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
