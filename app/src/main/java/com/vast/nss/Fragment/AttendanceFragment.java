@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.vast.nss.R;
@@ -18,6 +20,7 @@ import com.vast.nss.ScanningActivity;
 public class AttendanceFragment extends Fragment {
 
     private Context context;
+    RecyclerView attendanceRecyclerView;
 
     @Nullable
     @Override
@@ -26,6 +29,13 @@ public class AttendanceFragment extends Fragment {
 
         FloatingActionButton floatingActionButton = view.findViewById(R.id.scan_fab);
         context = getContext();
+        attendanceRecyclerView = view.findViewById(R.id.attendanceRecyclerView);
+        attendanceRecyclerView.setLayoutManager(new LinearLayoutManager(context));
+
+
+
+
+
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

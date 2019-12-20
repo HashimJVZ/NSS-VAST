@@ -81,8 +81,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     }
 
     @Override
-    public void clicked() {
+    public void clicked(int count) {
         Intent intent = new Intent(MainActivity.this, EventCreationActivity.class);
+        intent.putExtra("count", count);
         startActivity(intent);
     }
 }

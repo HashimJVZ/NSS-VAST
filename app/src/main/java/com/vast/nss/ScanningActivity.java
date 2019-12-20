@@ -12,10 +12,14 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
+
+import java.util.Collections;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
@@ -32,6 +36,7 @@ public class ScanningActivity extends AppCompatActivity implements ZXingScannerV
         super.onCreate(savedInstanceState);
 
         scannerView = new ZXingScannerView(this);
+        scannerView.setFormats(Collections.singletonList(BarcodeFormat.CODE_128));
         setContentView(scannerView);
 
         if (checkPermission()) {
@@ -75,6 +80,7 @@ public class ScanningActivity extends AppCompatActivity implements ZXingScannerV
         if(checkPermission()){
             if(scannerView == null){
                 scannerView = new ZXingScannerView(this);
+                scannerView.setFormats(Collections.singletonList(BarcodeFormat.CODE_128));
                 setContentView(scannerView);
             }
             scannerView.setResultHandler(this);
@@ -99,6 +105,8 @@ public class ScanningActivity extends AppCompatActivity implements ZXingScannerV
 
     @Override
     public void handleResult(Result result) {
+        Log.d("barcode_test", result.getBarcodeFormat().name());
+        Toast.makeText(this,result.getBarcodeFormat().name() , Toast.LENGTH_SHORT).show();
         final String scanResult = result.getText();
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Scan Result");

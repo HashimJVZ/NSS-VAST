@@ -33,6 +33,6 @@ public class DatePickerFragment extends DialogFragment
         // Do something with the date chosen by the user
         Log.d("myTag", "onDateSet: "+ year +' '+ (++month)+' '+ day );
 
-        EventCreationActivity.changeTExt(year, month, day);
+        EventCreationActivity.changeText(year, month, day);
     }
 }

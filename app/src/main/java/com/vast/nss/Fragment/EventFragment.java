@@ -23,15 +23,19 @@ import com.vast.nss.Adapter.EventAdapter;
 import com.vast.nss.Model.Event;
 import com.vast.nss.R;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
 public class EventFragment extends Fragment {
 
     public interface ClickListnerEvent {
-        void clicked();
+        void clicked(int count);
     }
+
+    private int count;
 
     private RecyclerView eventRecyclerView;
     private FloatingActionButton floatingActionButton;
@@ -62,7 +66,7 @@ public class EventFragment extends Fragment {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                clickListner.clicked();
+                clickListner.clicked(count);
                 floatingActionButton.setClickable(false);
             }
         });
@@ -77,6 +81,8 @@ public class EventFragment extends Fragment {
 
                 List<Event> list = new ArrayList<>();
                 for(DataSnapshot ds : dataSnapshot.getChildren()){
+                    count++;
+
                     Event event = new Event();
                     event.setTitle(Objects.requireNonNull(ds.child("title").getValue()).toString());
                     event.setLocation(Objects.requireNonNull(ds.child("location").getValue()).toString());
@@ -85,8 +91,8 @@ public class EventFragment extends Fragment {
                     event.setHours(Objects.requireNonNull(ds.child("hours").getValue()).toString());
 
                     list.add(event);
-
                 }
+                Collections.reverse(list);
                 eventAdapter = new EventAdapter(getContext(), list);
                 eventRecyclerView.setAdapter(eventAdapter);
 
@@ -105,10 +111,8 @@ public class EventFragment extends Fragment {
     public void onResume() {
         super.onResume();
         Log.d("mylog","Onresume");
+        count = 0;
         floatingActionButton.setClickable(true);
     }
 
-    public void setClickListner(ClickListnerEvent clickListner) {
-        this.clickListner = clickListner;
-    }
 }

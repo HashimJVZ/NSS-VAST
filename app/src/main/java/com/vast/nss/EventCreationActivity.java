@@ -25,13 +25,17 @@ import java.util.List;
 
 public class EventCreationActivity extends AppCompatActivity  {
 
-            static TextView setdateTextview;
-            DatabaseReference databaseReference;
+        static TextView setdateTextview;
+        DatabaseReference databaseReference;
+        private int count;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_creation);
+
+        count = getIntent().getIntExtra("count", 0) + 1;
+
 
         setdateTextview = findViewById(R.id.setdate_textView);
         databaseReference = FirebaseDatabase.getInstance().getReference();
@@ -77,7 +81,7 @@ public class EventCreationActivity extends AppCompatActivity  {
                 map.put("date",date);
 
                 //todo replace "e4" below with incrementing getItemCount() from EventAdapter
-                databaseReference.child("events").child("e4").updateChildren(map).addOnSuccessListener(new OnSuccessListener() {
+                databaseReference.child("events").child("e"+ count).updateChildren(map).addOnSuccessListener(new OnSuccessListener() {
                     @Override
                     public void onSuccess(Object o) {
                         finish();
@@ -92,7 +96,7 @@ public class EventCreationActivity extends AppCompatActivity  {
         newFragment.show(getSupportFragmentManager(), "datePicker");
     }
 
-    public static void changeTExt(int year, int month, int day) {
+    public static void changeText(int year, int month, int day) {
         String date = "Date: "+day+"/"+month+"/"+year;
         setdateTextview.setText(date);
     }

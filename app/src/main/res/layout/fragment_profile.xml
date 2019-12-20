@@ -7,45 +7,119 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+<!--    <androidx.cardview.widget.CardView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        app:cardCornerRadius="10dp"-->
+<!--        android:layout_marginStart="8dp"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:layout_marginEnd="8dp"-->
+<!--        android:layout_marginBottom="8dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="300dp"
         android:layout_height="300dp"
         app:cardCornerRadius="10dp"
-        app:cardElevation="1dp"
+        app:cardElevation="3dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.4">
+        app:layout_constraintVertical_bias="0.4" />
 
-
-    </androidx.cardview.widget.CardView>
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/circleImageView3"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:elevation="1dp"
+        android:elevation="3dp"
         android:src="@drawable/anil"
         app:layout_constraintBottom_toTopOf="@+id/cardView"
         app:layout_constraintEnd_toEndOf="@+id/cardView"
         app:layout_constraintStart_toStartOf="@+id/cardView"
         app:layout_constraintTop_toTopOf="@+id/cardView" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="2dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dept:"
+                android:textSize="20sp"
+                android:layout_margin="5dp"
+                android:textColor="#181818" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Contact:"
+                android:textSize="20sp"
+                android:layout_margin="5dp"
+                android:textColor="#181818" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/profile_dept"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CSE"
+                android:textSize="20sp"
+                android:layout_margin="5dp"
+                android:textColor="#181818"/>
+
+            <TextView
+                android:id="@+id/profile_contact"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="7025674097"
+                android:textSize="20sp"
+                android:layout_margin="5dp"
+                android:textColor="#181818" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
     <TextView
-        android:id="@+id/name"
+        android:id="@+id/profile_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:elevation="1dp"
+        android:elevation="3dp"
+        android:maxWidth="300dp"
+        android:text="Anil Melepurath"
+        android:textAlignment="center"
+        android:textColor="#181818"
         android:textSize="30sp"
         android:textStyle="bold"
-        android:textColor="#181818"
-        android:text="Anil Melepurath"
-        android:maxWidth="300dp"
-        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="@+id/cardView"
         app:layout_constraintStart_toStartOf="@+id/cardView"
         app:layout_constraintTop_toBottomOf="@+id/circleImageView3" />
@@ -55,45 +129,45 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
-        android:elevation="1dp"
-        android:text="HOUR"
+        android:elevation="3dp"
         android:gravity="center"
+        android:text="HOURS"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="@+id/cardView"
-        app:layout_constraintEnd_toEndOf="@+id/textView8"
-        app:layout_constraintStart_toStartOf="@+id/textView8" />
+        app:layout_constraintEnd_toEndOf="@+id/profile_hours"
+        app:layout_constraintStart_toStartOf="@+id/profile_hours" />
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
-        android:elevation="1dp"
-        android:text="UNIT"
+        android:elevation="3dp"
         android:gravity="center"
+        android:text="UNIT"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="@+id/cardView"
-        app:layout_constraintEnd_toEndOf="@+id/textView9"
-        app:layout_constraintStart_toStartOf="@+id/textView9" />
+        app:layout_constraintEnd_toEndOf="@+id/profile_unit"
+        app:layout_constraintStart_toStartOf="@+id/profile_unit" />
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/profile_userid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:elevation="1dp"
+        android:elevation="3dp"
         android:text="45247852"
         app:layout_constraintEnd_toEndOf="@+id/cardView"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="@+id/cardView"
-        app:layout_constraintTop_toBottomOf="@+id/name" />
+        app:layout_constraintTop_toBottomOf="@+id/profile_name" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/profile_hours"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:elevation="1dp"
-        android:text="50"
+        android:elevation="3dp"
+        android:text="135"
         android:textAlignment="center"
         android:textColor="#181818"
         android:textSize="50sp"
@@ -103,11 +177,11 @@
         app:layout_constraintStart_toStartOf="@+id/cardView" />
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/profile_unit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:elevation="1dp"
-        android:text="04"
+        android:elevation="3dp"
+        android:text="452"
         android:textAlignment="center"
         android:textColor="#181818"
         android:textSize="50sp"
@@ -120,87 +194,113 @@
         android:id="@+id/guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="731dp"
         android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintGuide_percent="0.5" />
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
+        android:layout_margin="5dp"
+        android:elevation="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView"
-        android:orientation="horizontal">
+        app:layout_constraintVertical_bias="1.0">
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="3"
-            android:gravity="center">
-
-            <TextView
-                android:id="@+id/camp_hour"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="19"
-                android:textSize="30sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Camp"
-                android:textSize="20sp" />
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/community_hour"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="37"
+                android:textColor="#181818"
                 android:textSize="30sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Comminity"
-                android:textSize="20sp" />
+                android:textSize="15sp" />
         </LinearLayout>
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="3"
-            android:gravity="center">
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/campus_hour"
+                android:id="@+id/camp_hour"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="63"
+                android:text="19"
+                android:textColor="#181818"
                 android:textSize="30sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Campus"
-                android:textSize="20sp" />
+                android:text="Camp"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/orientation_hour"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="45"
+                android:textColor="#181818"
                 android:textSize="30sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Orientation"
-                android:textSize="20sp" />
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+                <TextView
+                android:id="@+id/campus_hour"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="63"
+                android:textColor="#181818"
+                android:textSize="30sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Campus"
+                android:textSize="15sp" />
+
         </LinearLayout>
 
     </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

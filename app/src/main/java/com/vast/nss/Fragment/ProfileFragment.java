@@ -39,7 +39,7 @@ public class ProfileFragment extends Fragment {
 
 
 
-        return inflater.inflate(R.layout.fragment_profile1, container, false);
+        return inflater.inflate(R.layout.fragment_profile, container, false);
 
 
     }

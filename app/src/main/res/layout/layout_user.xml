@@ -4,6 +4,7 @@
     android:layout_height="wrap_content">
 
     <de.hdodenhof.circleimageview.CircleImageView
+        android:padding="5dp"
         android:id="@+id/circleImageView3"
         android:layout_width="75dp"
         android:layout_height="75dp"
@@ -11,26 +12,28 @@
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/user_name"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:text="Anil Melepurath"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="10dp"
-            android:textSize="30sp"/>
+            android:paddingTop="10dp"
+            android:paddingStart="10dp"
+            android:textSize="25sp"/>
 
         <TextView
             android:id="@+id/user_id"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Anil Melepurath"
-            android:layout_marginBottom="10dp"
-            android:layout_marginStart="10dp"
-            android:textSize="20sp" />
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="102552018"
+            android:paddingTop="5dp"
+            android:paddingStart="10dp"
+            android:textSize="12sp" />
     </LinearLayout>
 
 </LinearLayout>
