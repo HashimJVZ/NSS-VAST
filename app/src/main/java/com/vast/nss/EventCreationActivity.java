@@ -40,10 +40,6 @@ public class EventCreationActivity extends AppCompatActivity  {
         setdateTextview = findViewById(R.id.setdate_textView);
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
-//        final String count = getIntent().getStringExtra("count");
-//
-////        int new_count = count+1;
-//        Log.d("temptag", "new_count="+count);
 
         final Spinner spinner = (Spinner) findViewById(R.id.spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -80,7 +76,7 @@ public class EventCreationActivity extends AppCompatActivity  {
                 map.put("category",category);
                 map.put("date",date);
 
-                //todo replace "e4" below with incrementing getItemCount() from EventAdapter
+//                todo replace "e4" below with incrementing getItemCount() from EventAdapter
                 databaseReference.child("events").child("e"+ count).updateChildren(map).addOnSuccessListener(new OnSuccessListener() {
                     @Override
                     public void onSuccess(Object o) {

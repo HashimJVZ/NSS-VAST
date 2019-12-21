@@ -23,7 +23,6 @@ import com.vast.nss.Adapter.EventAdapter;
 import com.vast.nss.Model.Event;
 import com.vast.nss.R;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -31,7 +30,7 @@ import java.util.Objects;
 
 public class EventFragment extends Fragment {
 
-    public interface ClickListnerEvent {
+    public interface ClickListenerEvent {
         void clicked(int count);
     }
 
@@ -42,12 +41,12 @@ public class EventFragment extends Fragment {
 
     private EventAdapter eventAdapter;
 
-    private ClickListnerEvent clickListner;
+    private ClickListenerEvent clickListner;
 
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference =  firebaseDatabase.getReference();
 
-    public EventFragment(ClickListnerEvent clickListener) {
+    public EventFragment(ClickListenerEvent clickListener) {
         this.clickListner = clickListener;
     }
 
@@ -57,10 +56,12 @@ public class EventFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_event, container, false);
         Log.d("mylog","Oncreate");
 
+//        count = EventAdapter.getItemCount();
+
         eventRecyclerView = view.findViewById(R.id.eventRecyclerView);
         eventRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        //this is only for the admin
+        //todo: make this is only for the admin
         floatingActionButton = view.findViewById(R.id.event_creation_fab);
 
         floatingActionButton.setOnClickListener(new View.OnClickListener() {

@@ -15,7 +15,7 @@ import com.vast.nss.Fragment.AttendanceFragment;
 import com.vast.nss.Fragment.EventFragment;
 import com.vast.nss.Fragment.ProfileFragment;
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, EventFragment.ClickListnerEvent {
+public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, EventFragment.ClickListenerEvent {
 
 
     @Override
