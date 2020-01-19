@@ -23,14 +23,18 @@ public class EventCreationActivity extends AppCompatActivity  {
 
         static TextView setdateTextview;
         DatabaseReference databaseReference;
-//        private int count; //to_delete
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_creation);
 
-//        count = getIntent().getIntExtra("count", 0) + 1; //to_delete
+//         Bundle bundle = getIntent().getExtras();
+//         bundle.getString("Title");
+//         bundle.getString("Location");
+//         bundle.getString("Date");
+//         bundle.getString("Hours");
+//         bundle.getString("Event");
 
         setdateTextview = findViewById(R.id.setdate_textView);
         databaseReference = FirebaseDatabase.getInstance().getReference();
@@ -71,12 +75,6 @@ public class EventCreationActivity extends AppCompatActivity  {
                 map.put("category",category);
                 map.put("date",date);
 
-//                databaseReference.child("events").child("e"+ count).updateChildren(map).addOnSuccessListener(new OnSuccessListener() {
-//                    @Override
-//                    public void onSuccess(Object o) {
-//                        finish();
-//                    }
-//                }); //to_delete
                 databaseReference.child("events").push().updateChildren(map).addOnSuccessListener(new OnSuccessListener() {
                     @Override
                     public void onSuccess(Object o) {

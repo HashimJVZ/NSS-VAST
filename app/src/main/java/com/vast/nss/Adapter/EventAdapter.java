@@ -2,6 +2,7 @@ package com.vast.nss.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.vast.nss.EventCreationActivity;
+import com.vast.nss.EventEditActivity;
 import com.vast.nss.Model.Event;
 import com.vast.nss.R;
 import com.vast.nss.SearchActivity;
@@ -47,6 +50,19 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
             public void onClick(View view) {
                 Intent intent = new Intent(context, SearchActivity.class);
                 context.startActivity(intent);
+            }
+        });
+        myViewHolder.eventCardView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                Intent intent = new Intent(context, EventEditActivity.class);
+                intent.putExtra("Title", eventList.get(i).getTitle());
+                intent.putExtra("Location", eventList.get(i).getLocation());
+                intent.putExtra("Date", eventList.get(i).getDate());
+                intent.putExtra("Hours", eventList.get(i).getHours());
+                intent.putExtra("Category", eventList.get(i).getCategory());
+                context.startActivity(intent);
+                return false;
             }
         });
     }
