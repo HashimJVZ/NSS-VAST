@@ -4,7 +4,7 @@
     <string name="attendance">Attendance</string>
     <string name="profile">Profile</string>
     <string name="about">About</string>
-    <string name="logout">Logout</string>
+    <string name="sign_out">Sign Out</string>
     <string name="search">Search</string>
     <string-array name="categoty_array">
         <item>Choose Category</item>
