@@ -45,6 +45,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
         myViewHolder.categoryTextView.setText(eventList.get(i).getCategory());
         String hours = ("Hours: " + eventList.get(i).getHours());
         myViewHolder.hoursTextView.setText(hours);
+
         myViewHolder.eventCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -52,6 +53,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
                 context.startActivity(intent);
             }
         });
+
         myViewHolder.eventCardView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {

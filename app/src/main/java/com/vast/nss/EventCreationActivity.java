@@ -29,12 +29,6 @@ public class EventCreationActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_creation);
 
-//         Bundle bundle = getIntent().getExtras();
-//         bundle.getString("Title");
-//         bundle.getString("Location");
-//         bundle.getString("Date");
-//         bundle.getString("Hours");
-//         bundle.getString("Event");
 
         setdateTextview = findViewById(R.id.setdate_textView);
         databaseReference = FirebaseDatabase.getInstance().getReference();

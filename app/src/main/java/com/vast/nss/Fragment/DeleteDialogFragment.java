@@ -11,7 +11,7 @@ import androidx.fragment.app.DialogFragment;
 
 import com.vast.nss.R;
 
-public class EditDeleteDialogFragment extends DialogFragment {
+public class DeleteDialogFragment extends DialogFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
