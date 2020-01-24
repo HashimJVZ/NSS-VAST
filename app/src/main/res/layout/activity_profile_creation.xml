@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProfileCreation">
+    tools:context=".ProfileCreationActivity">
 
     <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
         android:id="@+id/textFieldBoxes3"
@@ -21,6 +21,7 @@
 
         <studio.carbonylgroup.textfieldboxes.ExtendedEditText
             android:id="@+id/register_name"
+            android:inputType="textPersonName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -41,6 +42,8 @@
 
         <studio.carbonylgroup.textfieldboxes.ExtendedEditText
             android:id="@+id/register_collegeID"
+            android:inputType="text"
+            android:maxLength="12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -61,6 +64,8 @@
 
         <studio.carbonylgroup.textfieldboxes.ExtendedEditText
             android:id="@+id/register_nssID"
+            android:inputType="number"
+            android:maxLength="8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -80,6 +85,8 @@
 
         <studio.carbonylgroup.textfieldboxes.ExtendedEditText
             android:id="@+id/register_department"
+            android:inputType="text"
+            android:maxLength="3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -100,6 +107,8 @@
 
         <studio.carbonylgroup.textfieldboxes.ExtendedEditText
             android:id="@+id/register_contact"
+            android:inputType="phone"
+            android:maxLength="10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 

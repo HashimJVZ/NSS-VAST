@@ -13,7 +13,6 @@ import com.firebase.ui.auth.IdpResponse;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -53,7 +52,9 @@ public class SplashActivity extends AppCompatActivity {
 
             if (resultCode == RESULT_OK) {
                 // Successfully signed in
-                start();
+                Intent intent = new Intent(SplashActivity.this, ProfileCreationActivity.class);
+                startActivity(intent);
+                finish();
 
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 // ...
