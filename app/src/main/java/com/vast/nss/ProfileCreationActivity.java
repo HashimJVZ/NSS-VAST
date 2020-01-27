@@ -6,13 +6,18 @@ import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
 
 public class ProfileCreationActivity extends AppCompatActivity {
 
 
     DatabaseReference databaseReference;
+    String user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,20 +37,26 @@ public class ProfileCreationActivity extends AppCompatActivity {
         reg_contact = findViewById(R.id.register_contact);
 
         name  = reg_name.getText().toString();
-        collegeId = reg_collegeId.getText().toString();
-        collegeId = collegeId.toUpperCase();
+        collegeId = reg_collegeId.getText().toString().toUpperCase();
         department = reg_department.getText().toString();
         nssId = reg_nssId.getText().toString();
         contact = reg_contact.getText().toString();
 
-//        name = findViewById(R.id.register_name).toString();
-//        collegeId = findViewById(R.id.register_collegeID).toString();
-//        department = findViewById(R.id.register_department).toString();
-//        nssId = findViewById(R.id.register_nssID).toString();
-//        contact = findViewById(R.id.register_contact).toString();
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("name",name);
+        map.put("collegeId",collegeId);
+        map.put("department",department);
+        map.put("nssID",nssId);
+        map.put("contact",contact);
 
+        user = FirebaseAuth.getInstance().getUid();
 
-
+        databaseReference.child("profile").child(user).updateChildren(map).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                finish();
+            }
+        });
 
     }
 }

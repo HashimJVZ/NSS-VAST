@@ -69,9 +69,9 @@ public class EventCreationActivity extends AppCompatActivity  {
                 map.put("category",category);
                 map.put("date",date);
 
-                databaseReference.child("events").push().updateChildren(map).addOnSuccessListener(new OnSuccessListener() {
+                databaseReference.child("events").push().updateChildren(map).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
-                    public void onSuccess(Object o) {
+                    public void onSuccess(Void aVoid) {
                         finish();
                     }
                 });
