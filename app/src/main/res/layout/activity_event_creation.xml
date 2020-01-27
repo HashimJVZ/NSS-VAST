@@ -47,7 +47,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="showDatePickerDialog"
-            android:text="Set" />
+            android:text="Set"/>
 
     </LinearLayout>
 
@@ -75,6 +75,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/createBtn"
+        android:layout_gravity="center"
         android:text="Create"/>
 
 </LinearLayout>
