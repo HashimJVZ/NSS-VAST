@@ -89,3 +89,4 @@ public class EventCreationActivity extends AppCompatActivity  {
         setdateTextview.setText(date);
     }
 }
+

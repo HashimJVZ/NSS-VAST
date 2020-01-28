@@ -42,21 +42,26 @@ public class ProfileCreationActivity extends AppCompatActivity {
         nssId = reg_nssId.getText().toString();
         contact = reg_contact.getText().toString();
 
-        HashMap<String, Object> map = new HashMap<>();
-        map.put("name",name);
-        map.put("collegeId",collegeId);
-        map.put("department",department);
-        map.put("nssID",nssId);
-        map.put("contact",contact);
+//        HashMap<String, Object> map = new HashMap<>();
+//        map.put("name",name);
+//        map.put("collegeId",collegeId);
+//        map.put("department",department);
+//        map.put("nssID",nssId);
+//        map.put("contact",contact);
+//
+//        user = FirebaseAuth.getInstance().getUid();
+//
+//        databaseReference.child("profile").child(user).updateChildren(map).addOnSuccessListener(new OnSuccessListener<Void>() {
+//            @Override
+//            public void onSuccess(Void aVoid) {
+//                finish();
+//            }
+//        });
+//
+    }
 
-        user = FirebaseAuth.getInstance().getUid();
-
-        databaseReference.child("profile").child(user).updateChildren(map).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                finish();
-            }
-        });
-
+    @Override
+    public void onBackPressed() {
+//        super.onBackPressed();
     }
 }
