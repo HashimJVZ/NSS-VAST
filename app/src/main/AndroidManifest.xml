@@ -14,8 +14,7 @@
         android:roundIcon="@drawable/icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ProfileCreationActivity"></activity>
-        <activity android:name=".EventEditActivity" />
+        <activity android:name=".ProfileCreationActivity"/>
         <activity
             android:name=".SplashActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">

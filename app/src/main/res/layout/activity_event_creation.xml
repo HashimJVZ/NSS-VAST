@@ -33,7 +33,7 @@
     </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp">
 
@@ -41,12 +41,14 @@
             android:id="@+id/setdate_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="Date:"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="showDatePickerDialog"
+            android:layout_weight="0.1"
             android:text="Set"/>
 
     </LinearLayout>
@@ -73,9 +75,11 @@
 
     <Button
         android:layout_width="wrap_content"
+        android:minWidth="200dp"
         android:layout_height="wrap_content"
         android:id="@+id/createBtn"
         android:layout_gravity="center"
+        android:layout_marginTop="60dp"
         android:text="Create"/>
 
 </LinearLayout>

@@ -56,8 +56,6 @@ public class EventFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_event, container, false);
         Log.d("mylog","Oncreate");
 
-//        count = EventAdapter.getItemCount();
-
         eventRecyclerView = view.findViewById(R.id.eventRecyclerView);
         eventRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 

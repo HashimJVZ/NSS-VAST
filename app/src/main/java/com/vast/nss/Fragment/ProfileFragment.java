@@ -10,14 +10,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.vast.nss.R;
 
 public class ProfileFragment extends Fragment {
-
-    private TextView profileName, profileId, profileHours, profileUnit, profileDept, profileContact,
-        communityHour, campHour, orientationHour, campusHour;
 
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference =  firebaseDatabase.getReference();
@@ -25,21 +23,26 @@ public class ProfileFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
-//        profileName = profileName.findViewById(R.id.profile_name);
-//        profileId = profileId.findViewById(R.id.profile_userid);
-//        profileHours = profileHours.findViewById(R.id.profile_hours);
-//        profileUnit = profileUnit.findViewById(R.id.profile_unit);
-//        profileDept = profileDept.findViewById(R.id.profile_dept);
-//        profileContact = profileContact.findViewById(R.id.profile_contact);
-//        communityHour = communityHour.findViewById(R.id.community_hour);
-//        campHour = campHour.findViewById(R.id.camp_hour);
-//        orientationHour = orientationHour.findViewById(R.id.orientation_hour);
-//        campusHour = campusHour.findViewById(R.id.campus_hour);
+        TextView profileName = view.findViewById(R.id.profile_name);
+        TextView profileId = view.findViewById(R.id.profile_userid);
+        TextView profileHours = view.findViewById(R.id.profile_hours);
+        TextView profileUnit = view.findViewById(R.id.profile_unit);
+        TextView profileDept = view.findViewById(R.id.profile_dept);
+        TextView profileContact = view.findViewById(R.id.profile_contact);
+        TextView profileCommunityHour = view.findViewById(R.id.community_hour);
+        TextView profileCampHour = view.findViewById(R.id.camp_hour);
+        TextView profileOrientationHour = view.findViewById(R.id.orientation_hour);
+        TextView profileCampusHour = view.findViewById(R.id.campus_hour);
+
+//        String user = FirebaseAuth.getInstance().getUid();
+//        String name = databaseReference.child("profile").child(user).child("name").;
 
 
 
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+
+        return view;
 
 
     }
