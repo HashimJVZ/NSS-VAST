@@ -19,6 +19,8 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.MyViewHolder> implements Filterable {
 
     private Context context;
@@ -87,12 +89,14 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.MyView
     class MyViewHolder extends RecyclerView.ViewHolder{
         TextView user_name;
         TextView user_id;
+        CircleImageView photo;
 
         MyViewHolder(View view) {
             super(view);
 
             user_name = view.findViewById(R.id.user_name);
             user_id = view.findViewById(R.id.user_id);
+            photo = view.findViewById(R.id.photo);
         }
     }
 }

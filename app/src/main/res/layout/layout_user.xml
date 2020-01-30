@@ -5,7 +5,7 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:padding="5dp"
-        android:id="@+id/circleImageView3"
+        android:id="@+id/photo"
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:src="@drawable/anil"/>
