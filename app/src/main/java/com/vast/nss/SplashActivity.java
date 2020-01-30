@@ -20,8 +20,6 @@ public class SplashActivity extends AppCompatActivity {
     private static final int RC_SIGN_IN = 5;
     public static int SPLASH_TIME_OUT = 2500;
 
-    TextView textView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,15 +76,6 @@ public class SplashActivity extends AppCompatActivity {
             }
         },SPLASH_TIME_OUT);
 
-        textView = findViewById(R.id.temp);
-        textView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(SplashActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
     }
 
 }
