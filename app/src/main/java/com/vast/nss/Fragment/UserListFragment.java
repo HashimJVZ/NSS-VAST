@@ -53,7 +53,7 @@ public class UserListFragment extends Fragment {
                 for(DataSnapshot ds : dataSnapshot.getChildren()){
                     UserList userList = new UserList();
                     userList.setUser_name(Objects.requireNonNull(ds.child("name").getValue()).toString());
-                    userList.setUser_id(ds.getKey());
+                    userList.setUser_id(Objects.requireNonNull(ds.child("nssID").getValue()).toString());
 
                     list.add(userList);
                 }

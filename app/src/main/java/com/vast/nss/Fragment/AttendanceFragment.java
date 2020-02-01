@@ -20,7 +20,6 @@ import com.vast.nss.ScanningActivity;
 public class AttendanceFragment extends Fragment {
 
     private Context context;
-    RecyclerView attendanceRecyclerView;
 
     @Nullable
     @Override
@@ -29,10 +28,8 @@ public class AttendanceFragment extends Fragment {
 
         FloatingActionButton floatingActionButton = view.findViewById(R.id.scan_fab);
         context = getContext();
-        attendanceRecyclerView = view.findViewById(R.id.attendanceRecyclerView);
+        RecyclerView attendanceRecyclerView = view.findViewById(R.id.attendanceRecyclerView);
         attendanceRecyclerView.setLayoutManager(new LinearLayoutManager(context));
-
-
 
 
 
