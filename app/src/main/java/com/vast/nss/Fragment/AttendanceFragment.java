@@ -1,7 +1,5 @@
 package com.vast.nss.Fragment;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,31 +11,55 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+import com.vast.nss.Adapter.AttendanceAdapter;
+import com.vast.nss.Model.Attendance;
 import com.vast.nss.R;
-import com.vast.nss.ScanningActivity;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class AttendanceFragment extends Fragment {
 
-    private Context context;
+    private RecyclerView attendanceRecyclerView;
+    private AttendanceAdapter attendanceAdapter;
+
+    private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+    private DatabaseReference databaseReference =  firebaseDatabase.getReference();
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_attendance, container, false);
 
-        FloatingActionButton floatingActionButton = view.findViewById(R.id.scan_fab);
-        context = getContext();
-        RecyclerView attendanceRecyclerView = view.findViewById(R.id.attendanceRecyclerView);
-        attendanceRecyclerView.setLayoutManager(new LinearLayoutManager(context));
+        attendanceRecyclerView = view.findViewById(R.id.attendanceRecyclerView);
+        attendanceRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-
-
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+        Query query = databaseReference.child("events").orderByKey();
+        query.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context,ScanningActivity.class);
-                context.startActivity(intent);
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                List<Attendance> list = new ArrayList<>();
+                for (DataSnapshot ds : dataSnapshot.getChildren()){
+
+                    Attendance attendance = new Attendance();
+                    attendance.setTitle((String) ds.child("title").getValue());
+
+                    list.add(attendance);
+                }
+                Collections.reverse(list);
+                attendanceAdapter = new AttendanceAdapter(getContext(), list);
+                attendanceRecyclerView.setAdapter(attendanceAdapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });

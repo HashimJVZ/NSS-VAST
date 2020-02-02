@@ -60,6 +60,7 @@ public class EventFragment extends Fragment {
         eventRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         //todo: make this is only for the admin
+        //******************************************************************
         floatingActionButton = view.findViewById(R.id.event_creation_fab);
 
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
@@ -69,6 +70,7 @@ public class EventFragment extends Fragment {
                 floatingActionButton.setClickable(false);
             }
         });
+        //******************************************************************
 
         Query query = databaseReference.child("events").orderByKey();
 
