@@ -44,12 +44,20 @@ public class ProfileCreationActivity extends AppCompatActivity {
                 String nssId = reg_nssId.getText().toString();
                 String contact = reg_contact.getText().toString();
 
+                long init = 0;
+
                 HashMap<String, Object> map = new HashMap<>();
                 map.put("name",name);
                 map.put("collegeId",collegeId);
                 map.put("department",department);
                 map.put("nssID",nssId);
                 map.put("contact",contact);
+                map.put("communityHour", init);
+                map.put("campHour", init);
+                map.put("orientationHour", init);
+                map.put("campusHour", init);
+
+
 
                 user = FirebaseAuth.getInstance().getUid();
                 databaseReference.child("profile").child(user).updateChildren(map).addOnSuccessListener(new OnSuccessListener<Void>() {

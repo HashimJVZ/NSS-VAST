@@ -31,10 +31,10 @@ import java.util.Objects;
 public class EventFragment extends Fragment {
 
     public interface ClickListenerEvent {
-        void clicked(int count);
+        void clicked();
     }
 
-    private int count;
+//    private int count;
 
     private RecyclerView eventRecyclerView;
     private FloatingActionButton floatingActionButton;
@@ -66,7 +66,7 @@ public class EventFragment extends Fragment {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                clickListner.clicked(count);
+                clickListner.clicked();
                 floatingActionButton.setClickable(false);
             }
         });
@@ -82,7 +82,6 @@ public class EventFragment extends Fragment {
 
                 List<Event> list = new ArrayList<>();
                 for(DataSnapshot ds : dataSnapshot.getChildren()){
-                    count++;
 
                     Event event = new Event();
                     event.setTitle(Objects.requireNonNull(ds.child("title").getValue()).toString());
@@ -112,7 +111,6 @@ public class EventFragment extends Fragment {
     public void onResume() {
         super.onResume();
         Log.d("mylog","Onresume");
-        count = 0;
         floatingActionButton.setClickable(true);
     }
 

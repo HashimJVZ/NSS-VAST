@@ -22,9 +22,9 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
     private Context context;
     private List<Attendance> attendanceList;
 
-    public AttendanceAdapter(Context context, List<Attendance> attendaceList){
+    public AttendanceAdapter(Context context, List<Attendance> attendanceList){
         this.context = context;
-        this.attendanceList = attendaceList;
+        this.attendanceList = attendanceList;
     }
 
 
@@ -38,6 +38,8 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
         holder.attendanceTitle.setText(attendanceList.get(position).getTitle());
+        holder.attendanceLocation.setText(attendanceList.get(position).getLocation());
+        holder.getAttendanceDate.setText(attendanceList.get(position).getDate());
 
         holder.attendanceCardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,8 +60,8 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
     class MyViewHolder extends RecyclerView.ViewHolder{
 
         TextView attendanceTitle;
-//        TextView locationTextView;
-//        TextView dateTextView;
+        TextView attendanceLocation;
+        TextView getAttendanceDate;
 //        TextView categoryTextView;
 //        TextView hoursTextView;
         CardView attendanceCardView;
@@ -68,8 +70,8 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
             super(itemView);
 
             attendanceTitle = itemView.findViewById(R.id.attendanceTitle);
-//            locationTextView = itemView.findViewById(R.id.locationTextview);
-//            dateTextView = itemView.findViewById(R.id.dateTextView);
+            attendanceLocation = itemView.findViewById(R.id.attendanceLocation);
+            getAttendanceDate = itemView.findViewById(R.id.attendanceDate);
 //            categoryTextView = itemView.findViewById(R.id.categoryTextView);
 //            hoursTextView = itemView.findViewById(R.id.hoursTextView);
             attendanceCardView = itemView.findViewById(R.id.attendanceCardView);

@@ -3,26 +3,71 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="110dp">
+    android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/attendanceCardView"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="match_parent"
         android:padding="20dp"
         android:layout_margin="5dp"
         app:cardCornerRadius="10dp">
 
-        <TextView
-            android:id="@+id/attendanceTitle"
-            style="bold"
+        <View
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="Title here"
-            android:textAlignment="center"
-            android:textColor="@color/colorPrimary"
-            android:textSize="30sp" />
+            android:layout_height="match_parent"
+            android:background="#f2f2f2" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/attendanceTitle"
+                style="bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="Title here"
+                android:textColor="@color/colorPrimary"
+                android:textSize="25sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/attendanceLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:text="Location here"
+                    android:paddingTop="5dp"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorAccent" />
+
+                <TextView
+                    android:id="@+id/attendanceDate"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="bottom"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:text="Date"
+                    android:paddingTop="5dp"
+                    android:gravity="end|bottom"
+                    android:textColor="@color/colorAccent" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
 
     </androidx.cardview.widget.CardView>
 
