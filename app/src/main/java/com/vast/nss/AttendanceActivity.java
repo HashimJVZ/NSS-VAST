@@ -17,7 +17,6 @@ public class AttendanceActivity extends AppCompatActivity {
 
         FloatingActionButton floatingActionButton = findViewById(R.id.scan_fab);
 
-
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -25,5 +24,7 @@ public class AttendanceActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
     }
 }

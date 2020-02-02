@@ -1,6 +1,7 @@
 package com.vast.nss.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.vast.nss.AttendanceActivity;
 import com.vast.nss.Model.Attendance;
 import com.vast.nss.R;
 
@@ -34,14 +36,23 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
         holder.attendanceTitle.setText(attendanceList.get(position).getTitle());
+
+        holder.attendanceCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, AttendanceActivity.class);
+                intent.putExtra("positon", position);
+                context.startActivity(intent);
+            }
+        });
 
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return attendanceList.size();
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder{
