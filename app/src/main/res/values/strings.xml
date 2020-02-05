@@ -6,6 +6,16 @@
     <string name="about">About</string>
     <string name="sign_out">Sign Out</string>
     <string name="search">Search</string>
+    <string name="hours">HOURS</string>
+    <string name="unit">UNIT</string>
+    <string name="dept">Dept:</string>
+    <string name="contact">Contact:</string>
+    <string name="cse">CSE</string>
+    <string name="community">Community</string>
+    <string name="camp">Camp</string>
+    <string name="orientation">Orientation</string>
+    <string name="campus">Campus</string>
+    <string name="tl00xxxx0000">TL00XXXX0000</string>
     <string-array name="categoty_array">
         <item>Choose Category</item>
         <item>Orientation</item>

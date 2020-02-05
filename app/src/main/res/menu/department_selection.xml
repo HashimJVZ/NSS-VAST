@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/dept_cse"
+        android:title="@string/cse" />
+
+    <item
+        android:id="@+id/dept_me"
+        android:title="ME" />
+    <item android:title="CE" />
+    <item android:title="PE" />
+    <item android:title="EEE" />
+    <item android:title="EC" />
+
+    <item
+        android:id="@+id/menu_about"
+        android:title="@string/about"/>
+</menu>

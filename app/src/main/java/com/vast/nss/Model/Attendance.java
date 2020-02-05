@@ -6,6 +6,7 @@ public class Attendance {
     private String title;
     private String location;
     private String date;
+    private String key;
 
 
 
@@ -38,4 +39,11 @@ public class Attendance {
         this.date = date;
     }
 
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
 }

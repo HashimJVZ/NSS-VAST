@@ -1,24 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
-<!--    <androidx.cardview.widget.CardView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        app:cardCornerRadius="10dp"-->
-<!--        android:layout_marginStart="8dp"-->
-<!--        android:layout_marginTop="8dp"-->
-<!--        android:layout_marginEnd="8dp"-->
-<!--        android:layout_marginBottom="8dp"-->
-<!--        app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
 
 
     <androidx.cardview.widget.CardView
@@ -39,7 +25,7 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:elevation="3dp"
-        android:src="@drawable/anil"
+        android:src="@drawable/ic_tag_faces_black_24dp"
         app:layout_constraintBottom_toTopOf="@+id/cardView"
         app:layout_constraintEnd_toEndOf="@+id/cardView"
         app:layout_constraintStart_toStartOf="@+id/cardView"
@@ -65,7 +51,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Dept:"
+                android:text="@string/dept"
                 android:textSize="20sp"
                 android:layout_margin="5dp"
                 android:textColor="#181818" />
@@ -73,7 +59,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Contact:"
+                android:text="@string/contact"
                 android:textSize="20sp"
                 android:layout_margin="5dp"
                 android:textColor="#181818" />
@@ -90,7 +76,7 @@
                 android:id="@+id/profile_dept"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="CSE"
+                android:text="XXX"
                 android:textSize="20sp"
                 android:layout_margin="5dp"
                 android:textColor="#181818"/>
@@ -99,7 +85,7 @@
                 android:id="@+id/profile_contact"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="7025674097"
+                android:text="0000000000"
                 android:textSize="20sp"
                 android:layout_margin="5dp"
                 android:textColor="#181818" />
@@ -115,7 +101,7 @@
         android:layout_marginTop="16dp"
         android:elevation="3dp"
         android:maxWidth="300dp"
-        android:text="Anil Melepurath"
+        android:text="Xxxx Xxxxxxxx"
         android:textAlignment="center"
         android:textColor="#181818"
         android:textSize="30sp"
@@ -131,7 +117,7 @@
         android:layout_marginBottom="24dp"
         android:elevation="3dp"
         android:gravity="center"
-        android:text="HOURS"
+        android:text="@string/hours"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="@+id/cardView"
         app:layout_constraintEnd_toEndOf="@+id/profile_hours"
@@ -144,7 +130,7 @@
         android:layout_marginBottom="24dp"
         android:elevation="3dp"
         android:gravity="center"
-        android:text="UNIT"
+        android:text="@string/unit"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="@+id/cardView"
         app:layout_constraintEnd_toEndOf="@+id/profile_unit"
@@ -156,7 +142,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:elevation="3dp"
-        android:text="45247852"
+        android:text="000000000"
         app:layout_constraintEnd_toEndOf="@+id/cardView"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="@+id/cardView"
@@ -168,7 +154,7 @@
         android:layout_height="wrap_content"
         android:elevation="3dp"
         android:layout_marginTop="5dp"
-        android:text="TL18BTCS0385"
+        android:text="@string/tl00xxxx0000"
         app:layout_constraintEnd_toEndOf="@+id/cardView"
         app:layout_constraintStart_toStartOf="@+id/cardView"
         app:layout_constraintTop_toBottomOf="@+id/profile_nssId" />
@@ -178,7 +164,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:elevation="3dp"
-        android:text="135"
+        android:text="000"
         android:textAlignment="center"
         android:textColor="#181818"
         android:textSize="50sp"
@@ -192,7 +178,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:elevation="3dp"
-        android:text="452"
+        android:text="000"
         android:textAlignment="center"
         android:textColor="#181818"
         android:textSize="50sp"
@@ -233,14 +219,14 @@
                 android:id="@+id/community_hour"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="37"
+                android:text="00"
                 android:textColor="#181818"
                 android:textSize="30sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Comminity"
+                android:text="@string/community"
                 android:textSize="15sp" />
         </LinearLayout>
 
@@ -255,14 +241,14 @@
                 android:id="@+id/camp_hour"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="19"
+                android:text="00"
                 android:textColor="#181818"
                 android:textSize="30sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Camp"
+                android:text="@string/camp"
                 android:textSize="15sp" />
         </LinearLayout>
 
@@ -277,14 +263,14 @@
                 android:id="@+id/orientation_hour"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="45"
+                android:text="00"
                 android:textColor="#181818"
                 android:textSize="30sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Orientation"
+                android:text="@string/orientation"
                 android:textSize="15sp" />
         </LinearLayout>
 
@@ -299,14 +285,14 @@
                 android:id="@+id/campus_hour"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="63"
+                android:text="00"
                 android:textColor="#181818"
                 android:textSize="30sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Campus"
+                android:text="@string/campus"
                 android:textSize="15sp" />
 
         </LinearLayout>

@@ -16,10 +16,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
 
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Objects;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
@@ -29,6 +33,10 @@ public class ScanningActivity extends AppCompatActivity implements ZXingScannerV
 
     private static final int REQUEST_CAMERA = 1;
     private ZXingScannerView scannerView;
+    private String key;
+
+    private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+    private DatabaseReference databaseReference =  firebaseDatabase.getReference();
 
 
     @Override
@@ -38,6 +46,9 @@ public class ScanningActivity extends AppCompatActivity implements ZXingScannerV
         scannerView = new ZXingScannerView(this);
         scannerView.setFormats(Collections.singletonList(BarcodeFormat.CODE_128));
         setContentView(scannerView);
+
+        Bundle extras = getIntent().getExtras();
+        key = Objects.requireNonNull(extras).getString("key");
 
         if (checkPermission()) {
             Toast.makeText(ScanningActivity.this, "access granted", Toast.LENGTH_LONG).show();
@@ -108,6 +119,14 @@ public class ScanningActivity extends AppCompatActivity implements ZXingScannerV
         Log.d("barcode_test", result.getBarcodeFormat().name());
         Toast.makeText(this,result.getBarcodeFormat().name() , Toast.LENGTH_SHORT).show();
         final String scanResult = result.getText();
+
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("Id",scanResult);
+
+        databaseReference.child("events").child(key).child("participants").updateChildren(map);
+
+
+
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Scan Result");
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {

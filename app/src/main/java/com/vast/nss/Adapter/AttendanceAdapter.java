@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseUser;
 import com.vast.nss.AttendanceActivity;
 import com.vast.nss.Model.Attendance;
 import com.vast.nss.R;
@@ -40,12 +41,13 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
         holder.attendanceTitle.setText(attendanceList.get(position).getTitle());
         holder.attendanceLocation.setText(attendanceList.get(position).getLocation());
         holder.getAttendanceDate.setText(attendanceList.get(position).getDate());
+        final String key = attendanceList.get(position).getKey();
 
         holder.attendanceCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, AttendanceActivity.class);
-                intent.putExtra("positon", position);
+                intent.putExtra("key", key);
                 context.startActivity(intent);
             }
         });

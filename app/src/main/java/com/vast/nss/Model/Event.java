@@ -12,6 +12,7 @@ public class Event {
     public Event() {}
 
 
+
     //Getters and setters
     public String getTitle() {
         return title;
@@ -48,4 +49,6 @@ public class Event {
     public void setHours(String hours) {
         this.hours = hours;
     }
+
+
 }
