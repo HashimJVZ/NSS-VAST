@@ -34,7 +34,7 @@ public class ScanningActivity extends AppCompatActivity implements ZXingScannerV
     private static final int REQUEST_CAMERA = 1;
     private ZXingScannerView scannerView;
     private String key;
-
+//
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference =  firebaseDatabase.getReference();
 
@@ -48,8 +48,9 @@ public class ScanningActivity extends AppCompatActivity implements ZXingScannerV
         setContentView(scannerView);
 
         Bundle extras = getIntent().getExtras();
-        key = Objects.requireNonNull(extras).getString("key");
-
+        key = extras.getString("key","0000");
+        Log.d("key", "key= "+key);
+//        key = "abcd";
         if (checkPermission()) {
             Toast.makeText(ScanningActivity.this, "access granted", Toast.LENGTH_LONG).show();
         } else {
@@ -124,8 +125,6 @@ public class ScanningActivity extends AppCompatActivity implements ZXingScannerV
         map.put("Id",scanResult);
 
         databaseReference.child("events").child(key).child("participants").updateChildren(map);
-
-
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Scan Result");
