@@ -2,6 +2,7 @@ package com.vast.nss.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,6 +48,7 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, AttendanceActivity.class);
+                Log.d("key", "key= "+key);
                 intent.putExtra("key", key);
                 context.startActivity(intent);
             }

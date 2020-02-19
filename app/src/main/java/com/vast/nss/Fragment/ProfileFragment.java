@@ -20,6 +20,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 import com.vast.nss.R;
 
+import java.util.Objects;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileFragment extends Fragment {
@@ -45,24 +47,24 @@ public class ProfileFragment extends Fragment {
         final TextView profileHours = view.findViewById(R.id.profile_hours);
 
         CircleImageView profile_pic = view.findViewById(R.id.profilePic);
-        Uri photoUrl = FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl();
+        Uri photoUrl = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getPhotoUrl();
         Picasso.get().load(photoUrl).into(profile_pic);
 
         String user = FirebaseAuth.getInstance().getUid();
-        databaseReference.child("profile").child(user).addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseReference.child("profile").child(Objects.requireNonNull(user)).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String name = (String) dataSnapshot.child("name").getValue();
                 String nssId = (String) dataSnapshot.child("nssID").getValue();
                 String collegeId = (String) dataSnapshot.child("collegeId").getValue();
-                String unit= nssId.substring(0,3);
+                String unit= Objects.requireNonNull(nssId).substring(0,3);
                 String dept = (String) dataSnapshot.child("department").getValue();
                 String contact = (String) dataSnapshot.child("contact").getValue();
                 long communityHour = (long) dataSnapshot.child("communityHour").getValue();
                 long campHour = (long) dataSnapshot.child("campHour").getValue();
                 long orientationHour = (long) dataSnapshot.child("orientationHour").getValue();
                 long campusHour = (long) dataSnapshot.child("campusHour").getValue();
-                long hours = communityHour + campHour + orientationHour + campusHour;
+                long hours = communityHour + orientationHour + campusHour;
 
                 profileName.setText(name);
                 profileNssId.setText(nssId);
