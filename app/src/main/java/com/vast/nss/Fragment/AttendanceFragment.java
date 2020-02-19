@@ -52,7 +52,7 @@ public class AttendanceFragment extends Fragment {
                     attendance.setTitle((String) ds.child("title").getValue());
                     attendance.setLocation((String) ds.child("location").getValue());
                     attendance.setDate((String) ds.child("date").getValue());
-                    attendance.setKey((String) ds.getKey());
+                    attendance.setKey(ds.getKey());
 
                     list.add(attendance);
                 }

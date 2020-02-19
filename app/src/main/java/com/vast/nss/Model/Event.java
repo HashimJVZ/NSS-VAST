@@ -7,6 +7,9 @@ public class Event {
     private String date;
     private String category;
     private String hours;
+    private String eventKey;
+
+
 
     //Constructors
     public Event() {}
@@ -48,6 +51,14 @@ public class Event {
 
     public void setHours(String hours) {
         this.hours = hours;
+    }
+
+    public String getEventKey() {
+        return eventKey;
+    }
+
+    public void setEventKey(String eventKey) {
+        this.eventKey = eventKey;
     }
 
 

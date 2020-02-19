@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.vast.nss.Fragment.AttendanceFragment;
@@ -37,6 +38,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         navigation.setOnNavigationItemSelectedListener(this);
 
         loadFragment(new EventFragment(this));
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+
 
     }
 

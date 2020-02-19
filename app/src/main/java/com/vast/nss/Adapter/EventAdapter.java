@@ -9,8 +9,12 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.vast.nss.Model.Event;
 import com.vast.nss.R;
 import com.vast.nss.SearchActivity;
@@ -21,6 +25,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
 
     private Context context;
     private List<Event> eventList;
+    private String eventKey;
 
     public EventAdapter(Context context, List<Event> eventList){
         this.context = context;
@@ -43,6 +48,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
         String hours = ("Hours: " + eventList.get(i).getHours());
         myViewHolder.hoursTextView.setText(hours);
 
+
         myViewHolder.eventCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,19 +57,21 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
             }
         });
 
-//        myViewHolder.eventCardView.setOnLongClickListener(new View.OnLongClickListener() {
-//            @Override
-//            public boolean onLongClick(View v) {
-//                Intent intent = new Intent(context, try.class);
-//                intent.putExtra("Title", eventList.get(i).getTitle());
-//                intent.putExtra("Location", eventList.get(i).getLocation());
-//                intent.putExtra("Date", eventList.get(i).getDate());
-//                intent.putExtra("Hours", eventList.get(i).getHours());
-//                intent.putExtra("Category", eventList.get(i).getCategory());
-//                context.startActivity(intent);
-//                return false;
-//            }
-//        });
+        myViewHolder.eventCardView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                //todo : create dialog here
+
+                DialogFragment deleteDialogFragment = new DialogFragment();
+                deleteDialogFragment.show();
+                eventKey = eventList.get(i).getEventKey();
+                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("events").child(eventKey);
+                databaseReference.removeValue();
+
+                return false;
+            }
+        });
+
     }
 
     @Override
@@ -92,4 +100,10 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
 
         }
     }
+
+//    public static void delete(){
+//        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("events").child(eventKey);
+//        databaseReference.removeValue();
+//
+//    }
 }
