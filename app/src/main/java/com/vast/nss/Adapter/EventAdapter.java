@@ -1,5 +1,6 @@
 package com.vast.nss.Adapter;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -9,8 +10,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
-import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.database.DatabaseReference;
@@ -62,11 +61,12 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
             public boolean onLongClick(View v) {
                 //todo : create dialog here
 
-                DialogFragment deleteDialogFragment = new DialogFragment();
-                deleteDialogFragment.show();
+                Dialog deleteDialog = new Dialog(context);
+                deleteDialog.setContentView(R.layout.dialog_event_delete);
+                deleteDialog.show();
                 eventKey = eventList.get(i).getEventKey();
-                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("events").child(eventKey);
-                databaseReference.removeValue();
+//                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("events").child(eventKey);
+//                databaseReference.removeValue();
 
                 return false;
             }

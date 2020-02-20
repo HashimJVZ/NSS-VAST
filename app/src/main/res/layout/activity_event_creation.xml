@@ -1,85 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
-        android:layout_margin="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:labelText="Title">
-
-        <studio.carbonylgroup.textfieldboxes.ExtendedEditText
-            android:id="@+id/editTextTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-    </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
-
-
-    <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
-        android:layout_margin="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:labelText="Location">
-
-        <studio.carbonylgroup.textfieldboxes.ExtendedEditText
-            android:id="@+id/editTextLocation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-    </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp">
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/setdate_textView"
-            android:layout_width="wrap_content"
+        <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Date:"/>
+            app:labelText="Title">
+
+            <studio.carbonylgroup.textfieldboxes.ExtendedEditText
+                android:id="@+id/editTextTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
+
+
+        <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:labelText="Location">
+
+            <studio.carbonylgroup.textfieldboxes.ExtendedEditText
+                android:id="@+id/editTextLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
+
+            <TextView
+                android:id="@+id/setdate_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Date:"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="showDatePickerDialog"
+                android:layout_weight="0.1"
+                android:text="Set"/>
+
+        </LinearLayout>
+
+        <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:labelText="hours">
+
+            <studio.carbonylgroup.textfieldboxes.ExtendedEditText
+                android:id="@+id/editTextHours"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"/>
+
+        </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
+
+        <Spinner
+            android:layout_margin="10dp"
+            android:id="@+id/spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
         <Button
             android:layout_width="wrap_content"
+            android:minWidth="200dp"
             android:layout_height="wrap_content"
-            android:onClick="showDatePickerDialog"
-            android:layout_weight="0.1"
-            android:text="Set"/>
+            android:id="@+id/createBtn"
+            android:layout_gravity="center"
+            android:layout_marginTop="60dp"
+            android:text="Create"/>
 
     </LinearLayout>
 
-    <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
-        android:layout_margin="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:labelText="hours">
-
-        <studio.carbonylgroup.textfieldboxes.ExtendedEditText
-            android:id="@+id/editTextHours"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="number"/>
-
-    </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
-
-    <Spinner
-        android:layout_margin="10dp"
-        android:id="@+id/spinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:minWidth="200dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/createBtn"
-        android:layout_gravity="center"
-        android:layout_marginTop="60dp"
-        android:text="Create"/>
-
-</LinearLayout>
+</ScrollView>
