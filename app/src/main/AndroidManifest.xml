@@ -14,7 +14,8 @@
         android:roundIcon="@drawable/icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AttendanceActivity"></activity>
+        <activity android:name=".SignUpActivity" />
+        <activity android:name=".AttendanceActivity" />
         <activity android:name=".ProfileCreationActivity" />
         <activity
             android:name=".SplashActivity"

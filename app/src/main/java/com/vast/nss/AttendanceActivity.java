@@ -8,7 +8,10 @@ import android.view.View;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.Objects;
+
 public class AttendanceActivity extends AppCompatActivity {
+
     String key;
 
     @Override
@@ -17,7 +20,7 @@ public class AttendanceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_attendance);
 
         Bundle extras = getIntent().getExtras();
-        key = extras.getString("key","0000");
+        key = Objects.requireNonNull(extras).getString("key","0000");
 
         FloatingActionButton floatingActionButton = findViewById(R.id.scan_fab);
 
