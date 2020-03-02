@@ -17,6 +17,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.vast.nss.Model.Event;
 import com.vast.nss.R;
 import com.vast.nss.SearchActivity;
+import com.vast.nss.SignUpActivity;
 
 import java.util.List;
 
@@ -51,7 +52,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
         myViewHolder.eventCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, SearchActivity.class);
+                Intent intent = new Intent(context, SignUpActivity.class);
                 context.startActivity(intent);
             }
         });

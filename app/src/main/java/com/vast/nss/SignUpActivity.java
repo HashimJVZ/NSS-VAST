@@ -1,19 +1,25 @@
 package com.vast.nss;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener{
 
     EditText editTextUserName, editTextPassword, editTextConfirmPassword;
-
-    private FirebaseAuth firebaseAuth;
+    DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,42 +30,76 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         editTextPassword = findViewById(R.id.editTextPassword);
         editTextConfirmPassword = findViewById(R.id.editTextConfirmPassword);
 
-        firebaseAuth = FirebaseAuth.getInstance();
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+
+        Button buttonSignUp = findViewById(R.id.buttonSignUp);
+        buttonSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                registerUser();
+            }
+        });
+
+
     }
 
     private void registerUser(){
-        String userName = editTextUserName.getText().toString().trim();
-        String password = editTextPassword.getText().toString().trim();
-        String confirmPassword = editTextConfirmPassword.getText().toString().trim();
+        final String userName = editTextUserName.getText().toString();
+        final String password = editTextPassword.getText().toString();
+        String confirmPassword = editTextConfirmPassword.getText().toString();
+
 
         if (userName.isEmpty()) {
             editTextUserName.setError("NSS ID is Required!");
             editTextUserName.requestFocus();
         }
 
-        if(password.isEmpty()){
+        else if(password.isEmpty()){
             editTextPassword.setError("Password is required!");
             editTextPassword.requestFocus();
         }
 
-        if(confirmPassword.isEmpty()){
-            editTextConfirmPassword.setError("Password is required!");
+        else if(confirmPassword.isEmpty()){
+            editTextConfirmPassword.setError("Password Confirmation is required!");
             editTextConfirmPassword.requestFocus();
         }
 
-        if(password.length()<6){
+        else if(password.length()<6){
             editTextPassword.setError("Minimum length should be 6");
             editTextPassword.requestFocus();
         }
 
-        if (password.equals(confirmPassword)){
+        else if (!(password.equals(confirmPassword))){
             editTextConfirmPassword.setError("Passwords Doesn't matches!");
             editTextConfirmPassword.requestFocus();
         }
 
+        else databaseReference.child("users").child(userName).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    editTextUserName.setError("User Already Exists!");
+                    editTextUserName.requestFocus();
+                }
+                else{
+                    databaseReference.child("users").child(userName).setValue(password);
+                    Intent intent = new Intent(SignUpActivity.this, ProfileCreationActivity.class);
+                    startActivity(intent);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
 
 
     }
+
+
 
     @Override
     public void onClick(View view) {

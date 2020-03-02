@@ -16,6 +16,9 @@
     <string name="orientation">Orientation</string>
     <string name="campus">Campus</string>
     <string name="tl00xxxx0000">TL00XXXX0000</string>
+    <string name="inShort">In Short</string>
+    <string name="_10_digits">10 digits</string>
+    <string name="register">Register</string>
     <string-array name="categoty_array">
         <item>Choose Category</item>
         <item>Orientation</item>
