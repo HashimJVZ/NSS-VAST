@@ -40,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
                 android:hint="NSS ID"
-                android:inputType="text"
+                android:inputType="number"
                 android:paddingBottom="15dp"
                 android:textColorHint="@color/colorAccent" />
 
@@ -88,13 +88,13 @@
 
         </LinearLayout>
 
-        <ProgressBar
-            android:id="@+id/progressbar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:visibility="gone" />
+<!--        <ProgressBar-->
+<!--            android:id="@+id/progressbar"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:layout_centerVertical="true"-->
+<!--            android:visibility="gone" />-->
 
 
     </RelativeLayout>

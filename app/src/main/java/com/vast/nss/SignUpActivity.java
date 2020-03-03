@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -16,7 +17,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class SignUpActivity extends AppCompatActivity implements View.OnClickListener{
+public class SignUpActivity extends AppCompatActivity{
 
     EditText editTextUserName, editTextPassword, editTextConfirmPassword;
     DatabaseReference databaseReference;
@@ -32,6 +33,15 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
+        TextView login = findViewById(R.id.textViewLogin);
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
+
         Button buttonSignUp = findViewById(R.id.buttonSignUp);
         buttonSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,8 +49,6 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                 registerUser();
             }
         });
-
-
     }
 
     private void registerUser(){
@@ -86,7 +94,6 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                     Intent intent = new Intent(SignUpActivity.this, ProfileCreationActivity.class);
                     startActivity(intent);
                 }
-
             }
 
             @Override
@@ -94,23 +101,5 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
             }
         });
-
-
-
-    }
-
-
-
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.buttonSignUp:
-                registerUser();
-                break;
-
-            case R.id.textViewLogin:
-                startActivity(new Intent(this, MainActivity.class));
-                break;
-        }
     }
 }
