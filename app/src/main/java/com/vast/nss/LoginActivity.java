@@ -14,14 +14,18 @@ import android.widget.TextView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class LoginActivity extends AppCompatActivity {
+import java.util.Objects;
+
+public class LoginActivity extends AppCompatActivity{
 
     EditText editTextUserName, editTextPassword;
     Button loginButton;
-//    TextView signUp;
-    DatabaseReference databaseReference;
+    TextView signUp;
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference databaseReference = database.getReference();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +35,7 @@ public class LoginActivity extends AppCompatActivity {
         editTextUserName = findViewById(R.id.loginUserName);
         editTextPassword = findViewById(R.id.loginPassword);
         loginButton = findViewById(R.id.loginButton);
-//        signUp = findViewById(R.id.textSignUp);
+        signUp = findViewById(R.id.textSignUp);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,14 +44,15 @@ public class LoginActivity extends AppCompatActivity {
                 final String password = editTextPassword.getText().toString();
 
                 if (userName.isEmpty()) {
-                    editTextUserName.setError("NSS ID is Required!");
+                    editTextUserName.setError("Enrollment Number is Required!");
                     editTextUserName.requestFocus();
                 }
                 else if(password.isEmpty()){
                     editTextPassword.setError("Password is required!");
                     editTextPassword.requestFocus();
                 }
-                else databaseReference.child("users").child(userName).addListenerForSingleValueEvent(new ValueEventListener() {
+                else {
+                    databaseReference.child("users").child(userName).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             if(!dataSnapshot.exists()){
@@ -55,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
                                 editTextUserName.requestFocus();
 
                             }
-                            else if (dataSnapshot.getValue() == password){
+                            else if (Objects.equals(dataSnapshot.getValue(), password)){
                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                 startActivity(intent);
                             }
@@ -71,15 +76,18 @@ public class LoginActivity extends AppCompatActivity {
 
                         }
                     });
+                }
             }
         });
 
-//        signUp.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//            }
-//        });
+        signUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
+                startActivity(intent);
+
+            }
+        });
 
     }
 }
