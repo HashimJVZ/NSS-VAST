@@ -6,16 +6,7 @@ import android.os.Handler;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.firebase.ui.auth.AuthUI;
-import com.firebase.ui.auth.IdpResponse;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-
-import java.util.Collections;
-import java.util.List;
-
 public class SplashActivity extends AppCompatActivity {
-    private static final int RC_SIGN_IN = 5;
     public static int SPLASH_TIME_OUT = 2500;
 
     @Override
@@ -23,57 +14,13 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        if (FirebaseAuth.getInstance().getCurrentUser() == null){
-            List<AuthUI.IdpConfig> providers = Collections.singletonList(
-                    new AuthUI.IdpConfig.GoogleBuilder().build());
-
-            startActivityForResult(
-                    AuthUI.getInstance()
-                            .createSignInIntentBuilder()
-                            .setAvailableProviders(providers)
-                            .build(),
-                    RC_SIGN_IN);
-        }
-        else{
-            start();
-        }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == RC_SIGN_IN) {
-            IdpResponse response = IdpResponse.fromResultIntent(data);
-
-            if (resultCode == RESULT_OK) {
-                // Successfully signed in
-                Intent intent = new Intent(SplashActivity.this, ProfileCreationActivity.class);
-                startActivity(intent);
-                finish();
-
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                // ...
-            } else {
-                // Sign in failed. If response is null the user canceled the
-                // sign-in flow using the back button. Otherwise check
-                // response.getError().getErrorCode() and handle the error.
-                // ...
-                finish();
-            }
-        }
-    }
-
-    private void start(){
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent splashintent = new Intent(SplashActivity.this, MainActivity.class);
-                startActivity(splashintent);
+                Intent splashIntent = new Intent(SplashActivity.this, LoginActivity.class);
+                startActivity(splashIntent);
                 finish();
             }
         },SPLASH_TIME_OUT);
-
     }
-
 }

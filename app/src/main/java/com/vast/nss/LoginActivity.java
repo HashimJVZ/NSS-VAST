@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -20,6 +21,9 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.Objects;
 
 public class LoginActivity extends AppCompatActivity{
+
+//    public static final String SHARED_PREF = "shared_pref";
+//    public static final String UserName = "";
 
     EditText editTextUserName, editTextPassword;
     Button loginButton;
@@ -61,6 +65,7 @@ public class LoginActivity extends AppCompatActivity{
 
                             }
                             else if (Objects.equals(dataSnapshot.getValue(), password)){
+//                                saveData();
                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                 startActivity(intent);
                             }
@@ -90,4 +95,9 @@ public class LoginActivity extends AppCompatActivity{
         });
 
     }
+
+//    private void saveData() {
+//        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREF,MODE_PRIVATE);
+//        sharedPreferences.Editor editor = sharedPreferences.edit();
+//    }
 }

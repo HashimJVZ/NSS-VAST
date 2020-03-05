@@ -1,7 +1,9 @@
 package com.vast.nss.Adapter;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,8 +54,8 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
         myViewHolder.eventCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, SignUpActivity.class);
-                context.startActivity(intent);
+//                Intent intent = new Intent(context, SignUpActivity.class);
+//                context.startActivity(intent);
             }
         });
 
@@ -62,12 +64,15 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
             public boolean onLongClick(View v) {
                 //todo : create dialog here
 
-                Dialog deleteDialog = new Dialog(context);
-                deleteDialog.setContentView(R.layout.dialog_event_delete);
-                deleteDialog.show();
-                eventKey = eventList.get(i).getEventKey();
-//                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("events").child(eventKey);
-//                databaseReference.removeValue();
+                AlertDialog diaBox = AskOption();
+                diaBox.show();
+
+
+
+//                Dialog deleteDialog = new Dialog(context);
+//                deleteDialog.setContentView(R.layout.dialog_event_delete);
+//                deleteDialog.show();
+//                eventKey = eventList.get(i).getEventKey();
 
                 return false;
             }
@@ -100,6 +105,34 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
             eventCardView = itemView.findViewById(R.id.eventCardView);
 
         }
+    }
+
+    private AlertDialog AskOption()
+    {
+        AlertDialog myQuittingDialogBox = new AlertDialog.Builder(context)
+                // set message, title, and icon
+                .setTitle("Delete")
+                .setMessage("Do you want to Delete")
+                .setIcon(R.drawable.ic_delete)
+
+                .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        //your deleting code
+                        dialog.dismiss();
+                    }
+
+                })
+                .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        dialog.dismiss();
+
+                    }
+                })
+                .create();
+
+        return myQuittingDialogBox;
     }
 
 //    public static void delete(){
