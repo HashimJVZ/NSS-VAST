@@ -12,77 +12,75 @@
 
         <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
             android:id="@+id/textFieldBoxes3"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="9dp"
-            android:layout_marginTop="27dp"
-            android:layout_marginEnd="9dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
             app:labelText="Name"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textFieldBoxes4"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <studio.carbonylgroup.textfieldboxes.ExtendedEditText
                 android:id="@+id/register_name"
-                android:inputType="textPersonName"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName" />
 
         </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
 
+        <!--        <studio.carbonylgroup.textfieldboxes.TextFieldBoxes-->
+        <!--            android:id="@+id/textFieldBoxes5"-->
+        <!--            android:layout_width="0dp"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginStart="9dp"-->
+        <!--            android:layout_marginTop="31dp"-->
+        <!--            android:layout_marginEnd="9dp"-->
+        <!--            app:labelText="NSS ID"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintStart_toEndOf="@+id/textFieldBoxes3"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/textFieldBoxes">-->
+
+        <!--            <studio.carbonylgroup.textfieldboxes.ExtendedEditText-->
+        <!--                android:id="@+id/register_nssID"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:inputType="number"-->
+        <!--                android:maxLength="9" />-->
+
+        <!--        </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>-->
+
         <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
             android:id="@+id/textFieldBoxes2"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="9dp"
-            android:layout_marginTop="31dp"
-            android:layout_marginEnd="9dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
             app:labelText="College ID"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textFieldBoxes"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textFieldBoxes3">
 
             <studio.carbonylgroup.textfieldboxes.ExtendedEditText
                 android:id="@+id/register_collegeID"
-                android:inputType="text"
-                android:maxLength="12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:hint="@string/tl00xxxx0000"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-        </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
-
-        <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
-            android:id="@+id/textFieldBoxes5"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="9dp"
-            android:layout_marginTop="31dp"
-            android:layout_marginEnd="9dp"
-            app:labelText="NSS ID"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textFieldBoxes3"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textFieldBoxes">
-
-            <studio.carbonylgroup.textfieldboxes.ExtendedEditText
-                android:id="@+id/register_nssID"
-                android:inputType="number"
-                android:maxLength="9"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:inputType="text"
+                android:maxLength="12" />
 
         </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
 
         <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
             android:id="@+id/textFieldBoxes"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="9dp"
-            android:layout_marginTop="31dp"
-            android:layout_marginEnd="9dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
             app:labelText="Department"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -90,43 +88,43 @@
 
             <studio.carbonylgroup.textfieldboxes.ExtendedEditText
                 android:id="@+id/register_department"
-                android:inputType="text"
-                android:maxLength="3"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:hint="@string/inShort"
+                android:inputType="text"
+                android:maxLength="3" />
 
         </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
 
         <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
             android:id="@+id/textFieldBoxes4"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="9dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="9dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
             app:labelText="Contact"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textFieldBoxes2"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textFieldBoxes5">
+            app:layout_constraintTop_toBottomOf="@+id/textFieldBoxes">
 
             <studio.carbonylgroup.textfieldboxes.ExtendedEditText
                 android:id="@+id/register_contact"
-                android:inputType="phone"
-                android:maxLength="10"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:hint="@string/_10_digits"
+                android:inputType="phone"
+                android:maxLength="10" />
 
         </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
 
         <Button
+            android:layout_margin="30dp"
             android:id="@+id/button_sign_up"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
-            android:text="Sign Up"
+            android:text="@string/register"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textFieldBoxes5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textFieldBoxes4" />
 
