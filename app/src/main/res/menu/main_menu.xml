@@ -5,8 +5,8 @@
         android:id="@+id/menu_about"
         android:title="@string/about"/>
 
-<!--    <item-->
-<!--        android:id="@+id/menu_logout"-->
-<!--        android:title="@string/sign_out"/>-->
+    <item
+        android:id="@+id/menu_logout"
+        android:title="@string/log_out"/>
 
 </menu>

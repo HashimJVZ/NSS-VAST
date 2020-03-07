@@ -4,7 +4,7 @@
     <string name="attendance">Attendance</string>
     <string name="profile">Profile</string>
     <string name="about">About</string>
-    <string name="sign_out">Sign Out</string>
+    <string name="log_out">Log Out</string>
     <string name="search">Search</string>
     <string name="hours">HOURS</string>
     <string name="unit">UNIT</string>
@@ -19,7 +19,7 @@
     <string name="inShort">In Short</string>
     <string name="_10_digits">10 digits</string>
     <string name="register">Register</string>
-    <string-array name="categoty_array">
+    <string-array name="category_array">
         <item>Choose Category</item>
         <item>Orientation</item>
         <item>Campus</item>

@@ -1,18 +1,14 @@
 package com.vast.nss;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.vast.nss.Fragment.AttendanceFragment;
@@ -48,6 +44,16 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main_menu, menu);
+        menu.findItem(R.id.menu_logout).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                //clear userName from shared preferences
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent);
+                finish();
+                return false;
+            }
+        });
 
         return super.onCreateOptionsMenu(menu);
     }
@@ -91,6 +97,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     }
 
     @Override
+    //onClick FAB
     public void clicked() {
         Intent intent = new Intent(MainActivity.this, EventCreationActivity.class);
         startActivity(intent);

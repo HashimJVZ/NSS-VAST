@@ -21,7 +21,7 @@ import java.util.HashMap;
 
 public class EventCreationActivity extends AppCompatActivity  {
 
-        static TextView setdateTextview;
+        static TextView setDateTextView;
         DatabaseReference databaseReference;
 
     @Override
@@ -30,13 +30,13 @@ public class EventCreationActivity extends AppCompatActivity  {
         setContentView(R.layout.activity_event_creation);
 
 
-        setdateTextview = findViewById(R.id.setdate_textView);
+        setDateTextView = findViewById(R.id.setdate_textView);
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
 
-        final Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        final Spinner spinner = findViewById(R.id.spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.categoty_array, android.R.layout.simple_spinner_item);
+                R.array.category_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
@@ -53,7 +53,7 @@ public class EventCreationActivity extends AppCompatActivity  {
                 String title = editTextTitle.getText().toString();
                 String location = editTextLocation.getText().toString();
                 String hours = editTextHours.getText().toString();
-                String temp = setdateTextview.getText().toString();
+                String temp = setDateTextView.getText().toString();
                 String date = temp.substring(6);
                 String category = spinner.getSelectedItem().toString();
                 Log.d("mylog","title="+ title);
@@ -86,7 +86,7 @@ public class EventCreationActivity extends AppCompatActivity  {
 
     public static void changeText(int year, int month, int day) {
         String date = "Date: "+day+"/"+month+"/"+year;
-        setdateTextview.setText(date);
+        setDateTextView.setText(date);
     }
 }
 
