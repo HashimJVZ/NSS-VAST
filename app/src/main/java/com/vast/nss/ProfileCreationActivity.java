@@ -55,9 +55,10 @@ public class ProfileCreationActivity extends AppCompatActivity {
                 map.put("campHour", init);
                 map.put("orientationHour", init);
                 map.put("campusHour", init);
+                map.put("isAdmin", init);
 
 
-
+                user = "9645";//replace userName from saved pref
 //                user = FirebaseAuth.getInstance().getUid();
                 databaseReference.child("profile").child(user).updateChildren(map).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -75,5 +76,6 @@ public class ProfileCreationActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 //        super.onBackPressed();
+        //back press disabled by commenting the method
     }
 }
