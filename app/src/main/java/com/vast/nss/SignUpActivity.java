@@ -39,6 +39,7 @@ public class SignUpActivity extends AppCompatActivity{
             public void onClick(View v) {
                 Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -93,6 +94,7 @@ public class SignUpActivity extends AppCompatActivity{
                     databaseReference.child("users").child(userName).setValue(password);
                     Intent intent = new Intent(SignUpActivity.this, ProfileCreationActivity.class);
                     startActivity(intent);
+                    finish();
                 }
             }
 

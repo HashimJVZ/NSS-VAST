@@ -68,6 +68,7 @@ public class LoginActivity extends AppCompatActivity{
 //                                saveData();
                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                 startActivity(intent);
+                                finish();
                             }
                             else{
                                 editTextPassword.setError("Wrong Password");
@@ -90,6 +91,7 @@ public class LoginActivity extends AppCompatActivity{
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
                 startActivity(intent);
+                finish();
 
             }
         });
