@@ -47,15 +47,17 @@ public class ProfileFragment extends Fragment {
         final TextView profileHours = view.findViewById(R.id.profile_hours);
 
         CircleImageView profile_pic = view.findViewById(R.id.profilePic);
-        Uri photoUrl = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getPhotoUrl();
+//        Uri photoUrl = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getPhotoUrl();
+        String photoUrl = "https://pbs.twimg.com/profile_images/1200213251948081152/p1dWQLrP_400x400.jpg";//replace link to storage
         Picasso.get().load(photoUrl).into(profile_pic);
 
-        String user = FirebaseAuth.getInstance().getUid();
-        databaseReference.child("profile").child(Objects.requireNonNull(user)).addListenerForSingleValueEvent(new ValueEventListener() {
+//        String user = FirebaseAuth.getInstance().getUid();
+        String user = "9645"; //replace userName from shared pref
+        databaseReference.child("profile").child(user).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String name = (String) dataSnapshot.child("name").getValue();
-                String nssId = (String) dataSnapshot.child("nssID").getValue();
+                String nssId = dataSnapshot.getKey();
                 String collegeId = (String) dataSnapshot.child("collegeId").getValue();
                 String unit= Objects.requireNonNull(nssId).substring(0,3);
                 String dept = (String) dataSnapshot.child("department").getValue();
