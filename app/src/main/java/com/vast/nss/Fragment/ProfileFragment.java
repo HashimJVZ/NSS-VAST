@@ -1,6 +1,5 @@
 package com.vast.nss.Fragment;
 
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,7 +30,7 @@ public class ProfileFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_profile, container, false);
+        final View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
         final TextView profileName = view.findViewById(R.id.profile_name);
         final TextView profileNssId = view.findViewById(R.id.profile_nssId);
@@ -46,10 +44,7 @@ public class ProfileFragment extends Fragment {
         final TextView profileCampusHour = view.findViewById(R.id.campus_hour);
         final TextView profileHours = view.findViewById(R.id.profile_hours);
 
-        CircleImageView profile_pic = view.findViewById(R.id.profilePic);
-//        Uri photoUrl = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getPhotoUrl();
-        String photoUrl = "https://pbs.twimg.com/profile_images/1200213251948081152/p1dWQLrP_400x400.jpg";//replace link to storage
-        Picasso.get().load(photoUrl).into(profile_pic);
+
 
 //        String user = FirebaseAuth.getInstance().getUid();
         String user = "9645"; //replace userName from shared pref
@@ -67,6 +62,11 @@ public class ProfileFragment extends Fragment {
                 long orientationHour = (long) dataSnapshot.child("orientationHour").getValue();
                 long campusHour = (long) dataSnapshot.child("campusHour").getValue();
                 long hours = communityHour + orientationHour + campusHour;
+
+                CircleImageView profile_pic = view.findViewById(R.id.profilePic);
+//        Uri photoUrl = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getPhotoUrl();
+                String photoUrl = "https://pbs.twimg.com/profile_images/1200213251948081152/p1dWQLrP_400x400.jpg";//replace link to storage
+                Picasso.get().load(photoUrl).into(profile_pic);
 
                 profileName.setText(name);
                 profileNssId.setText(nssId);
