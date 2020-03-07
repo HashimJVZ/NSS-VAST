@@ -42,6 +42,7 @@ public class ProfileCreationActivity extends AppCompatActivity {
                 String department = reg_department.getText().toString().toUpperCase();
 //                String nssId = reg_nssId.getText().toString();
                 String contact = reg_contact.getText().toString();
+                String photoUrl = "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png";//replace with upload option
 
                 long init = 0;
 
@@ -56,6 +57,7 @@ public class ProfileCreationActivity extends AppCompatActivity {
                 map.put("orientationHour", init);
                 map.put("campusHour", init);
                 map.put("isAdmin", init);
+                map.put("photoUrl", photoUrl);
 
 
                 user = "9645";//replace userName from saved pref

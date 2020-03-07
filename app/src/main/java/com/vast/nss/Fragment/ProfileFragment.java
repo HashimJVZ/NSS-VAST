@@ -57,16 +57,12 @@ public class ProfileFragment extends Fragment {
                 String unit= Objects.requireNonNull(nssId).substring(0,3);
                 String dept = (String) dataSnapshot.child("department").getValue();
                 String contact = (String) dataSnapshot.child("contact").getValue();
+                String photoUrl = (String) dataSnapshot.child("photoUrl").getValue();
                 long communityHour = (long) dataSnapshot.child("communityHour").getValue();
                 long campHour = (long) dataSnapshot.child("campHour").getValue();
                 long orientationHour = (long) dataSnapshot.child("orientationHour").getValue();
                 long campusHour = (long) dataSnapshot.child("campusHour").getValue();
                 long hours = communityHour + orientationHour + campusHour;
-
-                CircleImageView profile_pic = view.findViewById(R.id.profilePic);
-//        Uri photoUrl = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getPhotoUrl();
-                String photoUrl = "https://pbs.twimg.com/profile_images/1200213251948081152/p1dWQLrP_400x400.jpg";//replace link to storage
-                Picasso.get().load(photoUrl).into(profile_pic);
 
                 profileName.setText(name);
                 profileNssId.setText(nssId);
@@ -74,17 +70,15 @@ public class ProfileFragment extends Fragment {
                 profileUnit.setText(unit);
                 profileDept.setText(dept);
                 profileContact.setText(contact);
+                profileCommunityHour.setText(String.valueOf(communityHour));
+                profileCampHour.setText(String.valueOf(campHour));
+                profileOrientationHour.setText(String.valueOf(orientationHour));
+                profileCampusHour.setText(String.valueOf(campusHour));
+                profileHours.setText(String.valueOf(hours));
 
-                String community = String.valueOf(communityHour);
-                String camp = String.valueOf(campHour);
-                String orientation = String.valueOf(orientationHour);
-                String campus = String.valueOf(campusHour);
-                String totalHours = String.valueOf(hours);
-                profileCommunityHour.setText(community);
-                profileCampHour.setText(camp);
-                profileOrientationHour.setText(orientation);
-                profileCampusHour.setText(campus);
-                profileHours.setText(totalHours);
+                CircleImageView profile_pic = view.findViewById(R.id.profilePic);
+//        Uri photoUrl = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getPhotoUrl();
+                Picasso.get().load(photoUrl).into(profile_pic);
 
             }
 
