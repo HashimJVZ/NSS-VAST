@@ -1,5 +1,6 @@
 package com.vast.nss.Fragment;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +22,8 @@ import com.vast.nss.R;
 import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class ProfileFragment extends Fragment {
 
@@ -44,8 +47,7 @@ public class ProfileFragment extends Fragment {
         final TextView profileCampusHour = view.findViewById(R.id.campus_hour);
         final TextView profileHours = view.findViewById(R.id.profile_hours);
 
-
-        String user = "9645"; //replace userName from shared pref
+        String user = getUser();
         databaseReference.child("profile").child(user).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -87,6 +89,11 @@ public class ProfileFragment extends Fragment {
 
         return view;
 
+    }
+
+    private String getUser() {
+        SharedPreferences sharedPreferences = Objects.requireNonNull(this.getActivity()).getSharedPreferences("SharedPref", MODE_PRIVATE);
+        return sharedPreferences.getString("userName", null);
     }
 
 
