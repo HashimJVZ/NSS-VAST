@@ -1,6 +1,7 @@
 package com.vast.nss;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 
@@ -17,10 +18,22 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent splashIntent = new Intent(SplashActivity.this, LoginActivity.class);
-                startActivity(splashIntent);
+                getUser();
+                if (getUser() == null) {
+                    Intent splashIntent = new Intent(SplashActivity.this, LoginActivity.class);
+                    startActivity(splashIntent);
+                } else {
+                    Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                    startActivity(intent);
+                }
+
                 finish();
             }
         }, SPLASH_TIME_OUT);
+    }
+
+    private String getUser() {
+        SharedPreferences sharedPreferences = getSharedPreferences("SharedPref", MODE_PRIVATE);
+        return sharedPreferences.getString("userName", null);
     }
 }
