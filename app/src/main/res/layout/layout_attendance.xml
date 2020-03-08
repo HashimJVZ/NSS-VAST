@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/attendanceCardView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="20dp"
         android:layout_margin="5dp"
+        android:padding="20dp"
         app:cardCornerRadius="10dp">
 
         <View
@@ -41,13 +41,13 @@
                     android:id="@+id/attendanceLocation"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
                     android:layout_marginStart="10dp"
                     android:layout_marginBottom="5dp"
-                    android:text="Location here"
+                    android:layout_weight="1"
                     android:paddingTop="5dp"
-                    android:textSize="20sp"
-                    android:textColor="@color/colorAccent" />
+                    android:text="Location here"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/attendanceDate"
@@ -57,16 +57,15 @@
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="5dp"
                     android:layout_weight="1"
-                    android:text="Date"
-                    android:paddingTop="5dp"
                     android:gravity="end|bottom"
+                    android:paddingTop="5dp"
+                    android:text="Date"
                     android:textColor="@color/colorAccent" />
 
             </LinearLayout>
 
 
         </LinearLayout>
-
 
 
     </androidx.cardview.widget.CardView>

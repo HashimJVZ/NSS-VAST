@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:padding="5dp"
         android:id="@+id/photo"
         android:layout_width="75dp"
         android:layout_height="75dp"
-        android:src="@drawable/anil"/>
+        android:padding="5dp"
+        android:src="@drawable/anil" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -20,19 +21,19 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:text="Anil Melepurath"
-            android:paddingTop="10dp"
             android:paddingStart="10dp"
-            android:textSize="25sp"/>
+            android:paddingTop="10dp"
+            android:text="Anil Melepurath"
+            android:textSize="25sp" />
 
         <TextView
             android:id="@+id/user_id"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:text="102552018"
-            android:paddingTop="5dp"
             android:paddingStart="10dp"
+            android:paddingTop="5dp"
+            android:text="102552018"
             android:textSize="12sp" />
     </LinearLayout>
 

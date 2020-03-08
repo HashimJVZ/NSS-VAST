@@ -51,18 +51,18 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/dept"
-                android:textSize="20sp"
                 android:layout_margin="5dp"
-                android:textColor="#181818" />
+                android:text="@string/dept"
+                android:textColor="#181818"
+                android:textSize="20sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/contact"
-                android:textSize="20sp"
                 android:layout_margin="5dp"
-                android:textColor="#181818" />
+                android:text="@string/contact"
+                android:textColor="#181818"
+                android:textSize="20sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -76,19 +76,19 @@
                 android:id="@+id/profile_dept"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="XXX"
-                android:textSize="20sp"
                 android:layout_margin="5dp"
-                android:textColor="#181818"/>
+                android:text="XXX"
+                android:textColor="#181818"
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/profile_contact"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0000000000"
-                android:textSize="20sp"
                 android:layout_margin="5dp"
-                android:textColor="#181818" />
+                android:text="0000000000"
+                android:textColor="#181818"
+                android:textSize="20sp" />
         </LinearLayout>
 
     </LinearLayout>
@@ -152,8 +152,8 @@
         android:id="@+id/profile_collegeId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:elevation="3dp"
         android:layout_marginTop="5dp"
+        android:elevation="3dp"
         android:text="@string/tl00xxxx0000"
         app:layout_constraintEnd_toEndOf="@+id/cardView"
         app:layout_constraintStart_toStartOf="@+id/cardView"
@@ -281,7 +281,7 @@
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
-                <TextView
+            <TextView
                 android:id="@+id/campus_hour"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -1,16 +1,15 @@
 package com.vast.nss;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -20,7 +19,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Objects;
 
-public class LoginActivity extends AppCompatActivity{
+public class LoginActivity extends AppCompatActivity {
 
 //    public static final String SHARED_PREF = "shared_pref";
 //    public static final String UserName = "";
@@ -50,27 +49,23 @@ public class LoginActivity extends AppCompatActivity{
                 if (userName.isEmpty()) {
                     editTextUserName.setError("Enrollment Number is Required!");
                     editTextUserName.requestFocus();
-                }
-                else if(password.isEmpty()){
+                } else if (password.isEmpty()) {
                     editTextPassword.setError("Password is required!");
                     editTextPassword.requestFocus();
-                }
-                else {
+                } else {
                     databaseReference.child("users").child(userName).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            if(!dataSnapshot.exists()){
+                            if (!dataSnapshot.exists()) {
                                 editTextUserName.setError("User Doesn't Exists!");
                                 editTextUserName.requestFocus();
 
-                            }
-                            else if (Objects.equals(dataSnapshot.getValue(), password)){
-//                                saveData();
+                            } else if (Objects.equals(dataSnapshot.getValue(), password)) {
                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                 startActivity(intent);
+                                saveUser(userName);
                                 finish();
-                            }
-                            else{
+                            } else {
                                 editTextPassword.setError("Wrong Password");
                                 editTextPassword.requestFocus();
                             }
@@ -84,6 +79,7 @@ public class LoginActivity extends AppCompatActivity{
                     });
                 }
             }
+
         });
 
         signUp.setOnClickListener(new View.OnClickListener() {
@@ -98,8 +94,11 @@ public class LoginActivity extends AppCompatActivity{
 
     }
 
-//    private void saveData() {
-//        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREF,MODE_PRIVATE);
-//        sharedPreferences.Editor editor = sharedPreferences.edit();
-//    }
+    private void saveUser(String userName) {
+        SharedPreferences sharedPreferences = getSharedPreferences("SharedPref", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("userName", userName);
+        editor.apply();
+
+    }
 }

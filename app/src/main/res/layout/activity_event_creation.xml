@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -11,9 +11,9 @@
         android:orientation="vertical">
 
         <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
-            android:layout_margin="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             app:labelText="Title">
 
             <studio.carbonylgroup.textfieldboxes.ExtendedEditText
@@ -25,9 +25,9 @@
 
 
         <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
-            android:layout_margin="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             app:labelText="Location">
 
             <studio.carbonylgroup.textfieldboxes.ExtendedEditText
@@ -47,45 +47,45 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Date:"/>
+                android:text="Date:" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="showDatePickerDialog"
                 android:layout_weight="0.1"
-                android:text="Set"/>
+                android:onClick="showDatePickerDialog"
+                android:text="Set" />
 
         </LinearLayout>
 
         <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
-            android:layout_margin="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             app:labelText="hours">
 
             <studio.carbonylgroup.textfieldboxes.ExtendedEditText
                 android:id="@+id/editTextHours"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="number"/>
+                android:inputType="number" />
 
         </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
 
         <Spinner
-            android:layout_margin="10dp"
             android:id="@+id/spinner"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />
 
         <Button
-            android:layout_width="wrap_content"
-            android:minWidth="200dp"
-            android:layout_height="wrap_content"
             android:id="@+id/createBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="60dp"
-            android:text="Create"/>
+            android:minWidth="200dp"
+            android:text="Create" />
 
     </LinearLayout>
 

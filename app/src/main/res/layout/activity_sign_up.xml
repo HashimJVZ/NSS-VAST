@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".SignUpActivity" >
+    tools:context=".SignUpActivity">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -38,7 +39,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
-                android:hint="NSS ID"
+                android:hint="@string/enrollment_number"
                 android:inputType="number"
                 android:paddingBottom="15dp"
                 android:textColorHint="@color/colorPrimary" />
@@ -48,7 +49,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
-                android:hint="Password"
+                android:hint="@string/password"
                 android:inputType="textPassword"
                 android:paddingBottom="15dp"
                 android:textColorHint="@color/colorPrimary" />
@@ -58,7 +59,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
-                android:hint="Confirm Password"
+                android:hint="@string/confirm_password"
                 android:inputType="textPassword"
                 android:paddingBottom="15dp"
                 android:textColorHint="@color/colorPrimary" />
@@ -70,7 +71,7 @@
                 android:layout_gravity="center"
                 android:layout_margin="7dp"
                 android:background="@drawable/rounded_button_transparent"
-                android:text="Sign Up"
+                android:text="@string/sign_up"
                 android:textAllCaps="false"
                 android:textColor="@color/colorPrimary" />
 
@@ -79,7 +80,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="15dp"
-                android:text="Already have an account? Login"
+                android:text="@string/already_have_an_account_login"
                 android:textAlignment="center"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                 android:textColor="@color/colorAccent" />
@@ -87,14 +88,6 @@
 
         </LinearLayout>
 
-<!--        <ProgressBar-->
-<!--            android:id="@+id/progressbar"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_centerHorizontal="true"-->
-<!--            android:layout_centerVertical="true"-->
-<!--            android:visibility="gone" />-->
-
-
     </RelativeLayout>
+
 </LinearLayout>

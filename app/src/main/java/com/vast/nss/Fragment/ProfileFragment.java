@@ -25,7 +25,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class ProfileFragment extends Fragment {
 
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-    private DatabaseReference databaseReference =  firebaseDatabase.getReference();
+    private DatabaseReference databaseReference = firebaseDatabase.getReference();
 
     @Nullable
     @Override
@@ -45,7 +45,6 @@ public class ProfileFragment extends Fragment {
         final TextView profileHours = view.findViewById(R.id.profile_hours);
 
 
-
 //        String user = FirebaseAuth.getInstance().getUid();
         String user = "9645"; //replace userName from shared pref
         databaseReference.child("profile").child(user).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -54,7 +53,7 @@ public class ProfileFragment extends Fragment {
                 String name = (String) dataSnapshot.child("name").getValue();
                 String nssId = dataSnapshot.getKey();
                 String collegeId = (String) dataSnapshot.child("collegeId").getValue();
-                String unit= Objects.requireNonNull(nssId).substring(0,3);
+                String unit = Objects.requireNonNull(nssId).substring(0, 3);
                 String dept = (String) dataSnapshot.child("department").getValue();
                 String contact = (String) dataSnapshot.child("contact").getValue();
                 String photoUrl = (String) dataSnapshot.child("photoUrl").getValue();
