@@ -19,10 +19,20 @@ import com.vast.nss.Fragment.DatePickerFragment;
 
 import java.util.HashMap;
 
-public class EventCreationActivity extends AppCompatActivity  {
+public class EventCreationActivity extends AppCompatActivity {
 
-        static TextView setDateTextView;
-        DatabaseReference databaseReference;
+    static TextView setDateTextView;
+    DatabaseReference databaseReference;
+
+    public static void changeText(int year, int month, int day) {
+        String date = "Date: " + day + "/" + month + "/" + year;
+        setDateTextView.setText(date);
+    }
+
+    public void showDatePickerDialog(View v) {
+        DialogFragment newFragment = new DatePickerFragment();
+        newFragment.show(getSupportFragmentManager(), "datePicker");
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,18 +66,18 @@ public class EventCreationActivity extends AppCompatActivity  {
                 String temp = setDateTextView.getText().toString();
                 String date = temp.substring(6);
                 String category = spinner.getSelectedItem().toString();
-                Log.d("mylog","title="+ title);
-                Log.d("mylog","location="+ location);
-                Log.d("mylog","hours="+ hours);
-                Log.d("mylog","date="+ date);
-                Log.d("mylog","spinner="+ category);
+                Log.d("mylog", "title=" + title);
+                Log.d("mylog", "location=" + location);
+                Log.d("mylog", "hours=" + hours);
+                Log.d("mylog", "date=" + date);
+                Log.d("mylog", "spinner=" + category);
 
                 HashMap<String, Object> map = new HashMap<>();
-                map.put("title",title);
-                map.put("location",location);
-                map.put("hours",hours);
-                map.put("category",category);
-                map.put("date",date);
+                map.put("title", title);
+                map.put("location", location);
+                map.put("hours", hours);
+                map.put("category", category);
+                map.put("date", date);
 
                 databaseReference.child("events").push().updateChildren(map).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -77,16 +87,6 @@ public class EventCreationActivity extends AppCompatActivity  {
                 });
             }
         });
-    }
-
-    public void showDatePickerDialog(View v) {
-        DialogFragment newFragment = new DatePickerFragment();
-        newFragment.show(getSupportFragmentManager(), "datePicker");
-    }
-
-    public static void changeText(int year, int month, int day) {
-        String date = "Date: "+day+"/"+month+"/"+year;
-        setDateTextView.setText(date);
     }
 }
 

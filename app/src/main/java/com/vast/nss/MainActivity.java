@@ -20,7 +20,6 @@ import java.util.Objects;
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, EventFragment.ClickListenerEvent {
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,13 +29,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         getSupportActionBar().setLogo(R.drawable.logo);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
 
-        BottomNavigationView navigation =  findViewById(R.id.navigation);
+        BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(this);
 
         loadFragment(new EventFragment(this));
-
-//        FragmentManager fragmentManager = getSupportFragmentManager();
-
 
     }
 
@@ -58,8 +54,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         return super.onCreateOptionsMenu(menu);
     }
 
-    private boolean loadFragment(Fragment fragment){
-        if(fragment != null){
+    private boolean loadFragment(Fragment fragment) {
+        if (fragment != null) {
 
             getSupportFragmentManager()
                     .beginTransaction()
@@ -76,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         Fragment fragment = null;
 
-        switch(menuItem.getItemId()){
+        switch (menuItem.getItemId()) {
 
             case R.id.navigation_event:
                 fragment = new EventFragment(MainActivity.this);

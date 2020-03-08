@@ -31,7 +31,7 @@ public class AttendanceFragment extends Fragment {
     private AttendanceAdapter attendanceAdapter;
 
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-    private DatabaseReference databaseReference =  firebaseDatabase.getReference();
+    private DatabaseReference databaseReference = firebaseDatabase.getReference();
 
     @Nullable
     @Override
@@ -46,7 +46,7 @@ public class AttendanceFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 List<Attendance> list = new ArrayList<>();
-                for (DataSnapshot ds : dataSnapshot.getChildren()){
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
 
                     Attendance attendance = new Attendance();
                     attendance.setTitle((String) ds.child("title").getValue());

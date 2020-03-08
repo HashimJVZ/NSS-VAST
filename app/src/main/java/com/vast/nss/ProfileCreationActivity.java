@@ -37,7 +37,7 @@ public class ProfileCreationActivity extends AppCompatActivity {
 //                EditText reg_nssId = findViewById(R.id.register_nssID);
                 EditText reg_contact = findViewById(R.id.register_contact);
 
-                String name  = reg_name.getText().toString();
+                String name = reg_name.getText().toString();
                 String collegeId = reg_collegeId.getText().toString().toUpperCase();
                 String department = reg_department.getText().toString().toUpperCase();
 //                String nssId = reg_nssId.getText().toString();
@@ -47,11 +47,11 @@ public class ProfileCreationActivity extends AppCompatActivity {
                 long init = 0;
 
                 HashMap<String, Object> map = new HashMap<>();
-                map.put("name",name);
-                map.put("collegeId",collegeId);
-                map.put("department",department);
+                map.put("name", name);
+                map.put("collegeId", collegeId);
+                map.put("department", department);
 //                map.put("nssID",nssId);
-                map.put("contact",contact);
+                map.put("contact", contact);
                 map.put("communityHour", init);
                 map.put("campHour", init);
                 map.put("orientationHour", init);
@@ -61,7 +61,6 @@ public class ProfileCreationActivity extends AppCompatActivity {
 
 
                 user = "9645";//replace userName from saved pref
-//                user = FirebaseAuth.getInstance().getUid();
                 databaseReference.child("profile").child(user).updateChildren(map).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {

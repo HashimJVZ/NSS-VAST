@@ -1,20 +1,15 @@
 package com.vast.nss;
 
+import android.content.DialogInterface;
+import android.content.pm.PackageManager;
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-
-import android.Manifest;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.pm.PackageManager;
-import android.os.Build;
-import android.os.Bundle;
-import android.os.Message;
-import android.util.Log;
-import android.view.View;
-import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -23,7 +18,6 @@ import com.google.zxing.Result;
 
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Objects;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
@@ -34,9 +28,9 @@ public class ScanningActivity extends AppCompatActivity implements ZXingScannerV
     private static final int REQUEST_CAMERA = 1;
     private ZXingScannerView scannerView;
     private String key;
-//
+    //
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-    private DatabaseReference databaseReference =  firebaseDatabase.getReference();
+    private DatabaseReference databaseReference = firebaseDatabase.getReference();
 
 
     @Override
@@ -48,8 +42,8 @@ public class ScanningActivity extends AppCompatActivity implements ZXingScannerV
         setContentView(scannerView);
 
         Bundle extras = getIntent().getExtras();
-        key = extras.getString("key","0000");
-        Log.d("key", "key= "+key);
+        key = extras.getString("key", "0000");
+        Log.d("key", "key= " + key);
 //        key = "abcd";
         if (checkPermission()) {
             Toast.makeText(ScanningActivity.this, "access granted", Toast.LENGTH_LONG).show();
@@ -58,15 +52,15 @@ public class ScanningActivity extends AppCompatActivity implements ZXingScannerV
         }
     }
 
-    private boolean checkPermission(){
+    private boolean checkPermission() {
         return (ContextCompat.checkSelfPermission(ScanningActivity.this, CAMERA) == PackageManager.PERMISSION_GRANTED);
     }
 
-    private void requestPermissions(){
+    private void requestPermissions() {
         ActivityCompat.requestPermissions(this, new String[]{CAMERA}, REQUEST_CAMERA);
     }
 
-    public void onRequestPermissionResult(int requestCode, String[] permission, int[] grantResults){
+    public void onRequestPermissionResult(int requestCode, String[] permission, int[] grantResults) {
         if (requestCode == REQUEST_CAMERA) {
             boolean cameraAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
             if (cameraAccepted) {
@@ -87,10 +81,10 @@ public class ScanningActivity extends AppCompatActivity implements ZXingScannerV
     }
 
     @Override
-    public void onResume(){
+    public void onResume() {
         super.onResume();
-        if(checkPermission()){
-            if(scannerView == null){
+        if (checkPermission()) {
+            if (scannerView == null) {
                 scannerView = new ZXingScannerView(this);
                 scannerView.setFormats(Collections.singletonList(BarcodeFormat.CODE_128));
                 setContentView(scannerView);
@@ -101,12 +95,12 @@ public class ScanningActivity extends AppCompatActivity implements ZXingScannerV
     }
 
     @Override
-    public void onDestroy(){
+    public void onDestroy() {
         super.onDestroy();
         scannerView.stopCamera();
     }
 
-    public void displayAlertMessage(String message, DialogInterface.OnClickListener listener){
+    public void displayAlertMessage(String message, DialogInterface.OnClickListener listener) {
         new AlertDialog.Builder(ScanningActivity.this)
                 .setMessage(message)
                 .setPositiveButton("OK", listener)
@@ -118,11 +112,11 @@ public class ScanningActivity extends AppCompatActivity implements ZXingScannerV
     @Override
     public void handleResult(Result result) {
         Log.d("barcode_test", result.getBarcodeFormat().name());
-        Toast.makeText(this,result.getBarcodeFormat().name() , Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, result.getBarcodeFormat().name(), Toast.LENGTH_SHORT).show();
         final String scanResult = result.getText();
 
         HashMap<String, Object> map = new HashMap<>();
-        map.put("Id",scanResult);
+        map.put("Id", scanResult);
 
         databaseReference.child("events").child(key).child("participants").updateChildren(map);
 

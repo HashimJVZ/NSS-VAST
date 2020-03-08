@@ -16,7 +16,6 @@ import com.vast.nss.R;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -27,10 +26,36 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.MyView
     private List<UserList> userList;
     private List<String> userListAll;
 
-    public UserListAdapter(Context context, List<UserList> userList){
-        this.context = context;
-        this.userList = userList;
-    }
+    Filter filter = new Filter() {
+        //runs on background thread
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+
+            List<String> filteredList = new ArrayList<>();
+
+            if (constraint.toString().isEmpty()) {
+                filteredList.addAll(userListAll);
+            } else {
+                for (String user : userListAll) {
+                    if (user.toLowerCase().contains(constraint.toString())) {
+                        filteredList.add(user);
+                    }
+                }
+            }
+            FilterResults filterResults = new FilterResults();
+            filterResults.values = filteredList;
+            return filterResults;
+        }
+
+        //runs on UI thread
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults filterResults) {
+            userList.clear();
+            userList.addAll((Collection<? extends UserList>) filterResults.values);
+            notifyDataSetChanged();
+
+        }
+    };
 
     @NonNull
     @Override
@@ -55,38 +80,12 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.MyView
         return filter;
     }
 
-    Filter filter = new Filter() {
-        //runs on background thread
-        @Override
-        protected FilterResults performFiltering(CharSequence constraint) {
+    public UserListAdapter(Context context, List<UserList> userList) {
+        this.context = context;
+        this.userList = userList;
+    }
 
-            List<String> filteredList = new ArrayList<>();
-
-            if(constraint.toString().isEmpty()){
-                filteredList.addAll(userListAll);
-            } else {
-                for (String user : userListAll) {
-                    if (user.toLowerCase().contains(constraint.toString())) {
-                        filteredList.add(user);
-                    }
-                }
-            }
-            FilterResults filterResults = new FilterResults();
-            filterResults.values = filteredList;
-            return filterResults;
-        }
-
-        //runs on UI thread
-        @Override
-        protected void publishResults(CharSequence constraint, FilterResults filterResults) {
-            userList.clear();
-            userList.addAll((Collection<? extends UserList>) filterResults.values);
-            notifyDataSetChanged();
-
-        }
-    };
-
-    class MyViewHolder extends RecyclerView.ViewHolder{
+    class MyViewHolder extends RecyclerView.ViewHolder {
         TextView user_name;
         TextView user_id;
         CircleImageView photo;

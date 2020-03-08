@@ -44,7 +44,7 @@ public class EventFragment extends Fragment {
     private ClickListenerEvent clickListner;
 
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-    private DatabaseReference databaseReference =  firebaseDatabase.getReference();
+    private DatabaseReference databaseReference = firebaseDatabase.getReference();
 
     public EventFragment(ClickListenerEvent clickListener) {
         this.clickListner = clickListener;
@@ -54,7 +54,7 @@ public class EventFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_event, container, false);
-        Log.d("mylog","Oncreate");
+        Log.d("mylog", "Oncreate");
 
         eventRecyclerView = view.findViewById(R.id.eventRecyclerView);
         eventRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -78,10 +78,10 @@ public class EventFragment extends Fragment {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Log.d("mylog","onDataChange");
+                Log.d("mylog", "onDataChange");
 
                 List<Event> list = new ArrayList<>();
-                for(DataSnapshot ds : dataSnapshot.getChildren()){
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
 
                     Event event = new Event();
                     event.setTitle(Objects.requireNonNull(ds.child("title").getValue()).toString());
@@ -101,7 +101,7 @@ public class EventFragment extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.d("mylog",databaseError.getMessage());
+                Log.d("mylog", databaseError.getMessage());
             }
         });
 
@@ -111,7 +111,7 @@ public class EventFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        Log.d("mylog","Onresume");
+        Log.d("mylog", "Onresume");
         floatingActionButton.setClickable(true);
     }
 

@@ -20,7 +20,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.vast.nss.Adapter.UserListAdapter;
 import com.vast.nss.Model.UserList;
 import com.vast.nss.R;
-import com.vast.nss.SearchActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,7 +49,7 @@ public class UserListFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 List<UserList> list = new ArrayList<>();
-                for(DataSnapshot ds : dataSnapshot.getChildren()){
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     UserList userList = new UserList();
                     userList.setUser_name(Objects.requireNonNull(ds.child("name").getValue()).toString());
                     userList.setUser_id(Objects.requireNonNull(ds.child("nssID").getValue()).toString());

@@ -1,10 +1,8 @@
 package com.vast.nss.Adapter;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,12 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.vast.nss.Model.Event;
 import com.vast.nss.R;
-import com.vast.nss.SearchActivity;
-import com.vast.nss.SignUpActivity;
 
 import java.util.List;
 
@@ -29,7 +23,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
     private List<Event> eventList;
     private String eventKey;
 
-    public EventAdapter(Context context, List<Event> eventList){
+    public EventAdapter(Context context, List<Event> eventList) {
         this.context = context;
         this.eventList = eventList;
     }
@@ -68,7 +62,6 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
                 diaBox.show();
 
 
-
 //                Dialog deleteDialog = new Dialog(context);
 //                deleteDialog.setContentView(R.layout.dialog_event_delete);
 //                deleteDialog.show();
@@ -85,30 +78,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
         return eventList.size();
     }
 
-    class MyViewHolder extends RecyclerView.ViewHolder{
-
-        TextView titleTextView;
-        TextView locationTextView;
-        TextView dateTextView;
-        TextView categoryTextView;
-        TextView hoursTextView;
-        CardView eventCardView;
-
-        MyViewHolder(@NonNull View itemView){
-            super(itemView);
-
-            titleTextView = itemView.findViewById(R.id.titleTextView);
-            locationTextView = itemView.findViewById(R.id.locationTextview);
-            dateTextView = itemView.findViewById(R.id.dateTextView);
-            categoryTextView = itemView.findViewById(R.id.categoryTextView);
-            hoursTextView = itemView.findViewById(R.id.hoursTextView);
-            eventCardView = itemView.findViewById(R.id.eventCardView);
-
-        }
-    }
-
-    private AlertDialog AskOption()
-    {
+    private AlertDialog AskOption() {
         AlertDialog myQuittingDialogBox = new AlertDialog.Builder(context)
                 // set message, title, and icon
                 .setTitle("Delete")
@@ -133,6 +103,28 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
                 .create();
 
         return myQuittingDialogBox;
+    }
+
+    class MyViewHolder extends RecyclerView.ViewHolder {
+
+        TextView titleTextView;
+        TextView locationTextView;
+        TextView dateTextView;
+        TextView categoryTextView;
+        TextView hoursTextView;
+        CardView eventCardView;
+
+        MyViewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            titleTextView = itemView.findViewById(R.id.titleTextView);
+            locationTextView = itemView.findViewById(R.id.locationTextview);
+            dateTextView = itemView.findViewById(R.id.dateTextView);
+            categoryTextView = itemView.findViewById(R.id.categoryTextView);
+            hoursTextView = itemView.findViewById(R.id.hoursTextView);
+            eventCardView = itemView.findViewById(R.id.eventCardView);
+
+        }
     }
 
 //    public static void delete(){

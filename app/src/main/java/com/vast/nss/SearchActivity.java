@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment;
 
 import com.vast.nss.Fragment.UserListFragment;
 
-public class SearchActivity extends AppCompatActivity  {
+public class SearchActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

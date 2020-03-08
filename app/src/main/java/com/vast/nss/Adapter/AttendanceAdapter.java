@@ -12,7 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.auth.FirebaseUser;
 import com.vast.nss.AttendanceActivity;
 import com.vast.nss.Model.Attendance;
 import com.vast.nss.R;
@@ -24,7 +23,7 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
     private Context context;
     private List<Attendance> attendanceList;
 
-    public AttendanceAdapter(Context context, List<Attendance> attendanceList){
+    public AttendanceAdapter(Context context, List<Attendance> attendanceList) {
         this.context = context;
         this.attendanceList = attendanceList;
     }
@@ -48,7 +47,7 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, AttendanceActivity.class);
-                Log.d("key", "key= "+key);
+                Log.d("key", "key= " + key);
                 intent.putExtra("key", key);
                 context.startActivity(intent);
             }
@@ -61,16 +60,16 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
         return attendanceList.size();
     }
 
-    class MyViewHolder extends RecyclerView.ViewHolder{
+    class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView attendanceTitle;
         TextView attendanceLocation;
         TextView getAttendanceDate;
-//        TextView categoryTextView;
+        //        TextView categoryTextView;
 //        TextView hoursTextView;
         CardView attendanceCardView;
 
-        MyViewHolder(@NonNull View itemView){
+        MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
             attendanceTitle = itemView.findViewById(R.id.attendanceTitle);

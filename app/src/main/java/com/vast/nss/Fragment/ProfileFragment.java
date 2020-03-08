@@ -45,7 +45,6 @@ public class ProfileFragment extends Fragment {
         final TextView profileHours = view.findViewById(R.id.profile_hours);
 
 
-//        String user = FirebaseAuth.getInstance().getUid();
         String user = "9645"; //replace userName from shared pref
         databaseReference.child("profile").child(user).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -76,7 +75,6 @@ public class ProfileFragment extends Fragment {
                 profileHours.setText(String.valueOf(hours));
 
                 CircleImageView profile_pic = view.findViewById(R.id.profilePic);
-//        Uri photoUrl = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getPhotoUrl();
                 Picasso.get().load(photoUrl).into(profile_pic);
 
             }
@@ -90,4 +88,6 @@ public class ProfileFragment extends Fragment {
         return view;
 
     }
+
+
 }
