@@ -54,7 +54,7 @@ public class ProfileCreationActivity extends AppCompatActivity {
                 map.put("campHour", init);
                 map.put("orientationHour", init);
                 map.put("campusHour", init);
-                map.put("isAdmin", init);
+                map.put("isAdmin", false);
                 map.put("photoUrl", photoUrl);
 
 

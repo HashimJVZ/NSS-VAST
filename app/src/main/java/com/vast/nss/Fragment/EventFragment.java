@@ -1,5 +1,6 @@
 package com.vast.nss.Fragment;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -28,6 +29,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class EventFragment extends Fragment {
 
     public interface ClickListenerEvent {
@@ -41,13 +44,13 @@ public class EventFragment extends Fragment {
 
     private EventAdapter eventAdapter;
 
-    private ClickListenerEvent clickListner;
+    private ClickListenerEvent clickListener;
 
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
 
     public EventFragment(ClickListenerEvent clickListener) {
-        this.clickListner = clickListener;
+        this.clickListener = clickListener;
     }
 
     @Nullable
@@ -59,18 +62,16 @@ public class EventFragment extends Fragment {
         eventRecyclerView = view.findViewById(R.id.eventRecyclerView);
         eventRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        //todo: make this is only for the admin
-        //******************************************************************
         floatingActionButton = view.findViewById(R.id.event_creation_fab);
-
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                clickListner.clicked();
-                floatingActionButton.setClickable(false);
-            }
-        });
-        //******************************************************************
+        if (isAdmin()) {
+            floatingActionButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    clickListener.clicked();
+                    floatingActionButton.setClickable(false);
+                }
+            });
+        }
 
         Query query = databaseReference.child("events").orderByKey();
 
@@ -106,6 +107,11 @@ public class EventFragment extends Fragment {
         });
 
         return view;
+    }
+
+    private boolean isAdmin() {
+        SharedPreferences sharedPreferences = Objects.requireNonNull(this.getActivity()).getSharedPreferences("SharedPref", MODE_PRIVATE);
+        return sharedPreferences.getBoolean("isAdmin", false);
     }
 
     @Override
