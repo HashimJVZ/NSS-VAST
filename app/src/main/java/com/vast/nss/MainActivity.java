@@ -16,8 +16,6 @@ import com.vast.nss.Fragment.AttendanceFragment;
 import com.vast.nss.Fragment.EventFragment;
 import com.vast.nss.Fragment.ProfileFragment;
 
-import java.util.Objects;
-
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, EventFragment.ClickListenerEvent {
 
 
@@ -26,9 +24,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Objects.requireNonNull(getSupportActionBar()).setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setLogo(R.drawable.logo);
-        getSupportActionBar().setDisplayUseLogoEnabled(true);
+//        Objects.requireNonNull(getSupportActionBar()).setDisplayShowHomeEnabled(true);
+//        getSupportActionBar().setLogo(R.drawable.logo);
+//        getSupportActionBar().setDisplayUseLogoEnabled(true);
 
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(this);
