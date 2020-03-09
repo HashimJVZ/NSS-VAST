@@ -35,13 +35,11 @@ public class ProfileCreationActivity extends AppCompatActivity {
                 EditText reg_name = findViewById(R.id.register_name);
                 EditText reg_collegeId = findViewById(R.id.register_collegeID);
                 EditText reg_department = findViewById(R.id.register_department);
-//                EditText reg_nssId = findViewById(R.id.register_nssID);
                 EditText reg_contact = findViewById(R.id.register_contact);
 
                 String name = reg_name.getText().toString();
                 String collegeId = reg_collegeId.getText().toString().toUpperCase();
                 String department = reg_department.getText().toString().toUpperCase();
-//                String nssId = reg_nssId.getText().toString();
                 String contact = reg_contact.getText().toString();
                 String photoUrl = "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png";//replace with upload option
 
@@ -51,7 +49,6 @@ public class ProfileCreationActivity extends AppCompatActivity {
                 map.put("name", name);
                 map.put("collegeId", collegeId);
                 map.put("department", department);
-//                map.put("nssID",nssId);
                 map.put("contact", contact);
                 map.put("communityHour", init);
                 map.put("campHour", init);
