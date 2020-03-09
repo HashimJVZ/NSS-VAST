@@ -1,9 +1,11 @@
-# NSS-VAST
-App made for College NSS UNIT
-Attendance and Working Hour Tracker
+<h1> NSS-VAST</h1>
+<li>App made for College NSS UNIT.</li>
+<li>Attendance and Working Hour Tracker.</li>
 
-#Features
-> Event Creation.
-> Voluteer Selection.
-> Attendace Preview.
-> Multi-user Interface.
+<h2>Features</h2>
+<ul>
+  <li> Event Creation.</li>
+  <li> Voluteer Selection.</li>
+  <li> Attendace Preview.</li>
+  <li> Multi-user Interface.</li>
+</ul>
