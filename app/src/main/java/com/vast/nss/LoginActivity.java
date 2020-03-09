@@ -21,9 +21,6 @@ import java.util.Objects;
 
 public class LoginActivity extends AppCompatActivity {
 
-//    public static final String SHARED_PREF = "shared_pref";
-//    public static final String UserName = "";
-
     EditText editTextUserName, editTextPassword;
     Button loginButton;
     TextView signUp;
@@ -63,6 +60,7 @@ public class LoginActivity extends AppCompatActivity {
                             } else if (Objects.equals(dataSnapshot.getValue(), password)) {
                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                 startActivity(intent);
+                                checkAdmin(userName);
                                 saveUser(userName);
                                 finish();
                             } else {
@@ -92,6 +90,25 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void checkAdmin(final String userName) {
+        databaseReference.child("profile").child(userName).child("isAdmin").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (Objects.equals(dataSnapshot.getValue(), 1)) {
+                    SharedPreferences sharedPreferences = getSharedPreferences("SharedPref", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putInt("isAdmin", 1);
+                    editor.apply();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     private void saveUser(String userName) {
