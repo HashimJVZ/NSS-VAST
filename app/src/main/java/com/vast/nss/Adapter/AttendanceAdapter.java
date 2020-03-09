@@ -2,6 +2,7 @@ package com.vast.nss.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,8 @@ import com.vast.nss.Model.Attendance;
 import com.vast.nss.R;
 
 import java.util.List;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.MyViewHolder> {
 
@@ -43,16 +46,17 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
         holder.getAttendanceDate.setText(attendanceList.get(position).getDate());
         final String key = attendanceList.get(position).getKey();
 
-        holder.attendanceCardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, AttendanceActivity.class);
-                Log.d("key", "key= " + key);
-                intent.putExtra("key", key);
-                context.startActivity(intent);
-            }
-        });
-
+        if (isAdmin()) {
+            holder.attendanceCardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, AttendanceActivity.class);
+                    Log.d("key", "key= " + key);
+                    intent.putExtra("key", key);
+                    context.startActivity(intent);
+                }
+            });
+        }
     }
 
     @Override
@@ -60,13 +64,16 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
         return attendanceList.size();
     }
 
-    class MyViewHolder extends RecyclerView.ViewHolder {
+    private boolean isAdmin() {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("SharedPref", MODE_PRIVATE);
+        return sharedPreferences.getBoolean("isAdmin", false);
+    }
+
+    static class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView attendanceTitle;
         TextView attendanceLocation;
         TextView getAttendanceDate;
-        //        TextView categoryTextView;
-//        TextView hoursTextView;
         CardView attendanceCardView;
 
         MyViewHolder(@NonNull View itemView) {
@@ -75,8 +82,6 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
             attendanceTitle = itemView.findViewById(R.id.attendanceTitle);
             attendanceLocation = itemView.findViewById(R.id.attendanceLocation);
             getAttendanceDate = itemView.findViewById(R.id.attendanceDate);
-//            categoryTextView = itemView.findViewById(R.id.categoryTextView);
-//            hoursTextView = itemView.findViewById(R.id.hoursTextView);
             attendanceCardView = itemView.findViewById(R.id.attendanceCardView);
 
         }
