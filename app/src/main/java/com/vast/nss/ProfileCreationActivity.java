@@ -1,6 +1,7 @@
 package com.vast.nss;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -60,7 +61,7 @@ public class ProfileCreationActivity extends AppCompatActivity {
                 map.put("photoUrl", photoUrl);
 
 
-                user = "9645";//replace userName from saved pref
+                user = getUser();
                 databaseReference.child("profile").child(user).updateChildren(map).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
@@ -78,5 +79,10 @@ public class ProfileCreationActivity extends AppCompatActivity {
     public void onBackPressed() {
 //        super.onBackPressed();
         //back press disabled by commenting the method
+    }
+
+    private String getUser() {
+        SharedPreferences sharedPreferences = getSharedPreferences("SharedPref", MODE_PRIVATE);
+        return sharedPreferences.getString("userName", null);
     }
 }
