@@ -6,6 +6,40 @@
     android:layout_height="match_parent"
     tools:context=".AttendanceActivity">
 
+    <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
+        android:id="@+id/box_over_enrollment_attendance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="10dp"
+        app:labelText="Enrollment Number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <studio.carbonylgroup.textfieldboxes.ExtendedEditText
+            android:id="@+id/attendance_enrollment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLength="9" />
+
+    </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
+
+    <Button
+        android:id="@+id/mark_attendance_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/rounded_button_transparent"
+        android:padding="5dp"
+        android:text="@string/mark_attendance"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/box_over_enrollment_attendance" />
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/scan_fab"
         android:layout_width="wrap_content"

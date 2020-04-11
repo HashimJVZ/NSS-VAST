@@ -3,25 +3,31 @@ package com.vast.nss.Adapter;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.vast.nss.Model.Event;
 import com.vast.nss.R;
 
 import java.util.List;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder> {
 
     private Context context;
     private List<Event> eventList;
-    private String eventKey;
+    private static String eventKey;
 
     public EventAdapter(Context context, List<Event> eventList) {
         this.context = context;
@@ -35,6 +41,17 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
         return new MyViewHolder(view);
     }
 
+    public static void deleteEvent() {
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("events").child(eventKey);
+        databaseReference.removeValue();
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return eventList.size();
+    }
+
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, final int i) {
         myViewHolder.titleTextView.setText(eventList.get(i).getTitle());
@@ -45,64 +62,25 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
         myViewHolder.hoursTextView.setText(hours);
 
 
-        myViewHolder.eventCardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                Intent intent = new Intent(context, SignUpActivity.class);
-//                context.startActivity(intent);
-            }
-        });
+//        myViewHolder.eventCardView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//            }
+//        });
 
         myViewHolder.eventCardView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                //todo : create dialog here
 
                 AlertDialog diaBox = AskOption();
                 diaBox.show();
-
-
-//                Dialog deleteDialog = new Dialog(context);
-//                deleteDialog.setContentView(R.layout.dialog_event_delete);
-//                deleteDialog.show();
-//                eventKey = eventList.get(i).getEventKey();
+                eventKey = eventList.get(i).getEventKey();
 
                 return false;
             }
         });
 
-    }
-
-    @Override
-    public int getItemCount() {
-        return eventList.size();
-    }
-
-    private AlertDialog AskOption() {
-        AlertDialog myQuittingDialogBox = new AlertDialog.Builder(context)
-                // set message, title, and icon
-                .setTitle("Confirmation")
-                .setMessage("Do you want to Delete?")
-                .setIcon(R.drawable.ic_delete)
-
-                .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
-
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        //your deleting code here
-                        dialog.dismiss();
-                    }
-
-                })
-                .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-
-                        dialog.dismiss();
-
-                    }
-                })
-                .create();
-
-        return myQuittingDialogBox;
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
@@ -127,9 +105,41 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
         }
     }
 
-//    public static void delete(){
-//        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("events").child(eventKey);
-//        databaseReference.removeValue();
-//
-//    }
+    private AlertDialog AskOption() {
+        AlertDialog myQuittingDialogBox = new AlertDialog.Builder(context)
+                // set message, title, and icon
+                .setTitle("Confirmation")
+                .setMessage("Do you want to Delete?")
+                .setIcon(R.drawable.ic_delete)
+
+                .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        //here we need to check admin
+                        if (isAdmin()) {
+                            deleteEvent();
+                        } else {
+                            Toast.makeText(context, "You are not an Admin", Toast.LENGTH_SHORT).show();
+                        }
+
+                        dialog.dismiss();
+                    }
+
+                })
+                .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        dialog.dismiss();
+                    }
+                })
+                .create();
+
+        return myQuittingDialogBox;
+    }
+
+    private boolean isAdmin() {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("SharedPref", MODE_PRIVATE);
+        return sharedPreferences.getBoolean("isAdmin", false);
+    }
+
 }
