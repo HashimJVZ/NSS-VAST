@@ -12,6 +12,7 @@
         android:layout_height="0dp"
         android:layout_marginTop="50dp"
         android:layout_weight="1"
+        android:gravity="center"
         android:orientation="horizontal">
 
         <ImageView
@@ -44,6 +45,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:gravity="center"
                 android:orientation="vertical">
 
                 <EditText
@@ -75,10 +77,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginBottom="5dp"
+                    android:layout_margin="10dp"
                     android:background="@drawable/rounded_button_transparent"
                     android:text="@string/login"
                     android:textColor="@color/colorPrimary" />
@@ -91,7 +90,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight=".5"
+        android:gravity="bottom"
         android:orientation="vertical">
 
         <TextView
@@ -99,7 +99,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"
             android:text="@string/new_user_register_now"
             android:textAlignment="center"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
@@ -110,7 +109,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"
+            android:layout_margin="20dp"
             android:text="@string/forgot_password" />
 
     </LinearLayout>
