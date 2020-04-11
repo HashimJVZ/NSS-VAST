@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -53,12 +54,14 @@ public class SplashActivity extends AppCompatActivity {
         databaseReference.child("profile").child(getUser()).child("isAdmin").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (Objects.equals(dataSnapshot.getValue(), 1)) {
-                    SharedPreferences sharedPreferences = getSharedPreferences("SharedPref", MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                SharedPreferences sharedPreferences = getSharedPreferences("SharedPref", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                if (Objects.equals(dataSnapshot.getValue(), true)) {
                     editor.putBoolean("isAdmin", true);
-                    editor.apply();
+                } else {
+                    editor.putBoolean("isAdmin", false);
                 }
+                editor.apply();
             }
 
             @Override

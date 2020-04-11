@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -63,15 +64,18 @@ public class EventFragment extends Fragment {
         eventRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         floatingActionButton = view.findViewById(R.id.event_creation_fab);
-        if (isAdmin()) {
-            floatingActionButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (isAdmin()) {
                     clickListener.clicked();
                     floatingActionButton.setClickable(false);
+                } else {
+                    Toast.makeText(getContext(), "You are not an Admin", Toast.LENGTH_SHORT).show();
                 }
-            });
-        }
+            }
+        });
+
 
         Query query = databaseReference.child("events").orderByKey();
 
