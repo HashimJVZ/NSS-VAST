@@ -81,14 +81,14 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
     private AlertDialog AskOption() {
         AlertDialog myQuittingDialogBox = new AlertDialog.Builder(context)
                 // set message, title, and icon
-                .setTitle("Delete")
-                .setMessage("Do you want to Delete")
+                .setTitle("Confirmation")
+                .setMessage("Do you want to Delete?")
                 .setIcon(R.drawable.ic_delete)
 
                 .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
 
                     public void onClick(DialogInterface dialog, int whichButton) {
-                        //your deleting code
+                        //your deleting code here
                         dialog.dismiss();
                     }
 
