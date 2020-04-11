@@ -7,8 +7,8 @@
 
     <path
         android:name="plus"
-        android:fillColor="#D1D1D1"
-        android:pathData="M 40,0 L60,0 L60,40 L100,40 L100,60 L60,60 L60,100 L40,100, L40,60 L0,60 L0,40 L40,40" />
+        android:fillColor="#FFFFFF"
+        android:pathData="M 45,0 L55,0 L55,45 L100,45 L100,55 L55,55 L55,100 L45,100, L45,55 L0,55 L0,45 L45,45" />
 
 
 </vector>
