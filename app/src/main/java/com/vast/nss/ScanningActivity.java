@@ -6,18 +6,21 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
 
 import java.util.Collections;
-import java.util.HashMap;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
@@ -27,8 +30,9 @@ public class ScanningActivity extends AppCompatActivity implements ZXingScannerV
 
     private static final int REQUEST_CAMERA = 1;
     private ZXingScannerView scannerView;
-    private String key;
-    //
+    private String dbEvent_Key;
+    private String enrollmentNumber;
+
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
 
@@ -42,8 +46,9 @@ public class ScanningActivity extends AppCompatActivity implements ZXingScannerV
         setContentView(scannerView);
 
         Bundle extras = getIntent().getExtras();
-        key = extras.getString("key", "0000");
-        Log.d("key", "key= " + key);
+        assert extras != null;
+        dbEvent_Key = extras.getString("key", "0000");
+        Log.d("key", "key= " + dbEvent_Key);
 //        key = "abcd";
         if (checkPermission()) {
             Toast.makeText(ScanningActivity.this, "access granted", Toast.LENGTH_LONG).show();
@@ -115,10 +120,28 @@ public class ScanningActivity extends AppCompatActivity implements ZXingScannerV
         Toast.makeText(this, result.getBarcodeFormat().name(), Toast.LENGTH_SHORT).show();
         final String scanResult = result.getText();
 
-        HashMap<String, Object> map = new HashMap<>();
-        map.put("Id", scanResult);
+//        HashMap<String, Object> map = new HashMap<>();
+//        map.put("Id", scanResult);
 
-        databaseReference.child("events").child(key).child("participants").updateChildren(map);
+        databaseReference.child("participants").child(dbEvent_Key).child(scanResult).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    Toast.makeText(ScanningActivity.this, "Already Marked", Toast.LENGTH_SHORT).show();
+                } else {
+                    getEnrollmentNumber();
+                    databaseReference.child("participants").child(dbEvent_Key).child(scanResult).setValue(enrollmentNumber);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+//        databaseReference.child("events").child(dbEvent_Key).child("participants").updateChildren(map);
+//        databaseReference.child("participants").child(dbEvent_Key).push().updateChildren(map);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Scan Result");
@@ -132,5 +155,9 @@ public class ScanningActivity extends AppCompatActivity implements ZXingScannerV
         AlertDialog alert = builder.create();
         alert.show();
 
+    }
+
+    private void getEnrollmentNumber() {
+        enrollmentNumber = "do it bitch";
     }
 }
