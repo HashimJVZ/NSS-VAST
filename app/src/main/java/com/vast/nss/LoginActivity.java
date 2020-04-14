@@ -4,9 +4,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,46 +13,44 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.vast.nss.databinding.ActivityLoginBinding;
 
 import java.util.Objects;
 
 public class LoginActivity extends AppCompatActivity {
 
-    EditText editTextUserName, editTextPassword;
-    Button loginButton;
-    TextView signUp;
+    private ActivityLoginBinding binding;
+
+
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference databaseReference = database.getReference();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        binding = ActivityLoginBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        editTextUserName = findViewById(R.id.loginUserName);
-        editTextPassword = findViewById(R.id.loginPassword);
-        loginButton = findViewById(R.id.loginButton);
-        signUp = findViewById(R.id.textSignUp);
 
-        loginButton.setOnClickListener(new View.OnClickListener() {
+        binding.loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String userName = editTextUserName.getText().toString().trim();
-                final String password = editTextPassword.getText().toString();
+                final String userName = binding.loginUserName.getText().toString().trim();
+                final String password = binding.loginPassword.getText().toString();
 
                 if (userName.isEmpty()) {
-                    editTextUserName.setError("Enrollment Number is Required!");
-                    editTextUserName.requestFocus();
+                    binding.loginUserName.setError("Enrollment Number is Required!");
+                    binding.loginUserName.requestFocus();
                 } else if (password.isEmpty()) {
-                    editTextPassword.setError("Password is required!");
-                    editTextPassword.requestFocus();
+                    binding.loginPassword.setError("Password is required!");
+                    binding.loginPassword.requestFocus();
                 } else {
                     databaseReference.child("users").child(userName).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             if (!dataSnapshot.exists()) {
-                                editTextUserName.setError("User Doesn't Exists!");
-                                editTextUserName.requestFocus();
+                                binding.loginUserName.setError("User Doesn't Exists!");
+                                binding.loginUserName.requestFocus();
 
                             } else if (Objects.equals(dataSnapshot.getValue(), password)) {
                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
@@ -63,8 +58,8 @@ public class LoginActivity extends AppCompatActivity {
                                 saveUser(userName);
                                 finish();
                             } else {
-                                editTextPassword.setError("Wrong Password");
-                                editTextPassword.requestFocus();
+                                binding.loginPassword.setError("Wrong Password");
+                                binding.loginPassword.requestFocus();
                             }
 
                         }
@@ -79,7 +74,7 @@ public class LoginActivity extends AppCompatActivity {
 
         });
 
-        signUp.setOnClickListener(new View.OnClickListener() {
+        binding.textSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
