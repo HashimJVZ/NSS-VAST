@@ -30,7 +30,7 @@ public class ScanningActivity extends AppCompatActivity implements ZXingScannerV
 
     private static final int REQUEST_CAMERA = 1;
     private ZXingScannerView scannerView;
-    private String dbEvent_Key;
+    private String dbEventKey;
     private String enrollmentNumber;
 
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
@@ -47,9 +47,8 @@ public class ScanningActivity extends AppCompatActivity implements ZXingScannerV
 
         Bundle extras = getIntent().getExtras();
         assert extras != null;
-        dbEvent_Key = extras.getString("key", "0000");
-        Log.d("key", "key= " + dbEvent_Key);
-//        key = "abcd";
+        dbEventKey = extras.getString("dbEventKey", "0000");
+        Log.d("dbEventKey", "dbEventKey= " + dbEventKey);
         if (checkPermission()) {
             Toast.makeText(ScanningActivity.this, "access granted", Toast.LENGTH_LONG).show();
         } else {
@@ -123,14 +122,14 @@ public class ScanningActivity extends AppCompatActivity implements ZXingScannerV
 //        HashMap<String, Object> map = new HashMap<>();
 //        map.put("Id", scanResult);
 
-        databaseReference.child("participants").child(dbEvent_Key).child(scanResult).addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseReference.child("participants").child(dbEventKey).child(scanResult).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     Toast.makeText(ScanningActivity.this, "Already Marked", Toast.LENGTH_SHORT).show();
                 } else {
                     getEnrollmentNumber();
-                    databaseReference.child("participants").child(dbEvent_Key).child(scanResult).setValue(enrollmentNumber);
+                    databaseReference.child("participants").child(dbEventKey).child(scanResult).setValue(enrollmentNumber);
                 }
             }
 
