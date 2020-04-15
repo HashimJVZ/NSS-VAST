@@ -18,7 +18,6 @@ import com.vast.nss.databinding.ActivityLoginBinding;
 import java.util.Objects;
 
 public class LoginActivity extends AppCompatActivity {
-
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference databaseReference = database.getReference();
     private ActivityLoginBinding binding;
