@@ -24,10 +24,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        Objects.requireNonNull(getSupportActionBar()).setDisplayShowHomeEnabled(true);
-//        getSupportActionBar().setLogo(R.drawable.logo);
-//        getSupportActionBar().setDisplayUseLogoEnabled(true);
-
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(this);
 
