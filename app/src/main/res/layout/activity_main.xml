@@ -59,8 +59,8 @@
 
                     <ImageView
                         android:id="@+id/toolbarVastLogo"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
                         android:src="@drawable/vast"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
