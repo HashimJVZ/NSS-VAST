@@ -1,5 +1,6 @@
 package com.vast.nss.Fragment;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -37,6 +38,8 @@ public class ProfileFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_profile, container, false);
+
+        profile_pic = view.findViewById(R.id.profilePic);
 
         final TextView profileName = view.findViewById(R.id.profile_name);
         final TextView profileNssId = view.findViewById(R.id.profile_nssId);
@@ -79,7 +82,6 @@ public class ProfileFragment extends Fragment {
                 profileCampusHour.setText(String.valueOf(campusHour));
                 profileHours.setText(String.valueOf(hours));
 
-                profile_pic = view.findViewById(R.id.profilePic);
                 Picasso.get().load(photoUrl).into(profile_pic);
 
             }
@@ -90,6 +92,14 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+        profile_pic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_PICK);
+                intent.setType("*/*");
+                startActivityForResult(intent, 2);
+            }
+        });
         return view;
 
     }
@@ -97,12 +107,18 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 2 && resultCode == Activity.RESULT_OK) {
+            if (data != null) {
+                Picasso.get().load(data.getData()).into(profile_pic);
+                //todo: save photo into firebase
+
+            }
+        }
     }
 
     private String getUser() {
         SharedPreferences sharedPreferences = Objects.requireNonNull(this.getActivity()).getSharedPreferences("SharedPref", MODE_PRIVATE);
         return sharedPreferences.getString("userName", null);
     }
-
 
 }
