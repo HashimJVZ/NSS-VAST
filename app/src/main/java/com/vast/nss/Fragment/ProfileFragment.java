@@ -1,5 +1,6 @@
 package com.vast.nss.Fragment;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -26,6 +27,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import static android.content.Context.MODE_PRIVATE;
 
 public class ProfileFragment extends Fragment {
+
+    private CircleImageView profile_pic;
 
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
@@ -76,7 +79,7 @@ public class ProfileFragment extends Fragment {
                 profileCampusHour.setText(String.valueOf(campusHour));
                 profileHours.setText(String.valueOf(hours));
 
-                CircleImageView profile_pic = view.findViewById(R.id.profilePic);
+                profile_pic = view.findViewById(R.id.profilePic);
                 Picasso.get().load(photoUrl).into(profile_pic);
 
             }
@@ -89,6 +92,11 @@ public class ProfileFragment extends Fragment {
 
         return view;
 
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     private String getUser() {

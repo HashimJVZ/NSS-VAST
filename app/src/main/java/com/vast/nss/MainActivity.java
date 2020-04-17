@@ -3,21 +3,35 @@ package com.vast.nss;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
+import android.util.Log;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.vast.nss.Fragment.AttendanceFragment;
 import com.vast.nss.Fragment.EventFragment;
 import com.vast.nss.Fragment.ProfileFragment;
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, EventFragment.ClickListenerEvent {
+import java.util.Objects;
 
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, BottomNavigationView.OnNavigationItemSelectedListener, EventFragment.ClickListenerEvent {
+
+    NavigationView navigationView;
+    DrawerLayout drawerLayout;
+
+
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference databaseReference = database.getReference();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,27 +41,14 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(this);
 
+        navigationView = findViewById(R.id.nav_view);
+        drawerLayout = findViewById(R.id.main_drawer);
+        checkAdmin();
+
+        navigationView.setNavigationItemSelectedListener(this);
+
         loadFragment(new EventFragment(this));
 
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main_drawer, menu);
-        menu.findItem(R.id.menu_logout).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                //clear userName from shared preferences
-                clearUser();
-                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                startActivity(intent);
-                finish();
-                return false;
-            }
-        });
-
-        return super.onCreateOptionsMenu(menu);
     }
 
     private void clearUser() {
@@ -74,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         Fragment fragment = null;
-
+        Log.d("hashim", "onNavigationItemSelected: " + menuItem.getItemId());
         switch (menuItem.getItemId()) {
 
             case R.id.navigation_event:
@@ -90,6 +91,15 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 fragment = new ProfileFragment();
                 break;
 
+            case R.id.menu_about:
+                startActivity(new Intent(MainActivity.this, AboutActivity.class));
+                break;
+
+            case R.id.menu_logout:
+                clearUser();
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                finish();
+                break;
         }
 
         return loadFragment(fragment);
@@ -100,5 +110,32 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     public void clicked() {
         Intent intent = new Intent(MainActivity.this, EventCreationActivity.class);
         startActivity(intent);
+    }
+
+    private String getUser() {
+        SharedPreferences sharedPreferences = getSharedPreferences("SharedPref", MODE_PRIVATE);
+        return sharedPreferences.getString("userName", null);
+    }
+
+    private void checkAdmin() {
+        databaseReference.child("profile").child(getUser()).child("isAdmin").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                SharedPreferences sharedPreferences = getSharedPreferences("SharedPref", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                if (Objects.equals(dataSnapshot.getValue(), true)) {
+                    editor.putBoolean("isAdmin", true);
+                } else {
+                    editor.putBoolean("isAdmin", false);
+                }
+                editor.apply();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
     }
 }

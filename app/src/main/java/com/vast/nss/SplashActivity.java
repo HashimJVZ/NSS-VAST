@@ -5,16 +5,10 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.Objects;
 
 public class SplashActivity extends AppCompatActivity {
     public static int SPLASH_TIME_OUT = 2500;
@@ -35,7 +29,6 @@ public class SplashActivity extends AppCompatActivity {
                     startActivity(splashIntent);
                 } else {
                     Intent intent = new Intent(SplashActivity.this, MainActivity.class);
-                    checkAdmin();
                     startActivity(intent);
                 }
 
@@ -49,25 +42,25 @@ public class SplashActivity extends AppCompatActivity {
         return sharedPreferences.getString("userName", null);
     }
 
-    private void checkAdmin() {
-        databaseReference.child("profile").child(getUser()).child("isAdmin").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                SharedPreferences sharedPreferences = getSharedPreferences("SharedPref", MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                if (Objects.equals(dataSnapshot.getValue(), true)) {
-                    editor.putBoolean("isAdmin", true);
-                } else {
-                    editor.putBoolean("isAdmin", false);
-                }
-                editor.apply();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-    }
+//    private void checkAdmin() {
+//        databaseReference.child("profile").child(getUser()).child("isAdmin").addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                SharedPreferences sharedPreferences = getSharedPreferences("SharedPref", MODE_PRIVATE);
+//                SharedPreferences.Editor editor = sharedPreferences.edit();
+//                if (Objects.equals(dataSnapshot.getValue(), true)) {
+//                    editor.putBoolean("isAdmin", true);
+//                } else {
+//                    editor.putBoolean("isAdmin", false);
+//                }
+//                editor.apply();
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
+//
+//    }
 }
