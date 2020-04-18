@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -44,8 +45,12 @@ public class AttendanceActivity extends AppCompatActivity {
         markAttendanceButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getCollegeID();
-                Log.d("data", "dbEventKey=" + dbEventKey + " collegeID=" + collegeID + " enrollmentNumber=" + enrollmentNumber);
+                if (enrollmentEditText.getText() == null) {
+                    enrollmentEditText.setError("Type in Enrollment Number");
+                } else {
+                    getCollegeID();
+                    Toast.makeText(AttendanceActivity.this, "Added", Toast.LENGTH_SHORT).show();
+                }
 
             }
         });
@@ -68,6 +73,7 @@ public class AttendanceActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 collegeID = (String) dataSnapshot.child("collegeId").getValue();
+                //is this really here??
                 databaseReference.child("participants").child(dbEventKey).child(collegeID).setValue(enrollmentNumber);
             }
 
