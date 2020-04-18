@@ -45,7 +45,7 @@ public class AttendanceActivity extends AppCompatActivity {
         markAttendanceButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (enrollmentEditText.getText() == null) {
+                if (enrollmentEditText.getText().toString().isEmpty()) {
                     enrollmentEditText.setError("Type in Enrollment Number");
                 } else {
                     getCollegeID();
