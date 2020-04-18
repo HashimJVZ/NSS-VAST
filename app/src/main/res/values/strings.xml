@@ -29,6 +29,7 @@
     <string name="already_have_an_account_login">Already have an account? Login</string>
     <string name="mark_attendance">Mark Attendance</string>
     <string name="developerName">Muhammed Hashim</string>
+    <string name="about_developer">About Developer</string>
     <string-array name="category_array">
         <item>Choose Category</item>
         <item>Orientation</item>

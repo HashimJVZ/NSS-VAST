@@ -11,9 +11,19 @@
         android:layout_width="300dp"
         android:layout_height="300dp"
         app:cardCornerRadius="10dp"
-        app:cardElevation="1dp"
+        app:cardElevation="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="@string/about_developer"
+        android:textSize="30sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -21,7 +31,7 @@
         android:id="@+id/developerPic"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:elevation="2dp"
+        android:elevation="3dp"
         android:src="@drawable/ic_tag_faces_black_24dp"
         app:layout_constraintBottom_toTopOf="@+id/developerCardView"
         app:layout_constraintEnd_toEndOf="@+id/developerCardView"
@@ -48,7 +58,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:elevation="1dp"
+        android:elevation="2dp"
         android:src="@drawable/icon_instagram"
         app:layout_constraintBottom_toBottomOf="@+id/developerCardView"
         app:layout_constraintStart_toStartOf="@+id/developerCardView" />
