@@ -3,21 +3,28 @@ package com.vast.nss.Fragment;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 import com.vast.nss.R;
 
@@ -33,6 +40,9 @@ public class ProfileFragment extends Fragment {
 
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
+
+    private FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
+    private StorageReference storageReference = firebaseStorage.getReference();
 
     @Nullable
     @Override
@@ -96,7 +106,7 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_PICK);
-                intent.setType("*/*");
+                intent.setType("image/*");
                 startActivityForResult(intent, 2);
             }
         });
@@ -110,7 +120,23 @@ public class ProfileFragment extends Fragment {
         if (requestCode == 2 && resultCode == Activity.RESULT_OK) {
             if (data != null) {
                 Picasso.get().load(data.getData()).into(profile_pic);
-                //todo: save photo into firebase
+                storageReference.child("profile_picture/" + getUser()).putFile(Objects.requireNonNull(data.getData())).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        storageReference.child("profile_picture/" + getUser()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+                                databaseReference.child("profile").child(getUser()).child("photoUrl").setValue(String.valueOf(uri));
+                            }
+                        });
+                        Toast.makeText(getContext(), "Uploaded", Toast.LENGTH_SHORT).show();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(getContext(), "Failed! " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
 
             }
         }
