@@ -56,6 +56,12 @@ public class ProfileCreationActivity extends AppCompatActivity {
                 map.put("isAdmin", false);
 
                 user = getUser();
+
+                SharedPreferences sharedPreferences = getSharedPreferences("SharedPref", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean("isProfileFilled", true);
+                editor.apply();
+
                 databaseReference.child("profile").child(user).updateChildren(map).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
