@@ -1,86 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AboutActivity">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/developerCardView"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="2dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="@string/about_developer"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:orientation="vertical">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/developerPic"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:elevation="3dp"
-        android:src="@drawable/ic_tag_faces_black_24dp"
-        app:layout_constraintBottom_toTopOf="@+id/developerCardView"
-        app:layout_constraintEnd_toEndOf="@+id/developerCardView"
-        app:layout_constraintStart_toStartOf="@+id/developerCardView"
-        app:layout_constraintTop_toTopOf="@+id/developerCardView" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Brief History Of NSS"
+            android:textColor="#181818"
+            android:textSize="30sp"
+            android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:elevation="2dp"
-        android:text="@string/developerName"
-        android:textAlignment="center"
-        android:textColor="#181818"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/developerCardView"
-        app:layout_constraintEnd_toEndOf="@+id/developerCardView"
-        app:layout_constraintStart_toStartOf="@+id/developerCardView"
-        app:layout_constraintTop_toTopOf="@+id/developerCardView" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Ever since independence there has been growing awareness of the desirability of involving students in national service. The First Education Commission (1950) recommended the introduction of national service by students on a voluntary basis. Subsequently on the basis of suggestion made by the then Prime Minister Pt. Jawaharlal Nehru, a committee was appointed under the chairmanship of Dr. C D Deshmukh to prepare a scheme for compulsory national service by students prior to their admission for degree courses. Prof. K. G Saiyidain who undertook a study of national service by youth in several countries, recommended that national service may be introduced on voluntary basis. A similar recommendation was made by the Education Commission appointed under the chairmanship of Dr. D. S. Kothari.\n\nIn April, 1967, the conference of state Education Ministers recommended that at the University stage,students could be permitted to join the National Cadet Corps which was already in existance on a voluntary basis and an alternative to this could be offered to them in the form of a new programme called National Service Scheme(NSS). Promising sportsmen, however, should be exempted from both and allowed to join another scheme called the National Sports Organisation (NSO), in view of the need to give priority to the development of sports and athletics.\n\nThe conference of Vice-Chancellors in September 1967 welcomed this recommendation and suggested that a a special commitee of Vice-Chancellors should be set up to examine this question in detail. The details were soon worked out and the planning Commision sanctioned an outlay of Rs. 5 Crore for developing the NSS during the 4th Five Year Plan as a pilot project in selected institutions and universities. In pursuance of these recommendations, the ministry of Education introduced the National Service Scheme during 1969-70. The choice of the timing of its introduction was remarkably auspicious as 1969 was the birth centenary year of Mahatma Gandhi, the father of nation to whom social service was almost a religion." />
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:elevation="2dp"
-        android:src="@drawable/icon_instagram"
-        app:layout_constraintBottom_toBottomOf="@+id/developerCardView"
-        app:layout_constraintStart_toStartOf="@+id/developerCardView" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Motto Of NSS"
+            android:textColor="#181818"
+            android:textSize="30sp"
+            android:textStyle="bold" />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:elevation="2dp"
-        android:src="@drawable/icon_github"
-        app:layout_constraintBottom_toBottomOf="@+id/developerCardView"
-        app:layout_constraintEnd_toEndOf="@+id/developerCardView"
-        app:layout_constraintStart_toStartOf="@+id/developerCardView" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="The motto or watchword of the National Service Scheme is 'NOT ME BUT YOU', this express the essence of democratic living and upholds the need for selfless service and appreciation of the other man's point of view and also to show consideration for fellow human beings.\n\nIt underlines that the welfare of an individual is ultimately dependent on the welfare of society as a whole.Therefore it should be the aim of the NSS to demonstrate this motto in its day-to-day programme." />
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:elevation="2dp"
-        android:src="@drawable/icon_twitter"
-        app:layout_constraintBottom_toBottomOf="@+id/developerCardView"
-        app:layout_constraintEnd_toEndOf="@+id/developerCardView" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="@string/about_developer"
+            android:textColor="#181818"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".AboutActivity">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/developerCardView"
+                android:layout_width="300dp"
+                android:layout_height="250dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="2dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/developerPic"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:elevation="3dp"
+                android:src="@drawable/ic_tag_faces_black_24dp"
+                app:layout_constraintBottom_toTopOf="@+id/developerCardView"
+                app:layout_constraintEnd_toEndOf="@+id/developerCardView"
+                app:layout_constraintStart_toStartOf="@+id/developerCardView"
+                app:layout_constraintTop_toTopOf="@+id/developerCardView" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="2dp"
+                android:text="@string/developerName"
+                android:textAlignment="center"
+                android:textColor="#181818"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/developerCardView"
+                app:layout_constraintEnd_toEndOf="@+id/developerCardView"
+                app:layout_constraintStart_toStartOf="@+id/developerCardView"
+                app:layout_constraintTop_toTopOf="@+id/developerCardView" />
+
+            <ImageView
+                android:id="@+id/imageViewInstagram"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:elevation="2dp"
+                android:src="@drawable/icon_instagram"
+                app:layout_constraintBottom_toBottomOf="@+id/developerCardView"
+                app:layout_constraintStart_toStartOf="@+id/developerCardView" />
+
+            <ImageView
+                android:id="@+id/imageViewGithub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:elevation="2dp"
+                android:src="@drawable/icon_github"
+                app:layout_constraintBottom_toBottomOf="@+id/developerCardView"
+                app:layout_constraintEnd_toEndOf="@+id/developerCardView"
+                app:layout_constraintStart_toStartOf="@+id/developerCardView" />
+
+            <ImageView
+                android:id="@+id/imageViewTwitter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:elevation="2dp"
+                android:src="@drawable/icon_twitter"
+                app:layout_constraintBottom_toBottomOf="@+id/developerCardView"
+                app:layout_constraintEnd_toEndOf="@+id/developerCardView" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</ScrollView>
