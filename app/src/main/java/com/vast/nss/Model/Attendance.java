@@ -7,8 +7,24 @@ public class Attendance {
     private String location;
     private String date;
     private String key;
+    private String category;
+    private long hours;
 
+    public String getCategory() {
+        return category;
+    }
 
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public long getHours() {
+        return hours;
+    }
+
+    public void setHours(long hours) {
+        this.hours = hours;
+    }
 
     //Constructors
     public Attendance() {

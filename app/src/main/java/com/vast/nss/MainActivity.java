@@ -3,7 +3,6 @@ package com.vast.nss;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
@@ -76,7 +75,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         Fragment fragment = null;
-        Log.d("hashim", "onNavigationItemSelected: " + menuItem.getItemId());
         switch (menuItem.getItemId()) {
 
             case R.id.navigation_event:

@@ -62,7 +62,8 @@ public class EventCreationActivity extends AppCompatActivity {
 
                 String title = editTextTitle.getText().toString();
                 String location = editTextLocation.getText().toString();
-                String hours = editTextHours.getText().toString();
+                String hrs = editTextHours.getText().toString();
+                long hours = Long.parseLong(hrs);
                 String temp = setDateTextView.getText().toString();
                 String date = temp.substring(6);
                 String category = spinner.getSelectedItem().toString();

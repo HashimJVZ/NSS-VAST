@@ -46,13 +46,16 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
         holder.attendanceLocation.setText(attendanceList.get(position).getLocation());
         holder.getAttendanceDate.setText(attendanceList.get(position).getDate());
         final String dbEventKey = attendanceList.get(position).getKey();
+        final String category = attendanceList.get(position).getCategory();
+        final long hours = attendanceList.get(position).getHours();
+
 
         if (isAdmin()) {
             holder.attendanceCardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(context, AttendanceActivity.class);
-                    Log.d("dbEventKey", "dbEventKey= " + dbEventKey);
+                    Log.d("hashim", "dbEventKey= " + dbEventKey + "\ncategory=" + category + "\nhours=" + hours);
                     intent.putExtra("dbEventKey", dbEventKey);
                     context.startActivity(intent);
                 }

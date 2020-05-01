@@ -52,6 +52,8 @@ public class AttendanceFragment extends Fragment {
                     attendance.setTitle((String) ds.child("title").getValue());
                     attendance.setLocation((String) ds.child("location").getValue());
                     attendance.setDate((String) ds.child("date").getValue());
+                    attendance.setCategory((String) ds.child("category").getValue());
+                    attendance.setHours((Long) ds.child("hours").getValue());
                     attendance.setKey(ds.getKey());
 
                     list.add(attendance);
