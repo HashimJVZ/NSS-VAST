@@ -93,7 +93,7 @@ public class EventFragment extends Fragment {
                     event.setLocation(Objects.requireNonNull(ds.child("location").getValue()).toString());
                     event.setDate(Objects.requireNonNull(ds.child("date").getValue()).toString());
                     event.setCategory(Objects.requireNonNull(ds.child("category").getValue()).toString());
-                    event.setHours(Objects.requireNonNull(ds.child("hours").getValue()).toString());
+                    event.setHours((Long) Objects.requireNonNull(ds.child("hours").getValue()));
                     event.setEventKey(ds.getKey());
 
                     list.add(event);

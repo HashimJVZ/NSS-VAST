@@ -6,7 +6,7 @@ public class Event {
     private String location;
     private String date;
     private String category;
-    private String hours;
+    private long hours;
     private String eventKey;
 
 
@@ -45,11 +45,11 @@ public class Event {
         this.category = category;
     }
 
-    public String getHours() {
+    public long getHours() {
         return hours;
     }
 
-    public void setHours(String hours) {
+    public void setHours(long hours) {
         this.hours = hours;
     }
 

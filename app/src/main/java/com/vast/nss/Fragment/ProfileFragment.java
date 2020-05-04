@@ -74,10 +74,10 @@ public class ProfileFragment extends Fragment {
                 String dept = (String) dataSnapshot.child("department").getValue();
                 String contact = (String) dataSnapshot.child("contact").getValue();
                 String photoUrl = (String) dataSnapshot.child("photoUrl").getValue();
-                long communityHour = (long) dataSnapshot.child("communityHour").getValue();
-                long campHour = (long) dataSnapshot.child("campHour").getValue();
-                long orientationHour = (long) dataSnapshot.child("orientationHour").getValue();
-                long campusHour = (long) dataSnapshot.child("campusHour").getValue();
+                long communityHour = (Long) dataSnapshot.child("communityHour").getValue();
+                long campHour = (Long) dataSnapshot.child("campHour").getValue();
+                long orientationHour = (Long) dataSnapshot.child("orientationHour").getValue();
+                long campusHour = (Long) dataSnapshot.child("campusHour").getValue();
                 long hours = communityHour + orientationHour + campusHour;
 
                 profileName.setText(name);
