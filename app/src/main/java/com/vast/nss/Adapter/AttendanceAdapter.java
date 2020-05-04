@@ -57,6 +57,8 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
                     Intent intent = new Intent(context, AttendanceActivity.class);
                     Log.d("hashim", "dbEventKey= " + dbEventKey + "\ncategory=" + category + "\nhours=" + hours);
                     intent.putExtra("dbEventKey", dbEventKey);
+                    intent.putExtra("category", category);
+                    intent.putExtra("hours", hours);
                     context.startActivity(intent);
                 }
             });

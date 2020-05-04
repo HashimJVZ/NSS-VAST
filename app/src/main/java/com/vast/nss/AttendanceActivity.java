@@ -1,6 +1,7 @@
 package com.vast.nss;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -22,6 +23,8 @@ import java.util.Objects;
 
 public class AttendanceActivity extends AppCompatActivity {
 
+    long hours;
+    String category;
     String dbEventKey;
     String collegeID;
     String enrollmentNumber;
@@ -38,6 +41,8 @@ public class AttendanceActivity extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         dbEventKey = Objects.requireNonNull(extras).getString("dbEventKey", "0000");
+        category = extras.getString("category", "default");
+        hours = extras.getLong("hours", 0);
 
         enrollmentEditText = findViewById(R.id.attendance_enrollment);
 
@@ -50,6 +55,7 @@ public class AttendanceActivity extends AppCompatActivity {
                 } else {
                     getCollegeID();
                     Toast.makeText(AttendanceActivity.this, "Added", Toast.LENGTH_SHORT).show();
+                    markAttendance();
                 }
 
             }
@@ -83,6 +89,36 @@ public class AttendanceActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void markAttendance() {
+        databaseReference.child("profile").child(getUser()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (category.equals("Orientation")) {
+                    databaseReference.child("profile").child(getUser()).child("orientationHour").setValue((Long) dataSnapshot.child("orientationHour").getValue() + hours);
+                } else if (category.equals("Campus")) {
+                    databaseReference.child("profile").child(getUser()).child("campusHour").setValue((Long) dataSnapshot.child("campusHour").getValue() + hours);
+                } else if (category.equals("Community")) {
+                    databaseReference.child("profile").child(getUser()).child("communityHour").setValue((Long) dataSnapshot.child("communityHour").getValue() + hours);
+                } else if (category.equals("Camp")) {
+                    databaseReference.child("profile").child(getUser()).child("campHour").setValue((Long) dataSnapshot.child("campHour").getValue() + hours);
+                } else {
+                    Toast.makeText(AttendanceActivity.this, "Error in Marking", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+    private String getUser() {
+        SharedPreferences sharedPreferences = this.getSharedPreferences("SharedPref", MODE_PRIVATE);
+        return sharedPreferences.getString("userName", null);
     }
 
 
