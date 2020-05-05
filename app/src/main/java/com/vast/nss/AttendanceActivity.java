@@ -53,9 +53,7 @@ public class AttendanceActivity extends AppCompatActivity {
                 if (enrollmentEditText.getText().toString().isEmpty()) {
                     enrollmentEditText.setError("Type in Enrollment Number");
                 } else {
-                    getCollegeID();
-                    Toast.makeText(AttendanceActivity.this, "Added", Toast.LENGTH_SHORT).show();
-                    markAttendance();
+                    addToList();
                 }
 
             }
@@ -67,20 +65,41 @@ public class AttendanceActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(AttendanceActivity.this, ScanningActivity.class);
                 intent.putExtra("dbEventKey", dbEventKey);
+                intent.putExtra("category", category);
+                intent.putExtra("hours", hours);
                 startActivity(intent);
             }
         });
 
     }
 
-    private void getCollegeID() {
+    private void addToList() {
+        databaseReference.child("participants").child(dbEventKey).child(getCollegeID()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    Toast.makeText(AttendanceActivity.this, "Already Marked", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(AttendanceActivity.this, "Added", Toast.LENGTH_SHORT).show();
+                    markAttendance();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private String getCollegeID() {
         enrollmentNumber = enrollmentEditText.getText().toString();
+        //todo: problem here
         databaseReference.child("profile").child(enrollmentNumber).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 collegeID = (String) dataSnapshot.child("collegeId").getValue();
-                //is this really here??
-                databaseReference.child("participants").child(dbEventKey).child(collegeID).setValue(enrollmentNumber);
+                Log.d("hashim", "college id = " + collegeID);
             }
 
             @Override
@@ -89,22 +108,34 @@ public class AttendanceActivity extends AppCompatActivity {
             }
         });
 
+        return collegeID;
+
     }
 
     private void markAttendance() {
+        //changed..
+        //is this really here??
+        databaseReference.child("participants").child(dbEventKey).child(collegeID).setValue(enrollmentNumber);
+
         databaseReference.child("profile").child(getUser()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (category.equals("Orientation")) {
-                    databaseReference.child("profile").child(getUser()).child("orientationHour").setValue((Long) dataSnapshot.child("orientationHour").getValue() + hours);
-                } else if (category.equals("Campus")) {
-                    databaseReference.child("profile").child(getUser()).child("campusHour").setValue((Long) dataSnapshot.child("campusHour").getValue() + hours);
-                } else if (category.equals("Community")) {
-                    databaseReference.child("profile").child(getUser()).child("communityHour").setValue((Long) dataSnapshot.child("communityHour").getValue() + hours);
-                } else if (category.equals("Camp")) {
-                    databaseReference.child("profile").child(getUser()).child("campHour").setValue((Long) dataSnapshot.child("campHour").getValue() + hours);
-                } else {
-                    Toast.makeText(AttendanceActivity.this, "Error in Marking", Toast.LENGTH_SHORT).show();
+                switch (category) {
+                    case "Orientation":
+                        databaseReference.child("profile").child(getUser()).child("orientationHour").setValue((Long) dataSnapshot.child("orientationHour").getValue() + hours);
+                        break;
+                    case "Campus":
+                        databaseReference.child("profile").child(getUser()).child("campusHour").setValue((Long) dataSnapshot.child("campusHour").getValue() + hours);
+                        break;
+                    case "Community":
+                        databaseReference.child("profile").child(getUser()).child("communityHour").setValue((Long) dataSnapshot.child("communityHour").getValue() + hours);
+                        break;
+                    case "Camp":
+                        databaseReference.child("profile").child(getUser()).child("campHour").setValue((Long) dataSnapshot.child("campHour").getValue() + hours);
+                        break;
+                    default:
+                        Toast.makeText(AttendanceActivity.this, "Error in Marking", Toast.LENGTH_SHORT).show();
+                        break;
                 }
             }
 

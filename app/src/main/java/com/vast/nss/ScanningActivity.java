@@ -1,9 +1,9 @@
 package com.vast.nss;
 
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -28,6 +28,9 @@ import static android.Manifest.permission.CAMERA;
 
 public class ScanningActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
 
+    long hours;
+    String category;
+
     private static final int REQUEST_CAMERA = 1;
     private ZXingScannerView scannerView;
     private String dbEventKey;
@@ -48,9 +51,10 @@ public class ScanningActivity extends AppCompatActivity implements ZXingScannerV
         Bundle extras = getIntent().getExtras();
         assert extras != null;
         dbEventKey = extras.getString("dbEventKey", "0000");
-        Log.d("dbEventKey", "dbEventKey= " + dbEventKey);
+        category = extras.getString("category", "default");
+        hours = extras.getLong("hours", 0);
         if (checkPermission()) {
-            Toast.makeText(ScanningActivity.this, "access granted", Toast.LENGTH_LONG).show();
+            Toast.makeText(ScanningActivity.this, "Access Granted", Toast.LENGTH_LONG).show();
         } else {
             requestPermissions();
         }
@@ -115,21 +119,20 @@ public class ScanningActivity extends AppCompatActivity implements ZXingScannerV
 
     @Override
     public void handleResult(Result result) {
-        Log.d("barcode_test", result.getBarcodeFormat().name());
-        Toast.makeText(this, result.getBarcodeFormat().name(), Toast.LENGTH_SHORT).show();
+//        Log.d("barcode_test", result.getBarcodeFormat().name());
+//        Toast.makeText(this, result.getBarcodeFormat().name(), Toast.LENGTH_SHORT).show();
         final String scanResult = result.getText();
-
-//        HashMap<String, Object> map = new HashMap<>();
-//        map.put("Id", scanResult);
 
         databaseReference.child("participants").child(dbEventKey).child(scanResult).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
-                    Toast.makeText(ScanningActivity.this, "Already Marked", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ScanningActivity.this, "Already Marked!", Toast.LENGTH_SHORT).show();
                 } else {
                     getEnrollmentNumber();
                     databaseReference.child("participants").child(dbEventKey).child(scanResult).setValue(enrollmentNumber);
+                    Toast.makeText(ScanningActivity.this, "Added", Toast.LENGTH_SHORT).show();
+                    markAttendance();
                 }
             }
 
@@ -138,9 +141,6 @@ public class ScanningActivity extends AppCompatActivity implements ZXingScannerV
 
             }
         });
-
-//        databaseReference.child("events").child(dbEvent_Key).child("participants").updateChildren(map);
-//        databaseReference.child("participants").child(dbEvent_Key).push().updateChildren(map);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Scan Result");
@@ -156,7 +156,42 @@ public class ScanningActivity extends AppCompatActivity implements ZXingScannerV
 
     }
 
+    private void markAttendance() {
+        databaseReference.child("profile").child(getUser()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                switch (category) {
+                    case "Orientation":
+                        databaseReference.child("profile").child(getUser()).child("orientationHour").setValue((Long) dataSnapshot.child("orientationHour").getValue() + hours);
+                        break;
+                    case "Campus":
+                        databaseReference.child("profile").child(getUser()).child("campusHour").setValue((Long) dataSnapshot.child("campusHour").getValue() + hours);
+                        break;
+                    case "Community":
+                        databaseReference.child("profile").child(getUser()).child("communityHour").setValue((Long) dataSnapshot.child("communityHour").getValue() + hours);
+                        break;
+                    case "Camp":
+                        databaseReference.child("profile").child(getUser()).child("campHour").setValue((Long) dataSnapshot.child("campHour").getValue() + hours);
+                        break;
+                    default:
+                        Toast.makeText(ScanningActivity.this, "Error in Marking", Toast.LENGTH_SHORT).show();
+                        break;
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private String getUser() {
+        SharedPreferences sharedPreferences = this.getSharedPreferences("SharedPref", MODE_PRIVATE);
+        return sharedPreferences.getString("userName", null);
+    }
+
     private void getEnrollmentNumber() {
-        enrollmentNumber = "do it bitch";
+        enrollmentNumber = "Unknown";
     }
 }
