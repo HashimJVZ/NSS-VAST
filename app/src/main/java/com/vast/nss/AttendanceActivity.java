@@ -46,14 +46,18 @@ public class AttendanceActivity extends AppCompatActivity {
 
         enrollmentEditText = findViewById(R.id.attendance_enrollment);
 
+        enrollmentNumber = "9645";
+        addToList();
+
         markAttendanceButton = findViewById(R.id.mark_attendance_button);
         markAttendanceButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (enrollmentEditText.getText().toString().isEmpty()) {
+                enrollmentNumber = enrollmentEditText.getText().toString();
+                if (enrollmentNumber.isEmpty()) {
                     enrollmentEditText.setError("Type in Enrollment Number");
                 } else {
-                    addToList();
+                    getCollegeID();
                 }
 
             }
@@ -73,10 +77,30 @@ public class AttendanceActivity extends AppCompatActivity {
 
     }
 
-    private void addToList() {
-        databaseReference.child("participants").child(dbEventKey).child(getCollegeID()).addListenerForSingleValueEvent(new ValueEventListener() {
+    private void getCollegeID() {
+        Log.d("hashim", "getCollegeId: ");
+        databaseReference.child("profile").child(enrollmentNumber).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Log.d("hashim", "onDataChange: collegeID ");
+                collegeID = (String) dataSnapshot.child("collegeId").getValue();
+                Log.d("hashim", "collegeID=" + collegeID);
+                addToList();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.d("hashim", "onCancelled: " + databaseError);
+            }
+        });
+    }
+
+    private void addToList() {
+
+        databaseReference.child("participants").child(dbEventKey).child(collegeID).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Log.d("hashim", "onDataChange: exist");
                 if (dataSnapshot.exists()) {
                     Toast.makeText(AttendanceActivity.this, "Already Marked", Toast.LENGTH_SHORT).show();
                 } else {
@@ -92,25 +116,6 @@ public class AttendanceActivity extends AppCompatActivity {
         });
     }
 
-    private String getCollegeID() {
-        enrollmentNumber = enrollmentEditText.getText().toString();
-        //todo: problem here
-        databaseReference.child("profile").child(enrollmentNumber).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                collegeID = (String) dataSnapshot.child("collegeId").getValue();
-                Log.d("hashim", "college id = " + collegeID);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.d("my_log", "onCancelled: " + databaseError);
-            }
-        });
-
-        return collegeID;
-
-    }
 
     private void markAttendance() {
         //changed..
