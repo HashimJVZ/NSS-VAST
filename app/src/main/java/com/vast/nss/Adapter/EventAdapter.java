@@ -41,7 +41,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
         return new MyViewHolder(view);
     }
 
-    public static void deleteEvent() {
+    private static void deleteEvent() {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("events").child(eventKey);
         databaseReference.removeValue();
 

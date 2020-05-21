@@ -10,10 +10,9 @@ public class Event {
     private String eventKey;
 
 
-
     //Constructors
-    public Event() {}
-
+    public Event() {
+    }
 
 
     //Getters and setters
@@ -33,13 +32,17 @@ public class Event {
         this.location = location;
     }
 
-    public String getDate() { return date; }
+    public String getDate() {
+        return date;
+    }
 
     public void setDate(String date) {
         this.date = date;
     }
 
-    public String getCategory() { return category; }
+    public String getCategory() {
+        return category;
+    }
 
     public void setCategory(String category) {
         this.category = category;
