@@ -24,7 +24,6 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                getUser();
                 if (getUser() == null) {
                     startActivity(new Intent(SplashActivity.this, LoginActivity.class));
 //                } else if (!isProfileFilled()) {
