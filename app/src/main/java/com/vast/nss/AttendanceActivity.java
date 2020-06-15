@@ -46,9 +46,6 @@ public class AttendanceActivity extends AppCompatActivity {
 
         enrollmentEditText = findViewById(R.id.attendance_enrollment);
 
-        enrollmentNumber = "9645";
-        addToList();
-
         markAttendanceButton = findViewById(R.id.mark_attendance_button);
         markAttendanceButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,7 +75,6 @@ public class AttendanceActivity extends AppCompatActivity {
     }
 
     private void getCollegeID() {
-        Log.d("hashim", "getCollegeId: ");
         databaseReference.child("profile").child(enrollmentNumber).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -100,11 +96,12 @@ public class AttendanceActivity extends AppCompatActivity {
         databaseReference.child("participants").child(dbEventKey).child(collegeID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Log.d("hashim", "onDataChange: exist");
                 if (dataSnapshot.exists()) {
                     Toast.makeText(AttendanceActivity.this, "Already Marked", Toast.LENGTH_SHORT).show();
+                    Log.d("hashim", " exist");
                 } else {
                     Toast.makeText(AttendanceActivity.this, "Added", Toast.LENGTH_SHORT).show();
+                    Log.d("hashim", " added");
                     markAttendance();
                 }
             }
@@ -118,8 +115,6 @@ public class AttendanceActivity extends AppCompatActivity {
 
 
     private void markAttendance() {
-        //changed..
-        //is this really here??
         databaseReference.child("participants").child(dbEventKey).child(collegeID).setValue(enrollmentNumber);
 
         databaseReference.child("profile").child(getUser()).addListenerForSingleValueEvent(new ValueEventListener() {

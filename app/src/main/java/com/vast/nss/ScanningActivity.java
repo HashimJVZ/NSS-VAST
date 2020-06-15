@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -28,10 +29,9 @@ import static android.Manifest.permission.CAMERA;
 
 public class ScanningActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
 
+    private static final int REQUEST_CAMERA = 1;
     long hours;
     String category;
-
-    private static final int REQUEST_CAMERA = 1;
     private ZXingScannerView scannerView;
     private String dbEventKey;
     private String enrollmentNumber;
@@ -54,7 +54,7 @@ public class ScanningActivity extends AppCompatActivity implements ZXingScannerV
         category = extras.getString("category", "default");
         hours = extras.getLong("hours", 0);
         if (checkPermission()) {
-            Toast.makeText(ScanningActivity.this, "Access Granted", Toast.LENGTH_LONG).show();
+            Toast.makeText(ScanningActivity.this, "Camera Access Granted", Toast.LENGTH_SHORT).show();
         } else {
             requestPermissions();
         }
@@ -68,25 +68,25 @@ public class ScanningActivity extends AppCompatActivity implements ZXingScannerV
         ActivityCompat.requestPermissions(this, new String[]{CAMERA}, REQUEST_CAMERA);
     }
 
-    public void onRequestPermissionResult(int requestCode, String[] permission, int[] grantResults) {
-        if (requestCode == REQUEST_CAMERA) {
-            boolean cameraAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
-            if (cameraAccepted) {
-                Toast.makeText(ScanningActivity.this, "Permission Granted", Toast.LENGTH_LONG).show();
-            } else {
-                Toast.makeText(ScanningActivity.this, "Permission Denied", Toast.LENGTH_LONG).show();
-
-                if (shouldShowRequestPermissionRationale(CAMERA)) {
-                    displayAlertMessage("You need to allow access for both permissions", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            requestPermissions(new String[]{CAMERA}, REQUEST_CAMERA);
-                        }
-                    });
-                }
-            }
-        }
-    }
+//    public void onRequestPermissionResult(int requestCode, String[] permission, int[] grantResults) {
+//        if (requestCode == REQUEST_CAMERA) {
+//            boolean cameraAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
+//            if (cameraAccepted) {
+//                Toast.makeText(ScanningActivity.this, "Permission Granted", Toast.LENGTH_LONG).show();
+//            } else {
+//                Toast.makeText(ScanningActivity.this, "Permission Denied", Toast.LENGTH_LONG).show();
+//
+//                if (shouldShowRequestPermissionRationale(CAMERA)) {
+//                    displayAlertMessage("You need to allow access for both permissions", new DialogInterface.OnClickListener() {
+//                        @Override
+//                        public void onClick(DialogInterface dialog, int which) {
+//                            requestPermissions(new String[]{CAMERA}, REQUEST_CAMERA);
+//                        }
+//                    });
+//                }
+//            }
+//        }
+//    }
 
     @Override
     public void onResume() {
@@ -108,19 +108,18 @@ public class ScanningActivity extends AppCompatActivity implements ZXingScannerV
         scannerView.stopCamera();
     }
 
-    public void displayAlertMessage(String message, DialogInterface.OnClickListener listener) {
-        new AlertDialog.Builder(ScanningActivity.this)
-                .setMessage(message)
-                .setPositiveButton("OK", listener)
-                .setNegativeButton("Cancel", null)
-                .create()
-                .show();
-    }
+//    public void displayAlertMessage(String message, DialogInterface.OnClickListener listener) {
+//        new AlertDialog.Builder(ScanningActivity.this)
+//                .setMessage(message)
+//                .setPositiveButton("OK", listener)
+//                .setNegativeButton("Cancel", null)
+//                .create()
+//                .show();
+//    }
 
     @Override
     public void handleResult(Result result) {
 //        Log.d("barcode_test", result.getBarcodeFormat().name());
-//        Toast.makeText(this, result.getBarcodeFormat().name(), Toast.LENGTH_SHORT).show();
         final String scanResult = result.getText();
 
         databaseReference.child("participants").child(dbEventKey).child(scanResult).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -129,10 +128,8 @@ public class ScanningActivity extends AppCompatActivity implements ZXingScannerV
                 if (dataSnapshot.exists()) {
                     Toast.makeText(ScanningActivity.this, "Already Marked!", Toast.LENGTH_SHORT).show();
                 } else {
-                    getEnrollmentNumber();
-                    databaseReference.child("participants").child(dbEventKey).child(scanResult).setValue(enrollmentNumber);
+                    getEnrollmentNumber(scanResult);
                     Toast.makeText(ScanningActivity.this, "Added", Toast.LENGTH_SHORT).show();
-                    markAttendance();
                 }
             }
 
@@ -147,7 +144,9 @@ public class ScanningActivity extends AppCompatActivity implements ZXingScannerV
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                scannerView.resumeCameraPreview(ScanningActivity.this);
+//                scannerView.resumeCameraPreview(ScanningActivity.this);
+                markAttendance(scanResult);
+                finish();
             }
         });
         builder.setMessage(scanResult);
@@ -156,7 +155,10 @@ public class ScanningActivity extends AppCompatActivity implements ZXingScannerV
 
     }
 
-    private void markAttendance() {
+    private void markAttendance(String scanResult) {
+        Log.d("hashim", "markAttendance:\n db scRes env " + dbEventKey + " " + scanResult + " " + enrollmentNumber);
+        databaseReference.child("participants").child(dbEventKey).child(scanResult).setValue(enrollmentNumber);
+
         databaseReference.child("profile").child(getUser()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -191,7 +193,19 @@ public class ScanningActivity extends AppCompatActivity implements ZXingScannerV
         return sharedPreferences.getString("userName", null);
     }
 
-    private void getEnrollmentNumber() {
-        enrollmentNumber = "Unknown";
+    private void getEnrollmentNumber(String scanResult) {
+        databaseReference.child("profile").orderByChild("collegeId").equalTo(scanResult).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot childDataSnapshot : dataSnapshot.getChildren()) {
+                    enrollmentNumber = childDataSnapshot.getKey();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 }
