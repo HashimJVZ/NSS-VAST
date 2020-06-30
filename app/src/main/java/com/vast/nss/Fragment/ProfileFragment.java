@@ -73,7 +73,7 @@ public class ProfileFragment extends Fragment {
                 String unit = Objects.requireNonNull(nssId).substring(0, 3);
                 String dept = (String) dataSnapshot.child("department").getValue();
                 String contact = (String) dataSnapshot.child("contact").getValue();
-                String photoUrl = dataSnapshot.child("photoUrl").getValue() + "_700x700";
+                String photoUrl = (String) dataSnapshot.child("photoUrl").getValue();
                 long communityHour = (Long) dataSnapshot.child("communityHour").getValue();
                 long campHour = (Long) dataSnapshot.child("campHour").getValue();
                 long orientationHour = (Long) dataSnapshot.child("orientationHour").getValue();
