@@ -5,7 +5,7 @@
 <h2>Features</h2>
 <ul>
   <li> Event Creation.</li>
-  <li> Voluteer Selection.</li>
-  <li> Attendace Preview.</li>
+  <li> Volunteer Selection.</li>
+  <li> Attendance Preview.</li>
   <li> Multi-user Interface.</li>
 </ul>
